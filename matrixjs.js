@@ -19,8 +19,26 @@ function createTable(rows, cols) {
     }
 }
 
-window.addEventListener('resize', function(event) {
-    createTable(Math.floor(window.innerHeight/10), Math.floor(window.innerWidth/10));
-}, true);
+function addRandomLetterToCells() {
+    // Get all table cells (td elements)
+    const cells = document.querySelectorAll('td');
+    
+    // Loop through each cell
+    cells.forEach(cell => {
+        // Generate a random letter (A-Z)
+        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        
+        // Add the random letter to the current content of the cell
+        cell.textContent += randomLetter;
+    });
+}
 
-createTable(Math.floor(window.innerHeight/10), Math.floor(window.innerWidth/10));
+window.onresize = function(){ location.reload(); }
+
+
+
+createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
+
+// Run the function once the page loads
+//window.onload = addRandomLetterToCells;
+window.onload = addRandomLetterToCells;
