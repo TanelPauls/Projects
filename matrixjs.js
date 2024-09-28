@@ -19,6 +19,8 @@ function createTable(rows, cols) {
     }
 }
 
-
+window.addEventListener('resize', function(event) {
+    createTable(Math.floor(window.innerHeight/10), Math.floor(window.innerWidth/10));
+}, true);
 
 createTable(Math.floor(window.innerHeight/10), Math.floor(window.innerWidth/10));
