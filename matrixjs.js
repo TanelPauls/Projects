@@ -1,35 +1,17 @@
-function generateTable() {
-    // Get user input for rows and columns
-    const rows = document.getElementById('rows').value;
-    const columns = document.getElementById('columns').value;
+const rows = 50; // Replace with your desired row count (x)
+  const cols = 50; // Replace with your desired column count (y)
 
-    // Check if inputs are valid
-    if (rows <= 0 || columns <= 0) {
-        alert('Please enter valid numbers for both rows and columns.');
-        return;
+  // Add CSS variables for rows and columns count
+  document.documentElement.style.setProperty('--rows', rows);
+  document.documentElement.style.setProperty('--cols', cols);
+
+  const tableBody = document.querySelector('table tbody');
+
+  for (let i = 0; i < rows; i++) {
+    const row = document.createElement('tr');
+    for (let j = 0; j < cols; j++) {
+      const cell = document.createElement('td');
+      row.appendChild(cell);
     }
-
-    // Clear any previously generated table
-    const tableContainer = document.getElementById('tableContainer');
-    tableContainer.innerHTML = '';
-
-    // Create a new table element
-    const table = document.createElement('table');
-
-    // Loop to generate rows and columns dynamically
-    for (let i = 0; i < rows; i++) {
-        const row = document.createElement('tr');
-
-        for (let j = 0; j < columns; j++) {
-            const cell = document.createElement(i === 0 ? 'th' : 'td');
-            cell.textContent = `R${i + 1}C${j + 1}`; // Add text to cells
-            row.appendChild(cell);
-        }
-
-        // Append row to the table
-        table.appendChild(row);
-    }
-
-    // Append the table to the container div
-    tableContainer.appendChild(table);
-}
+    tableBody.appendChild(row);
+  }
