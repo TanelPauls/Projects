@@ -19,16 +19,32 @@ function createTable(rows, cols) {
     }
 }
 
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function matrixRunner() {
     // Get the first row of the table
-    const cells = document.querySelectorAll('tr:first-child td');
+    const cells = document.querySelectorAll('td');
     
+    var x=Math.floor(Math.random() * Math.floor(window.innerWidth/15));
     // Loop through each cell
+    var v=0;
+    var vCounter=0
     cells.forEach(cell => {
-        // Generate a random letter (A-Z)
-        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        
-        cell.textContent = randomLetter;
+        v+=1
+        if(x==v && cell.textContent == ""){
+            const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+            cell.textContent = randomLetter;
+            // Creates letter "tail" length between 0.3-0.7 of total height
+            vCounter=randomIntFromInterval(0.3*Math.floor(window.innerWidth/15), 0.7*Math.floor(window.innerWidth/15))
+        }
+        if(cell.textContent != ""){
+            if (vCounter>0){vCounter=vCounter-1}
+            if (vCounter==0){
+                cell.textContent = "";
+            }
+        }
     });
 }
 
@@ -40,4 +56,4 @@ createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15))
 
 // Run the function once the page loads
 //window.onload = addRandomLetterToCells;
-window.onload = setInterval(matrixRunner,500);
+window.onload = setInterval(matrixRunner,1000);
