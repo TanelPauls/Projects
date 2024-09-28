@@ -19,17 +19,16 @@ function createTable(rows, cols) {
     }
 }
 
-function addRandomLetterToCells() {
-    // Get all table cells (td elements)
-    const cells = document.querySelectorAll('td');
+function matrixRunner() {
+    // Get the first row of the table
+    const cells = document.querySelectorAll('tr:first-child td');
     
     // Loop through each cell
     cells.forEach(cell => {
         // Generate a random letter (A-Z)
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
         
-        // Add the random letter to the current content of the cell
-        cell.textContent += randomLetter;
+        cell.textContent = randomLetter;
     });
 }
 
@@ -41,4 +40,4 @@ createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15))
 
 // Run the function once the page loads
 //window.onload = addRandomLetterToCells;
-window.onload = addRandomLetterToCells;
+window.onload = setInterval(matrixRunner,500);
