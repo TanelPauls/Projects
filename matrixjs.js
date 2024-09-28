@@ -17,5 +17,8 @@ function createTable(rows, cols) {
       }
       tableBody.appendChild(row);
     }
-  }
-  createTable(58, 58);
+}
+
+
+
+createTable(Math.floor(window.innerHeight/10), Math.floor(window.innerWidth/10));
