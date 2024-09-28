@@ -37,13 +37,18 @@ function matrixRunner() {
             const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
             cell.textContent = randomLetter;
             // Creates letter "tail" length between 0.3-0.7 of total height
-            vCounter=randomIntFromInterval(0.3*Math.floor(window.innerWidth/15), 0.7*Math.floor(window.innerWidth/15))
+            vCounter=randomIntFromInterval(0.3*Math.floor(window.innerHeight/15), 0.7*Math.floor(window.innerHeight/15))
         }
         if(cell.textContent != ""){
             if (vCounter>0){vCounter=vCounter-1}
             if (vCounter==0){
                 cell.textContent = "";
             }
+        }
+        if(v>Math.floor(window.innerWidth/15)){
+            //cell.textContent = cell.cellIndex
+            //cell.textContent = cell.cellIndex*cell.closest('tr').rowIndex
+            cell.textContent ="cell"
         }
     });
 }
