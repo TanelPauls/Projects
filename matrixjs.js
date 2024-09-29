@@ -27,29 +27,40 @@ function matrixRunner() {
     // Get the first row of the table
     const cells = document.querySelectorAll('td');
     
+    // Gets random number from 0..first row numbers.
     var x=Math.floor(Math.random() * Math.floor(window.innerWidth/15));
     // Loop through each cell
-    var v=0;
-    var vCounter=0
+    var v=0
+    var cellCounter=0
+    let cellHead=false
+    let cellMoveDown=false
     cells.forEach(cell => {
         v+=1
         if(x==v && cell.textContent == ""){
             const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
             cell.textContent = randomLetter;
             // Creates letter "tail" length between 0.3-0.7 of total height
-            vCounter=randomIntFromInterval(0.3*Math.floor(window.innerHeight/15), 0.7*Math.floor(window.innerHeight/15))
+            cellCounter=randomIntFromInterval(0.3*Math.floor(window.innerHeight/15), 0.7*Math.floor(window.innerHeight/15))
+            cell.setAttribute('data-hidden-cellCounter', cellCounter);
+            cell.setAttribute('data-hidden-cellHead', true);
+            cell.setAttribute('data-hidden-cellMoveDown', false);
+            //cell.textContent=cell.getAttribute('data-hidden-cellHead')
         }
-        if(cell.textContent != ""){
-            if (vCounter>0){vCounter=vCounter-1}
-            if (vCounter==0){
-                cell.textContent = "";
-            }
+        if(cell.textContent != "" && cell.getAttribute('data-hidden-cellHead')==true){
+            cell.textContent = "asd"    
+            //cell.textContent = "U";
         }
-        if(v>Math.floor(window.innerWidth/15)){
+        if(cell.getAttribute('data-hidden-cellHead')==true){
+            cell.textContent = "";
+            cell.textContent = "asd"    
+            //cell.textContent = "U";
+        }
+
+        //if(v>Math.floor(window.innerWidth/15)){
             //cell.textContent = cell.cellIndex
             //cell.textContent = cell.cellIndex*cell.closest('tr').rowIndex
-            cell.textContent ="cell"
-        }
+        //    cell.textContent ="cell"
+        //}
     });
 }
 
