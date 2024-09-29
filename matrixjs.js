@@ -31,36 +31,27 @@ function matrixRunner() {
     var x=Math.floor(Math.random() * Math.floor(window.innerWidth/15));
     // Loop through each cell
     var v=0
-    var cellCounter=0
-    let cellHead=false
-    let cellMoveDown=false
     cells.forEach(cell => {
         v+=1
         if(x==v && cell.textContent == ""){
             const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
             cell.textContent = randomLetter;
             // Creates letter "tail" length between 0.3-0.7 of total height
-            cellCounter=randomIntFromInterval(0.3*Math.floor(window.innerHeight/15), 0.7*Math.floor(window.innerHeight/15))
+            const cellCounter=randomIntFromInterval(0.3*Math.floor(window.innerHeight/15), 0.7*Math.floor(window.innerHeight/15))
             cell.setAttribute('data-hidden-cellCounter', cellCounter);
-            cell.setAttribute('data-hidden-cellHead', true);
-            cell.setAttribute('data-hidden-cellMoveDown', false);
-            //cell.textContent=cell.getAttribute('data-hidden-cellHead')
+            const newCellHead=true
+            cell.setAttribute('data-hidden-cellHead', newCellHead);
+            const newMoveDown=false
+            cell.setAttribute('data-hidden-cellMoveDown', newMoveDown);
         }
-        if(cell.textContent != "" && cell.getAttribute('data-hidden-cellHead')==true){
-            cell.textContent = "asd"    
-            //cell.textContent = "U";
+        
+        if(cell.textContent != ""){
+            const previousCellHead = cell.getAttribute("data-hidden-cellHead");
+            const previousCellMoveDown = cell.getAttribute("data-hidden-cellMoveDown");
+            const xCoord = cell.closest('tr').rowIndex
+            const yCoord = cell.cellIndex
+            cell.textContent = yCoord;
         }
-        if(cell.getAttribute('data-hidden-cellHead')==true){
-            cell.textContent = "";
-            cell.textContent = "asd"    
-            //cell.textContent = "U";
-        }
-
-        //if(v>Math.floor(window.innerWidth/15)){
-            //cell.textContent = cell.cellIndex
-            //cell.textContent = cell.cellIndex*cell.closest('tr').rowIndex
-        //    cell.textContent ="cell"
-        //}
     });
 }
 
@@ -70,6 +61,4 @@ window.onresize = function(){ location.reload(); }
 
 createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
 
-// Run the function once the page loads
-//window.onload = addRandomLetterToCells;
 window.onload = setInterval(matrixRunner,1000);
