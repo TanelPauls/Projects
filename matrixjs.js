@@ -26,10 +26,14 @@ function randomIntFromInterval(min, max) { // min and max included
 function matrixRunner() {
     const cells = document.querySelectorAll('td');
     cells.forEach(cell => {
+        if(cell.textContent != ""){cell.textContent = ""}
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
         cell.textContent = randomLetter
+        cell.style.opacity = 0.5;
     });
 }
+
+
 
 window.onresize = function(){ location.reload(); }
 
