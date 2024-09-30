@@ -32,8 +32,8 @@ function matrixRunner() {
         const yCoord = cell.closest('tr').rowIndex
         // Get current cell opacity
         let currentOpacity = parseFloat(window.getComputedStyle(cell).opacity);
-        //Make new snake with probability 50%
-        const changeOpacity = Math.random() < 0.1;
+        //Make new snake with probability 3%
+        const changeOpacity = Math.random() < 0.03;
         if(yCoord==0 && currentOpacity ==0 && changeOpacity){
             snakeHead.push([xCoord,yCoord,0])
             cell.style.opacity = 1;
@@ -52,13 +52,12 @@ function matrixRunner() {
             }
         }
         if(currentOpacity >0){
-            cell.style.opacity -= 0.1;
+            cell.style.opacity -= 0.05;
         }
 
         
 
     });
-    //console.log(snakeHead);
     for (let i = 0; i < snakeHead.length; i++) {
         if(snakeHead[i][1]!=Math.floor(window.innerHeight/15)){
             snakeHead[i][1]+=1
@@ -77,13 +76,11 @@ function matrixRunner() {
         }
     }
     snakeHead=newSnakeHead;
-    //console.log(snakeHead);
 }
 
 
 window.onresize = function(){ location.reload(); }
-//console.log("START");
 let snakeHead=[];
 createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
 
-window.onload = setInterval(matrixRunner,100);
+window.onload = setInterval(matrixRunner,50);
