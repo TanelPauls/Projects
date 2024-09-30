@@ -26,26 +26,24 @@ function randomIntFromInterval(min, max) { // min and max included
 function matrixRunner() {
     const cells = document.querySelectorAll('td');
     cells.forEach(cell => {
-    
-        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        cell.textContent = randomLetter
-        
-        let cellColor = window.getComputedStyle(cell).color;
-        
-        let rgbaValues = cellColor.match(/rgba?\((\d+), (\d+), (\d+), (\d?.\d*)\)/);
-        let opacity = 0; // Default opacity from CSS
+        // Randomly decide if opacity should change
+        const changeOpacity = Math.random() < 0.5;  // 50% chance
 
-        if (rgbaValues && rgbaValues[4]) {
-            opacity = parseFloat(rgbaValues[4]); // Extract opacity from rgba
+        if (changeOpacity) {
+            // Get the current opacity of the cell
+            let currentOpacity = parseFloat(window.getComputedStyle(cell).opacity);
+
+            // If opacity is less than 1, increment it by 0.1, otherwise reset to 0
+            if (currentOpacity < 1) {
+                cell.style.opacity = currentOpacity + 0.1;
+            } else {
+                cell.style.opacity = 0;  // Reset back to 0 once opacity reaches 1
+            }
         }
 
-        // Increment opacity by 0.1
-        let newOpacity = Math.min(opacity + 0.1, 1); // Cap at 1
-        
-        // Set the new color with updated opacity
-        cell.style.color = `rgba(0, 255, 0, ${newOpacity})`;
-        
-        
+        // Randomize the letter in the cell
+        const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        cell.textContent = randomLetter;
     });
 }
 
@@ -57,4 +55,4 @@ window.onresize = function(){ location.reload(); }
 
 createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
 
-window.onload = setInterval(matrixRunner,1000);
+window.onload = setInterval(matrixRunner,500);
