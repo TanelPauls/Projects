@@ -33,7 +33,7 @@ function matrixRunner() {
         // Get current cell opacity
         let currentOpacity = parseFloat(window.getComputedStyle(cell).opacity);
         //Make new snake with probability 50%
-        const changeOpacity = Math.random() < 0.3;
+        const changeOpacity = Math.random() < 0.1;
         if(yCoord==0 && currentOpacity ==0 && changeOpacity){
             snakeHead.push([xCoord,yCoord,0])
             cell.style.opacity = 1;
@@ -43,36 +43,47 @@ function matrixRunner() {
         }
         if(yCoord>0 && currentOpacity ==0){
             for (let i = 0; i < snakeHead.length; i++) {
-                if(snakeHead[i][0]==xCoord && snakeHead[i][1]==yCoord ){
-                    console.log("ASD");
-                    cell.textContent = "a"
+                if(snakeHead[i][0]==xCoord && snakeHead[i][1]==yCoord && snakeHead[i][2]==1){
+                    const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                    cell.textContent = randomLetter
                     cell.style.opacity = 1;
                 }
         
             }
         }
+        if(currentOpacity >0){
+            cell.style.opacity -= 0.1;
+        }
 
         
 
     });
-    console.log(snakeHead);
+    //console.log(snakeHead);
     for (let i = 0; i < snakeHead.length; i++) {
         if(snakeHead[i][1]!=Math.floor(window.innerHeight/15)){
             snakeHead[i][1]+=1
         }
+        snakeHead[i][2]=1
         if(snakeHead[i][1]==Math.floor(window.innerHeight/15)){
             snakeHead[i][2]=2
         }
-        snakeHead[i][2]=1
+        
 
     }
-    console.log(snakeHead);
+    let newSnakeHead=[];
+    for (let i = 0; i < snakeHead.length; i++) {
+        if(snakeHead[i][2]!=2){
+            newSnakeHead.push(snakeHead[i])
+        }
+    }
+    snakeHead=newSnakeHead;
+    //console.log(snakeHead);
 }
 
 
 window.onresize = function(){ location.reload(); }
-console.log("New run");
+//console.log("START");
 let snakeHead=[];
 createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
 
-window.onload = setInterval(matrixRunner,4000);
+window.onload = setInterval(matrixRunner,100);
