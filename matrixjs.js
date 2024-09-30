@@ -26,24 +26,30 @@ function randomIntFromInterval(min, max) { // min and max included
 function matrixRunner() {
     const cells = document.querySelectorAll('td');
     cells.forEach(cell => {
-        // Randomly decide if opacity should change
-        const changeOpacity = Math.random() < 0.5;  // 50% chance
-
-        if (changeOpacity) {
-            // Get the current opacity of the cell
-            let currentOpacity = parseFloat(window.getComputedStyle(cell).opacity);
-
-            // If opacity is less than 1, increment it by 0.1, otherwise reset to 0
-            if (currentOpacity < 1) {
-                cell.style.opacity = currentOpacity + 0.1;
-            } else {
-                cell.style.opacity = 0;  // Reset back to 0 once opacity reaches 1
-            }
+        // at start make first snake
+        if(snakeHead.length==0){
+            //choose random column first row as start
+            var x=Math.floor(Math.random() * Math.floor(window.innerWidth/15));
+            snakeHead.push([x,0])
         }
+
+        // Randomly decide if opacity should change
+        //const changeOpacity = Math.random() < 0.5;  // 50% chance
+
+        //if (changeOpacity) {
+            // Get the current opacity of the cell
+        let currentOpacity = parseFloat(window.getComputedStyle(cell).opacity);
+        if (currentOpacity ==0 ) {// siit pooleli&& ) {
+            cell.style.opacity = currentOpacity + 0.8;
+        } else {
+            cell.style.opacity = 0;  // Reset back to 0 once opacity reaches 1
+        }
+        
 
         // Randomize the letter in the cell
         const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        cell.textContent = randomLetter;
+        //cell.textContent = randomLetter//snakeHead[1];
+        cell.textContent = snakeHead.length
     });
 }
 
@@ -51,8 +57,6 @@ function matrixRunner() {
 
 window.onresize = function(){ location.reload(); }
 
-
-
+let snakeHead=[];
 createTable(Math.floor(window.innerHeight/15), Math.floor(window.innerWidth/15));
-
 window.onload = setInterval(matrixRunner,500);
