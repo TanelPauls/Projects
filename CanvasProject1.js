@@ -9,8 +9,8 @@ window.addEventListener("resize",function(){
 });
 
 const mouse={
-    x:null,
-    y:null,
+    x:undefined,
+    y:undefined,
 }
 canvas.addEventListener('click',function(event){
     mouse.x=event.x;
@@ -20,6 +20,11 @@ canvas.addEventListener('click',function(event){
 function drawCircle(){
     canvasContext.fillStyle='blue';
     canvasContext.beginPath();
-    canvasContext.arc(mouse.x, mouse.y, 50, 0, Math.PI * 2);
+    canvasContext.arc(mouse.x, mouse.y, 30, 0, Math.PI * 2);
     canvasContext.fill();
 }
+canvas.addEventListener('mousemove',function(event){
+    mouse.x=event.x;
+    mouse.y=event.y;
+    drawCircle();
+})
