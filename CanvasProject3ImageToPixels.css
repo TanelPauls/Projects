@@ -6,4 +6,16 @@
     top:0;
     left:0;
     opacity:0.6;
+    pointer-events: none;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block; /* So the container fits the image */
+}
+
+#imageToOverlay {
+    display: block;
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Preserve aspect ratio */
 }
