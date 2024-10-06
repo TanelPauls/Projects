@@ -177,6 +177,67 @@ document.addEventListener("DOMContentLoaded", function() {
 
             currentAngle += sliceAngle;
             });
+
+            const canvas2 = document.getElementById('myPieChart2');
+            const ctx2 = canvas2.getContext('2d');
+            const percentage3 = dataKokku-dataWorkSatisfaction;
+            const percentage4 = dataWorkSatisfaction;
+            const data2 = [percentage3, percentage4];
+            const total2 = data2.reduce((a, b) => a + b, 0);
+            let currentAngle2 = 0;
+            const colors2 = ['#3498db', '#e74c3c'];
+            data2.forEach((percentage, index) => {
+            const sliceAngle2 = (percentage / total) * 2 * Math.PI;
+            ctx2.beginPath();
+            ctx2.moveTo(75, 75); // Move to the center of the canvas
+            ctx2.arc(75, 75, 50, currentAngle2, currentAngle2 + sliceAngle2);
+            ctx2.closePath();
+            ctx2.fillStyle = colors2[index];
+            ctx2.fill();
+
+            currentAngle2 += sliceAngle2;
+            });
+
+            const canvas3 = document.getElementById('myPieChart3');
+            const ctx3 = canvas3.getContext('2d');
+            const percentage5 = dataKokku-dataRoomsInt;
+            const percentage6 = dataRoomsInt;
+            const data3 = [percentage5, percentage6];
+            const total3 = data3.reduce((a, b) => a + b, 0);
+            let currentAngle3 = 0;
+            const colors3 = ['#3498db', '#e74c3c'];
+            data3.forEach((percentage, index) => {
+            const sliceAngle3 = (percentage / total) * 2 * Math.PI;
+            ctx3.beginPath();
+            ctx3.moveTo(75, 75); // Move to the center of the canvas
+            ctx3.arc(75, 75, 50, currentAngle3, currentAngle3 + sliceAngle3);
+            ctx3.closePath();
+            ctx3.fillStyle = colors3[index];
+            ctx3.fill();
+
+            currentAngle3 += sliceAngle3;
+            });
+
+            const canvas4 = document.getElementById('myPieChart4');
+            const ctx4 = canvas4.getContext('2d');
+            const percentage7 = dataKokku-dataSocialMedia;
+            const percentage8 = dataSocialMedia;
+            const data4 = [percentage7, percentage8];
+            const total4 = data4.reduce((a, b) => a + b, 0);
+            let currentAngle4 = 0;
+            const colors4 = ['#3498db', '#e74c3c'];
+            data4.forEach((percentage, index) => {
+            const sliceAngle4 = (percentage / total) * 2 * Math.PI;
+            ctx4.beginPath();
+            ctx4.moveTo(75, 75); // Move to the center of the canvas
+            ctx4.arc(75, 75, 50, currentAngle4, currentAngle4 + sliceAngle4);
+            ctx4.closePath();
+            ctx4.fillStyle = colors4[index];
+            ctx4.fill();
+
+            currentAngle4 += sliceAngle4;
+            });
+
         
         } else {
             alert('Please enter a valid positive number.');
