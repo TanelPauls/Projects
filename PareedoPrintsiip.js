@@ -27,6 +27,7 @@ function randomSotsiaalmeedia() {
 
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
     let tableContainer = document.querySelector('.table-container');
     let tbody = tableContainer.querySelector('tbody');
@@ -156,16 +157,32 @@ document.addEventListener("DOMContentLoaded", function() {
             cell.innerHTML = 'Oluline tulemus: "Suurem tubade arv, kui 80% testi täitjatest."<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' +dataRoomsInt;
             var cell = document.getElementById("cell4");
             cell.innerHTML = 'Oluline tulemus: "Instagram (1) ja Tik-Tok (2)"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
-        
-            /* Olulised tulemused: "4 ja 5"<br>
-            Arvutatud tabeli põhjal:<br>
-            Kokku vastuseid:<br>
-            Olulisi tulemusi:<br></br> */
-        
+            
+            const canvas = document.getElementById('myPieChart');
+            const ctx = canvas.getContext('2d');
+            const percentage1 = dataKokku-dataMaleFemale;
+            const percentage2 = dataMaleFemale;
+            const data = [percentage1, percentage2];
+            const total = data.reduce((a, b) => a + b, 0);
+            let currentAngle = 0;
+            const colors = ['#3498db', '#e74c3c'];
+            data.forEach((percentage, index) => {
+            const sliceAngle = (percentage / total) * 2 * Math.PI;
+            ctx.beginPath();
+            ctx.moveTo(75, 75); // Move to the center of the canvas
+            ctx.arc(75, 75, 50, currentAngle, currentAngle + sliceAngle);
+            ctx.closePath();
+            ctx.fillStyle = colors[index];
+            ctx.fill();
+
+            currentAngle += sliceAngle;
+            });
         
         } else {
             alert('Please enter a valid positive number.');
         }
+
+        
 
         
     });
