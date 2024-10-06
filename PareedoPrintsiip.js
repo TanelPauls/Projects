@@ -36,15 +36,18 @@ document.addEventListener("DOMContentLoaded", function() {
     let dataMaleFemale=0;
     let dataKokku=0;
     let dataWorkSatisfaction=0;
+    let dataSocialMedia=0;
+    let dataRooms=[];
+    let dataRoomsInt=0;
+    let valueFloor=0;
+    let valueCeil=0;
+    let value1=0;
+    let value2=0;
+    let percentileValue=0;
+    let rValue=0;
 
     function adjustTableRowCount(targetCount) {
         let currentRowCount = tbody ? tbody.querySelectorAll('tr').length : 0;
-        
-        
-        
-        let dataRooms=0;
-        let dataSocialMedia=0;
-
         if (currentRowCount < targetCount) {
             let rowsToAdd = targetCount - currentRowCount;
             for (let i = 0; i < rowsToAdd; i++) {
@@ -76,12 +79,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     else if(j%5==3){
                         let newCell = document.createElement('td');
                         let lambda = 3;
-                        newCell.textContent = poissonRandom(lambda);
+                        let poissonValue = poissonRandom(lambda); 
+                        newCell.textContent = poissonValue;
+                        dataRooms.push(poissonValue);  // Push numeric value directly
                         newRow.appendChild(newCell);
                     }
                     else{
                         let newCell = document.createElement('td');
                         newCell.textContent = randomSotsiaalmeedia();
+                        if(newCell.textContent==1 || newCell.textContent==2){
+                            dataSocialMedia+=1;
+                        }
                         newRow.appendChild(newCell);
                     }
                 }
@@ -110,12 +118,51 @@ document.addEventListener("DOMContentLoaded", function() {
             dataMaleFemale=0;
             dataKokku=0;
             dataWorkSatisfaction=0;
+            dataSocialMedia=0;
+            dataRooms=[];
+            dataRoomsInt=0;
+            valueFloor=0;
+            valueCeil=0;
+            value1=0;
+            value2=0;
+            percentileValue=0;
+            rValue=0;
+            dataRoomsInt=0;
             adjustTableRowCount(0);
             adjustTableRowCount(inputValue);
             var cell = document.getElementById("cell1");
             cell.innerHTML = 'Oluline tulemus: "Naine"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataMaleFemale;
             var cell = document.getElementById("cell2");
             cell.innerHTML = 'Oluline tulemus: "4 ja 5"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataWorkSatisfaction;               
+            var cell = document.getElementById("cell3");
+            
+ 
+            dataRooms.sort(function(a, b) {
+                return a - b;
+              });;
+            rValue=(80/100)*(dataKokku+1);
+            valueFloor=Math.floor(rValue);
+            valueCeil=Math.ceil(rValue);
+            value1=dataRooms[valueFloor-1];
+            value2=dataRooms[valueCeil-1];
+            percentileValue=value1+((rValue-valueFloor)*(value2-value1));
+            
+            let q=0;
+            while(q<dataRooms.length){
+                if(dataRooms[q]>percentileValue){dataRoomsInt+=1;}
+                q++;
+            }
+
+            cell.innerHTML = 'Oluline tulemus: "Suurem tubade arv, kui 80% testi täitjatest."<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' +dataRoomsInt;
+            var cell = document.getElementById("cell4");
+            cell.innerHTML = 'Oluline tulemus: "Instagram (1) ja Tik-Tok (2)"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
+        
+            /* Olulised tulemused: "4 ja 5"<br>
+            Arvutatud tabeli põhjal:<br>
+            Kokku vastuseid:<br>
+            Olulisi tulemusi:<br></br> */
+        
+        
         } else {
             alert('Please enter a valid positive number.');
         }
