@@ -33,14 +33,22 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Set the target number of rows
     let targetRowCount = 0;
+    let dataMaleFemale=0;
+    let dataKokku=0;
+    let dataWorkSatisfaction=0;
 
     function adjustTableRowCount(targetCount) {
         let currentRowCount = tbody ? tbody.querySelectorAll('tr').length : 0;
-
+        
+        
+        
+        let dataRooms=0;
+        let dataSocialMedia=0;
 
         if (currentRowCount < targetCount) {
             let rowsToAdd = targetCount - currentRowCount;
             for (let i = 0; i < rowsToAdd; i++) {
+                dataKokku+=1;
                 let newRow = document.createElement('tr');
                 // Add 5 cells to each new row (adjust the number of cells if needed)
                 for (let j = 0; j < 5; j++) {
@@ -52,11 +60,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     else if(j%5==1){
                         let newCell = document.createElement('td');
                         newCell.textContent = randomInteger(0,1);
+                        if(newCell.textContent==1){
+                            dataMaleFemale+=1;
+                        }
                         newRow.appendChild(newCell);
                     }
                     else if(j%5==2){
                         let newCell = document.createElement('td');
                         newCell.textContent = randomInteger(1,5);
+                        if(newCell.textContent==4 || newCell.textContent==5){
+                            dataWorkSatisfaction+=1;
+                        }
                         newRow.appendChild(newCell);
                     }
                     else if(j%5==3){
@@ -92,10 +106,21 @@ document.addEventListener("DOMContentLoaded", function() {
         const inputValue = parseInt(inputField.value);
 
         if (!isNaN(inputValue) && inputValue > 0) {
-            adjustTableRowCount(inputValue); // Pass the input value to the function
+            targetRowCount = 0;
+            dataMaleFemale=0;
+            dataKokku=0;
+            dataWorkSatisfaction=0;
+            adjustTableRowCount(0);
+            adjustTableRowCount(inputValue);
+            var cell = document.getElementById("cell1");
+            cell.innerHTML = 'Oluline tulemus: "Naine"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataMaleFemale;
+            var cell = document.getElementById("cell2");
+            cell.innerHTML = 'Oluline tulemus: "4 ja 5"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataWorkSatisfaction;               
         } else {
             alert('Please enter a valid positive number.');
         }
+
+        
     });
 });
 
