@@ -132,9 +132,9 @@ document.addEventListener("DOMContentLoaded", function() {
             adjustTableRowCount(0);
             adjustTableRowCount(inputValue);
             var cell = document.getElementById("cell1");
-            cell.innerHTML = 'Oluline tulemus: "Naine"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataMaleFemale;
+            cell.innerHTML = 'Oluline tulemus: "<b>Naine</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataMaleFemale;
             var cell = document.getElementById("cell2");
-            cell.innerHTML = 'Oluline tulemus: "4 ja 5"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataWorkSatisfaction;               
+            cell.innerHTML = 'Oluline tulemus: "<b>4 ja 5</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataWorkSatisfaction;               
             var cell = document.getElementById("cell3");
             
  
@@ -154,9 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 q++;
             }
 
-            cell.innerHTML = 'Oluline tulemus: "Suurem tubade arv, kui 80% testi täitjatest."<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' +dataRoomsInt;
+            cell.innerHTML = 'Oluline tulemus: "<b>Suurem tubade arv, kui 80% testi täitjatest.</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' +dataRoomsInt;
             var cell = document.getElementById("cell4");
-            cell.innerHTML = 'Oluline tulemus: "Instagram (1) ja Tik-Tok (2)"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
+            cell.innerHTML = 'Oluline tulemus: "<b>Instagram (1) ja Tik-Tok (2)</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
             
             const canvas = document.getElementById('myPieChart');
             const ctx = canvas.getContext('2d');
