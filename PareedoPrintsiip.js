@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let currentAngle2 = 0;
             const colors2 = ['#3498db', '#e74c3c'];
             data2.forEach((percentage, index) => {
-            const sliceAngle2 = (percentage / total) * 2 * Math.PI;
+            const sliceAngle2 = (percentage / total2) * 2 * Math.PI;
             ctx2.beginPath();
             ctx2.moveTo(75, 75); // Move to the center of the canvas
             ctx2.arc(75, 75, 50, currentAngle2, currentAngle2 + sliceAngle2);
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let currentAngle3 = 0;
             const colors3 = ['#3498db', '#e74c3c'];
             data3.forEach((percentage, index) => {
-            const sliceAngle3 = (percentage / total) * 2 * Math.PI;
+            const sliceAngle3 = (percentage / total3) * 2 * Math.PI;
             ctx3.beginPath();
             ctx3.moveTo(75, 75); // Move to the center of the canvas
             ctx3.arc(75, 75, 50, currentAngle3, currentAngle3 + sliceAngle3);
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let currentAngle4 = 0;
             const colors4 = ['#3498db', '#e74c3c'];
             data4.forEach((percentage, index) => {
-            const sliceAngle4 = (percentage / total) * 2 * Math.PI;
+            const sliceAngle4 = (percentage / total4) * 2 * Math.PI;
             ctx4.beginPath();
             ctx4.moveTo(75, 75); // Move to the center of the canvas
             ctx4.arc(75, 75, 50, currentAngle4, currentAngle4 + sliceAngle4);
@@ -237,7 +237,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
             currentAngle4 += sliceAngle4;
             });
+            
+            var cell = document.getElementById("cell5");
+            cell.innerHTML = 'Kokku küsimusi: '+ dataKokku*4 + '<br>Olulisi tulemusi: ' + (dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia);
 
+            const canvas5 = document.getElementById('myPieChart5');
+            const ctx5 = canvas5.getContext('2d');
+            const percentage9 = dataKokku*4-(dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia);
+            const percentage10 =dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia ;
+            const data5 = [percentage9, percentage10];
+            const total5 = data5.reduce((a, b) => a + b, 0);
+            let currentAngle5 = 0;
+            const colors5 = ['#3498db', '#e74c3c'];
+            data5.forEach((percentage, index) => {
+            const sliceAngle5 = (percentage / total5) * 2 * Math.PI;
+            ctx5.beginPath();
+            ctx5.moveTo(75, 75); // Move to the center of the canvas
+            ctx5.arc(75, 75, 50, currentAngle5, currentAngle5 + sliceAngle5);
+            ctx5.closePath();
+            ctx5.fillStyle = colors5[index];
+            ctx5.fill();
+
+            currentAngle5 += sliceAngle5;
+            });
+
+            var cell = document.getElementById("cell6");
+            var totalToPercent=Math.floor((percentage10*100)/(percentage9+percentage10));
+            var totalToPercentNegative=100-totalToPercent;
+            cell.innerHTML = "Pareedo Printsiip kehtib nende andmete põhjal seosega: <b>"+totalToPercentNegative+"%-"+totalToPercent+"%</b>";
         
         } else {
             alert('Please enter a valid positive number.');
