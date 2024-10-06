@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table id="randomTable">
+        <thead>
+            <tr id="headerRow">
+                <!-- Initially 10 columns -->
+                <th>Col 1</th>
+                <th>Col 2</th>
+                <th>Col 3</th>
+                <th>Col 4</th>
+                <th>Col 5</th>
+                <th>Col 6</th>
+                <th>Col 7</th>
+                <th>Col 8</th>
+                <th>Col 9</th>
+                <th>Col 10</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="dataRow">
+                <!-- Placeholder for data -->
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button id="generateButton">Generate Random Numbers</button>
+    <pre id="log"></pre>
+    <script>
+        (function () {
+    var old = console.log;
+    var logger = document.getElementById('log');
+    console.log = function () {
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += arguments[i] + '<br />';
+        }
+      }
+    }
+})();
+        // Function to generate random numbers and update the table
+        document.getElementById('generateButton').addEventListener('click', function() {
+            let minNumbers = 10;
+            let maxNumbers = 30;
+            let randomNumbers = [];
+            let numColumns = document.querySelectorAll('#headerRow th').length;
+            console.log(numColumns);
+            // Generate between 10 and 30 random numbers
+            let numberOfRandoms = Math.floor(Math.random() * (maxNumbers - minNumbers + 1)) + minNumbers;
+
+            for (let i = 0; i < numberOfRandoms; i++) {
+                randomNumbers.push(Math.floor(Math.random() * 100)); // Random number between 0-99
+            }
+
+            // Update table structure if more numbers than columns
+            if (randomNumbers.length > numColumns) {
+                let newColumns = randomNumbers.length - numColumns;
+                let headerRow = document.getElementById('headerRow');
+                for (let i = 0; i < newColumns; i++) {
+                    let th = document.createElement('th');
+                    th.textContent = 'Col ' + (numColumns + i + 1);
+                    headerRow.appendChild(th);
+                }
+            }
+
+            // Update the table body with random numbers
+            let dataRow = document.getElementById('dataRow');
+            dataRow.innerHTML = ''; // Clear existing data
+
+            randomNumbers.forEach(number => {
+                let td = document.createElement('td');
+                td.textContent = number;
+                dataRow.appendChild(td);
+            });
+        });
+    </script>
+</body>
+</html>
