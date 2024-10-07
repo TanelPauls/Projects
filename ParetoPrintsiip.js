@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             var cell = document.getElementById("cell6");
-            var totalToPercent=Math.floor((percentage10*100)/(percentage9+percentage10));
+            var totalToPercent=Math.round((percentage10*100)/(percentage9+percentage10));
             var totalToPercentNegative=100-totalToPercent;
             cell.innerHTML = "Pareedo Printsiip kehtib nende andmete põhjal seosega: <b>"+totalToPercentNegative+"%-"+totalToPercent+"%</b>";
         
