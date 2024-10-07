@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             cell.innerHTML = 'Oluline tulemus: "<b>Suurem tubade arv, kui 80% testi täitjatest.</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' +dataRoomsInt;
             var cell = document.getElementById("cell4");
-            cell.innerHTML = 'Oluline tulemus: "<b>Instagram (1) ja Tik-Tok (2)</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
+            cell.innerHTML = 'Oluline tulemus: "<b>Instagram (1) või Tik-Tok (2)</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataSocialMedia;
             
             const canvas = document.getElementById('myPieChart');
             const ctx = canvas.getContext('2d');
