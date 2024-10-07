@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let value2=0;
     let percentileValue=0;
     let rValue=0;
+    let totaldata=0;
 
     function adjustTableRowCount(targetCount) {
         let currentRowCount = tbody ? tbody.querySelectorAll('tr').length : 0;
@@ -129,8 +130,12 @@ document.addEventListener("DOMContentLoaded", function() {
             percentileValue=0;
             rValue=0;
             dataRoomsInt=0;
+            totaldata=0;
             adjustTableRowCount(0);
             adjustTableRowCount(inputValue);
+            totaldata=inputValue;
+            var cell = document.getElementById("text1");
+            cell.innerHTML = 'Andmete hulk '+totaldata;
             var cell = document.getElementById("cell1");
             cell.innerHTML = 'Oluline tulemus: "<b>Naine</b>"<br>Arvutatud tabeli põhjal:<br>Kokku vastuseid: '+ dataKokku + '<br>Olulisi tulemusi: ' + dataMaleFemale;
             var cell = document.getElementById("cell2");
