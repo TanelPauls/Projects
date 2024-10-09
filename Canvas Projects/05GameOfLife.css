@@ -1,10 +1,10 @@
 body{
     margin:0px;
-    background: rgb(255, 0, 0);
+    background: rgb(0, 0, 0);
 }
 #canvas1 {
     position:absolute;
-    background:rgb(94, 212, 159);
+    background:rgb(255, 255, 255);
     top:0;
     left:0;
     margin-top:0;
@@ -15,10 +15,9 @@ body{
     position:absolute;
     background: white;
     width:100px;
-    height:100px;
+    height:70px;
     padding:7px;
-    margin:10px;
+    margin:100px;
     border-radius:5%;
-
 
 }

@@ -1,5 +1,7 @@
 const canvas=document.getElementById("canvas1")
 const ctx=canvas.getContext("2d");
+let gameTable=[];
+const mouse = { x: 0, y: 0 };
 
 
 
@@ -9,7 +11,6 @@ class CreateUpdateTable{
     }
     updateCanvas(){
         let boxSize = parseInt(document.getElementById("squareSize").innerText);
-        boxSize = parseInt(boxSize);
 
         let overFlowX=window.innerWidth%boxSize;
         let overFlowY=window.innerHeight%boxSize;
@@ -37,10 +38,11 @@ class CreateUpdateTable{
         this.canvasWidth=canvas.width;
         this.canvasHeight=canvas.height;
         this.drawBoxes();
+        this.updateTable();
     }
     drawBoxes(){
         let boxSize = parseInt(document.getElementById("squareSize").innerText);
-        document.getElementById("jääk").innerText = this.canvasWidth;
+        //document.getElementById("jääk").innerText = this.canvasWidth;
         
     
         let x=0;
@@ -49,7 +51,7 @@ class CreateUpdateTable{
             ctx.beginPath();
             ctx.moveTo(x, 0);
             ctx.lineTo(x, this.canvasHeight);
-            ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'black';
             ctx.stroke();
             
         }
@@ -59,17 +61,77 @@ class CreateUpdateTable{
             ctx.beginPath();
             ctx.moveTo(0, y);
             ctx.lineTo(this.canvasWidth, y);
-            ctx.strokeStyle = 'blue';
+            ctx.strokeStyle = 'black';
             ctx.stroke();
             
         }  
 
 
     }
+    updateTable(){
+        let boxSize = parseInt(document.getElementById("squareSize").innerText);
+        let tableSize=(this.canvasWidth*this.canvasHeight)/(boxSize*boxSize);
+        //document.getElementById("jääk").innerText = tableSize;
+        let xCounter=0;
+        let yCounter=0;
+        for(let m=0;m<tableSize;m++){
+            let xMax=this.canvasWidth/boxSize;
+            let q=[]
+            q=[m,(xCounter*boxSize)+1,(xCounter*boxSize)+(boxSize-1),(yCounter*boxSize)+1,(yCounter*boxSize)+(boxSize-1),0];
+            gameTable.push(q);
+            if (xCounter==xMax-1){
+                xCounter=0;
+                yCounter+=1;
+            }
+            else{xCounter++}
+            
+        }
+
+    }
 
 }
 
+canvas.addEventListener('click',function(event){
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
+    let t=0;
+    while(t<(gameTable.length)){
+        if(mouse.x>=gameTable[t][1] && mouse.x<=gameTable[t][2] && mouse.y>=gameTable[t][3] && mouse.y<=gameTable[t][4]){
+            
+            if(gameTable[t][-1]==0){
+                gameTable[t][-1]=1;
+            }
+            else{gameTable[t][-1]=0;}
+            
+        }
+        t++;
+    }
+    painter();
+})
+
+function painter(){
+    let boxSize = parseInt(document.getElementById("squareSize").innerText);
+    let s=0;
+    while(s<(gameTable.length)){
+        if(gameTable[s][-1]==1){
+            ctx.fillStyle = "red";
+            ctx.fillRect(gameTable[s][1], gameTable[s][3], boxSize-1, boxSize-1);
+        }
+        else{
+            ctx.fillStyle = "blue";
+            ctx.fillRect(gameTable[s][1], gameTable[s][3], boxSize-1, boxSize-1);
+        }
+        s++;
+    }
+
+    
+    //document.getElementById("jääk").innerText =gameTable[2][4];
+    //document.getElementById("jääk").innerText =gameTable[index][-1];
+}
+
 const effect = new CreateUpdateTable();
+//document.getElementById("jääk").innerText = gameTable;
 
 window.addEventListener("resize", function () {
     effect.updateCanvas();
