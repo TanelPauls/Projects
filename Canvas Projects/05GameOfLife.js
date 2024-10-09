@@ -99,10 +99,10 @@ canvas.addEventListener('click',function(event){
     while(t<(gameTable.length)){
         if(mouse.x>=gameTable[t][1] && mouse.x<=gameTable[t][2] && mouse.y>=gameTable[t][3] && mouse.y<=gameTable[t][4]){
             
-            if(gameTable[t][-1]==0){
-                gameTable[t][-1]=1;
+            if(gameTable[t][5]==0){
+                gameTable[t][5]=1;
             }
-            else{gameTable[t][-1]=0;}
+            else{gameTable[t][5]=0;}
             
         }
         t++;
@@ -114,7 +114,7 @@ function painter(){
     let boxSize = parseInt(document.getElementById("squareSize").innerText);
     let s=0;
     while(s<(gameTable.length)){
-        if(gameTable[s][-1]==1){
+        if(gameTable[s][5]==1){
             ctx.fillStyle = "red";
             ctx.fillRect(gameTable[s][1], gameTable[s][3], boxSize-1, boxSize-1);
         }
@@ -125,13 +125,9 @@ function painter(){
         s++;
     }
 
-    
-    //document.getElementById("jääk").innerText =gameTable[2][4];
-    //document.getElementById("jääk").innerText =gameTable[index][-1];
 }
 
 const effect = new CreateUpdateTable();
-//document.getElementById("jääk").innerText = gameTable;
 
 window.addEventListener("resize", function () {
     effect.updateCanvas();
