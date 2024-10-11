@@ -90,6 +90,10 @@ header {
     display:flex;
 }
 .picture2 .column {
+    display: flex; /* Enables flexbox layout */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */   
     flex: 1;
     background-size: cover;
     background-position: center;
@@ -112,28 +116,38 @@ header {
     height: 20%;
     display:flex;
 }
+
 .picture3 .column11 {
+    display: flex; /* Enables flexbox layout */
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */
     flex: 1;
     background-size: cover;
     background-position: center;
     height: 100%;
 }
 
+
 .column3 {
-    background-color: lightblue;
+    background-color: rgb(11, 67, 85);
 }
 
 .column4 {
     background-color: rgb(58, 122, 143);
 }
 .column5 {
-    background-color: lightblue;
+    background-color: rgb(11, 67, 85);
 }
 
 footer {
-    background-color: lightgray;
+    background-color: lightblue;
     height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color:black;
+}
+.small-text {
+    font-size: 8px;
 }
