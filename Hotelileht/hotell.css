@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header, .section, footer {
+    width: 100%;
+}
+
+header {
+    background-color: lightblue;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.picture1 {
+    height: 40%;
+    background-image: url('pildid/Hotell.jpg');
+}
+
+.picture2 {
+    height: 20%;
+    display:flex;
+}
+.picture2 .column {
+    flex: 1;
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+}
+
+.column1 {
+    background-image: url('pildid/Pool.jpg');
+    heigth:100%;
+}
+
+.column2 {
+    background-image: url('pildid/Koridor.jpg');
+}
+
+.picture3 {
+    height: 20%;
+    background-image: url('picture3.jpg');
+}
+
+footer {
+    background-color: lightgray;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

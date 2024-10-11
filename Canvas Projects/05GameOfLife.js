@@ -115,11 +115,11 @@ function painter(){
     let s=0;
     while(s<(gameTable.length)){
         if(gameTable[s][5]==1){
-            ctx.fillStyle = "red";
+            ctx.fillStyle = "rgb(53, 17, 101)";
             ctx.fillRect(gameTable[s][1], gameTable[s][3], boxSize-1, boxSize-1);
         }
         else{
-            ctx.fillStyle = "blue";
+            ctx.fillStyle = "rgb(179, 198, 96)";
             ctx.fillRect(gameTable[s][1], gameTable[s][3], boxSize-1, boxSize-1);
         }
         s++;

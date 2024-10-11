@@ -13,7 +13,7 @@ body{
 }
 #tableSettings{
     position:absolute;
-    background: white;
+    background: rgb(53, 17, 101);
     width:100px;
     height:70px;
     padding:7px;
