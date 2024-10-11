@@ -103,6 +103,9 @@ header {
 
 .column2 {
     background-image: url('pildid/Koridor.jpg');
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text inside the div */
 }
 
 .picture3 {
