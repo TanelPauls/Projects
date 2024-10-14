@@ -80,7 +80,7 @@ h1{
 .picture1 {
     height: 40%;
     position: relative;
-    background-image: url('pildid/Hotell.jpg');
+    background-image: url('pildid/Hotell.png');
     color: lightblue;
     z-index: 1;
     display: flex;
@@ -100,7 +100,7 @@ h1{
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('pildid/Hotell.jpg');
+    background-image: url('pildid/Hotell.png');
     background-size: cover;
     background-position: center;
     filter: brightness(40%);
@@ -123,15 +123,16 @@ h1{
 }
 
 .column1 {
-    background-image: url('pildid/Pool.jpg');
+    background-image: url('pildid/Net.jpg');
     height:100%;
 }
 
+
 .column2 {
-    background-image: url('pildid/Koridor.jpg');
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text inside the div */
+    background-image: url('pildid/Kaev.jpg');
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .picture3 {
@@ -168,7 +169,7 @@ h1{
 .comments {
     height: 48%;
     padding:15px;
-    background-image: url('pildid/Koridor.jpg');
+    background-image: url('pildid/Hotell2.jpg');
     background-size: cover;
     background-position: center;
     display:block;
@@ -198,9 +199,10 @@ h1{
     height:100%;
     flex:2;
     font-size: clamp(14px, 2vw, 18px);
+    color:rgb(11, 67, 85);
 }
 .column7 {
-    background-image: url('pildid/Koridor.jpg');
+    background-image: url('pildid/Kaev.jpg');
     height:100%;
     border-radius: 50%;
     flex:1;
@@ -211,8 +213,8 @@ h1{
     padding:30px;
     margin:25px;
     border-radius: 5px;
-    opacity:0.9;
-    background: rgb(186, 168, 168);
+    opacity:0.75;
+    background: rgb(11, 67, 85);
 }
 .commentsBox img{
     width: 70px;
