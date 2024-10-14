@@ -7,7 +7,7 @@
 body, html {
     height: 100%;
     font-family: Arial, sans-serif;
-    color:rgb(22, 17, 17)
+    color:  lightblue;
 }
 
 .container {
@@ -81,17 +81,17 @@ h1{
     height: 40%;
     position: relative;
     background-image: url('pildid/Hotell.jpg');
-    color: #ffffff; /* Text color */
-    z-index: 1; /* Make sure text stays on top */ /* 100% is the default brightness */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text inside the div */
+    color: lightblue;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
 }
 .picture1 h2, .picture1 p {
-    margin: 10px 0; /* Add some vertical spacing */
+    margin: 10px 0;
 }
 .picture1::before {
     content: '';
@@ -103,8 +103,8 @@ h1{
     background-image: url('pildid/Hotell.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(40%); /* Reduce brightness */
-    z-index: -1; /* Push background behind the text */
+    filter: brightness(40%);
+    z-index: -1;
     opacity: 1;
 }
 .picture2 {
@@ -112,10 +112,10 @@ h1{
     display:flex;
 }
 .picture2 .column {
-    display: flex; /* Enables flexbox layout */
-    flex-direction: column; /* Stacks items vertically */
-    justify-content: center; /* Centers items vertically */
-    align-items: center; /* Centers items horizontally */   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
     flex: 1;
     background-size: cover;
     background-position: center;
@@ -148,6 +148,7 @@ h1{
     background-size: cover;
     background-position: center;
     height: 100%;
+    color:lightblue;
 }
 
 
@@ -220,14 +221,64 @@ h1{
     border-radius: 50%;
 }
 
+.contactform {
+    height: 70%;
+    display: block;
+    background:rgb(255, 255, 255);
+    color:rgb(11, 67, 85);
+}
+
+.contactform h1{
+    margin:10px;
+}
+.contactform button{
+    margin-top:10px;
+    margin-left:10px;
+}
+.contactform p{
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10px;
+}
+#contact-form .form-group{
+    margin:10px;
+}
+.form-group label{
+    display:block;
+    margin-bottom:5px;
+
+    
+}
+.form-group input,
+.form-group textarea{
+    width: 100%;
+    padding:10px;
+    border: 1px solid #ddd;
+}
+.form-group textarea{
+    height:151px;
+}
+.form-group input:focus,
+.form-group textarea:focus{
+    outline:none;
+    border-color:#f7c08a;
+}
+
+
 footer {
     background-color: lightblue;
     height: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color:rgb(11, 67, 85);
 }
 .small-text {
-    font-size: 8px;
+    font-size: clamp(10px, 11px, 12px);
+}
+button{
+    padding:10px;
+    background-color: rgb(11, 67, 85);
+    color:lightblue;
+    font-size: clamp(14px, 2vw, 18px);
 }
