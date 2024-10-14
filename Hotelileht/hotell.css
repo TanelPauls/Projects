@@ -74,6 +74,10 @@ h1{
     background-position: center;
 }
 
+.about {
+    height: 88%;
+}
+
 .picture1 {
     height: 40%;
     position: relative;
