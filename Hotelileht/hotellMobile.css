@@ -1,0 +1,28 @@
+header {
+    background-color: lightblue;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.header-title {
+    margin-bottom: 8px; /* Add some spacing between the logo and links */
+}
+
+.nav-links {
+    width: 100%; /* Ensure the links take up the full width */
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center the links */
+    justify-content: center;
+    margin: 0; /* Remove any margin */
+    padding: 0;
+}
+
+.nav-links a {
+    width: 100%; /* Each link takes full width */
+    padding: 13px 0; /* Adjust padding for mobile */
+    text-align: center; /* Center the text */
+}
