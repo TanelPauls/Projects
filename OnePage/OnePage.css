@@ -13,6 +13,19 @@ body{
 .text-primary {
     color:#93cb52;
 }
+.btn{
+    display:inline-block;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+}
+.btn-primary{
+    background:#93cb52;
+    color:#fff;
+}
+.btn-primary:hover{
+    background:#7ab436;
+}
 a{
     text-decoration: none;
 }
@@ -38,4 +51,28 @@ a{
 #navbar ul li a:hover{
     background: #93cb52;
     border-radius: 5px;
+}
+#showcase{
+    background:#333 url('./pildid/showcase.jpg');
+    height:100vh;
+    color: #fff;
+}
+#showcase .showcase-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    padding: 0 2rem;
+    background-color: rgba(0,0,0,0.5);
+}
+.heading{
+    font-size:4rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+.par{
+    font-size:1.1rem;
+    margin-bottom:2rem;
 }
