@@ -13,6 +13,15 @@ body{
 .text-primary {
     color:#93cb52;
 }
+.text-center{
+    text-align: center;
+}
+.py-1{
+    padding:1rem 0;
+}
+.p-1{
+    padding:1rem;
+}
 .btn{
     display:inline-block;
     padding: 0.5rem 2rem;
@@ -25,6 +34,14 @@ body{
 }
 .btn-primary:hover{
     background:#7ab436;
+}
+.bg-light{
+    background: #f4f4f4;
+    color:#333;
+}
+.bg-dark{
+    background: #333;
+    color:#fff;
 }
 a{
     text-decoration: none;
@@ -67,12 +84,45 @@ a{
     padding: 0 2rem;
     background-color: rgba(0,0,0,0.5);
 }
-.heading{
+.l-heading{
     font-size:4rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+.m-heading{
+    font-size:2rem;
     margin-bottom: 0.75rem;
     line-height: 1.1;
 }
 .par{
     font-size:1.1rem;
     margin-bottom:2rem;
+}
+#what .items{
+    display: flex;
+}
+#what .items .item{
+    flex:1;
+}
+#what .items .item i{
+    background:#93cb52;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+#who {
+    display:flex;
+}
+#who div{
+    flex:1;
+}
+#who .who-img{
+    background: url('./pildid/people.jpg') no-repeat center center/cover;
+}
+#who ul{
+    list-style: none;
+    margin: 0.5rem 0;
+}
+#who ul li{
+    padding:0.5rem 0;
+    border-bottom: #444 dotted 1px;
 }
