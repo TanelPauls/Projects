@@ -19,13 +19,9 @@ body{
 #tableSettings{
     position:absolute;
     background: white;
-    width:100px;
-    height:100px;
     padding:7px;
     margin:10px;
     border-radius:5%;
     bottom:15px;
     right:15px;
-
-
 }
