@@ -14,7 +14,7 @@ class CreateUpdateTable {
         this.canvasHeight = canvas.height;
 
         let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
-        const allPaths=[];
+        const allHorisontalPaths=[];
         // Check min/max pyramid rows size
         if (pyramidRows < 3) { pyramidRows = 3; }
         else if (pyramidRows > 25) { pyramidRows = 25; }
@@ -50,7 +50,7 @@ class CreateUpdateTable {
                     yOld=y;
                 }
                 else{
-                    allPaths.push([xOld,yOld,x,y]);
+                    allHorisontalPaths.push([xOld,yOld,x,y]);
                     xOld=x;
                     yOld=y;
                 }
@@ -58,7 +58,7 @@ class CreateUpdateTable {
             ctx.beginPath();
             ctx.arc(startX + stonesInRow * stoneWidth, y, 2, 0, 2 * Math.PI);
             ctx.stroke();
-            allPaths.push([xOld,yOld,startX + stonesInRow * stoneWidth,y]);
+            allHorisontalPaths.push([xOld,yOld,startX + stonesInRow * stoneWidth,y]);
             xOld=0;
             yOld=0;
             
@@ -76,18 +76,32 @@ class CreateUpdateTable {
 
             if (stone > 0) {
                 // Connect the previous stone to the current stone
-                allPaths.push([xOld, lastRowY, x, lastRowY]);
+                allHorisontalPaths.push([xOld, lastRowY, x, lastRowY]);
             }
             xOld = x; // Update old coordinates
         }
-        this.drawPaths(allPaths);
+        let i=0;
+        while (i < allHorisontalPaths.length) {
+            let currentArray = allHorisontalPaths.splice(i, 1)[0];
+            let newArray1 = [currentArray[0],currentArray[1],(currentArray[2]+currentArray[0])/2,currentArray[3]];  // Example: multiply by 10
+            let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3]]; // Example: multiply by 100
+            
+            ctx.beginPath();
+            ctx.arc((currentArray[2]+currentArray[0])/2, currentArray[1], 2, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+            
+            allHorisontalPaths.splice(i, 0, newArray1, newArray2);
+            i += 2;
+        }
+        this.drawPaths(allHorisontalPaths);
     }
 
-    drawPaths(allPaths) {
-        for(let yi=0;yi<allPaths.length;yi++){
+    drawPaths(allHorisontalPaths) {
+        for(let yi=0;yi<allHorisontalPaths.length;yi++){
             ctx.beginPath();
-            ctx.moveTo(allPaths[yi][0], allPaths[yi][1]); // Move to top-left corner
-            ctx.lineTo(allPaths[yi][2], allPaths[yi][3]);
+            ctx.moveTo(allHorisontalPaths[yi][0], allHorisontalPaths[yi][1]); // Move to top-left corner
+            ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][3]);
             ctx.closePath(); // Close the path (back to the top-left corner)
             ctx.strokeStyle = 'black';
             ctx.stroke();
