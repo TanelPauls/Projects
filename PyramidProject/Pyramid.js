@@ -157,14 +157,28 @@ class CreateUpdateTable {
             const randomN=7;
             const randomInt = Math.floor(Math.random() * (6 - 3 + 1)) + 3;
             const newSegment=randomSegmentsBetween(allHorisontalPaths[yi][0],allHorisontalPaths[yi][2],randomInt);
-            
+            const prevPoint=[allHorisontalPaths[yi][0], allHorisontalPaths[yi][1]];
             
             for(let m=1;m<newSegment.length -1;m++){
                 ctx.beginPath();
-                ctx.arc(newSegment[m],allHorisontalPaths[yi][1]+(Math.random() * 2 * randomN) - randomN, 2, 0, 2 * Math.PI);
+                let randomPoint=allHorisontalPaths[yi][1]+(Math.random() * 2 * randomN) - randomN;
+                ctx.arc(newSegment[m],randomPoint, 2, 0, 2 * Math.PI);
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
+
+                ctx.beginPath();
+                ctx.moveTo(prevPoint[0],prevPoint[1]);
+                ctx.lineTo(newSegment[m], randomPoint);      
+                ctx.strokeStyle = 'blue';
+                ctx.stroke();
+                prevPoint[0] = newSegment[m];
+                prevPoint[1] = randomPoint;
             } 
+            ctx.beginPath();
+            ctx.moveTo(prevPoint[0],prevPoint[1]);
+            ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][1]); 
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
         
             
             ctx.beginPath();
