@@ -1,8 +1,6 @@
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 
-let allPoints = [];  // Global array to store points of all stones
-
 class CreateUpdateTable {
     constructor() {
         this.updateCanvas();
@@ -16,7 +14,7 @@ class CreateUpdateTable {
         this.canvasHeight = canvas.height;
 
         let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
-
+        const allPaths=[];
         // Check min/max pyramid rows size
         if (pyramidRows < 3) { pyramidRows = 3; }
         else if (pyramidRows > 25) { pyramidRows = 25; }
@@ -40,30 +38,60 @@ class CreateUpdateTable {
             let y = (row + 0.5) * stoneHeight; // +0.5 for the 0.5 stone height padding at the top
 
             // Loop through the stones in the current row
+            let xOld=0;
+            let yOld=0;
             for (let stone = 0; stone < stonesInRow; stone++) {
                 let x = startX + stone * stoneWidth;
                 ctx.beginPath();
                 ctx.arc(x, y, 2, 0, 2 * Math.PI);
                 ctx.stroke();
+                if(xOld==0 && yOld==0){
+                    xOld=x;
+                    yOld=y;
+                }
+                else{
+                    allPaths.push([xOld,yOld,x,y]);
+                    xOld=x;
+                    yOld=y;
+                }
             }
             ctx.beginPath();
             ctx.arc(startX + stonesInRow * stoneWidth, y, 2, 0, 2 * Math.PI);
             ctx.stroke();
+            allPaths.push([xOld,yOld,startX + stonesInRow * stoneWidth,y]);
+            xOld=0;
+            yOld=0;
             
         }
         let lastRowStones = pyramidRows; // The last row has `pyramidRows` stones
         let lastRowStartX = (this.canvasWidth - lastRowStones * stoneWidth) / 2;
         let lastRowY = (pyramidRows + 0.5) * stoneHeight; // One step lower than the last row
+        let xOld=0;
 
-        for (let stone = 0; stone < lastRowStones+1; stone++) {
+        for (let stone = 0; stone < lastRowStones + 1; stone++) {
             let x = lastRowStartX + stone * stoneWidth;
             ctx.beginPath();
             ctx.arc(x, lastRowY, 2, 0, 2 * Math.PI);
             ctx.stroke();
+
+            if (stone > 0) {
+                // Connect the previous stone to the current stone
+                allPaths.push([xOld, lastRowY, x, lastRowY]);
+            }
+            xOld = x; // Update old coordinates
         }
+        this.drawPaths(allPaths);
     }
 
-    drawStone() {
+    drawPaths(allPaths) {
+        for(let yi=0;yi<allPaths.length;yi++){
+            ctx.beginPath();
+            ctx.moveTo(allPaths[yi][0], allPaths[yi][1]); // Move to top-left corner
+            ctx.lineTo(allPaths[yi][2], allPaths[yi][3]);
+            ctx.closePath(); // Close the path (back to the top-left corner)
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
     }
 }
 
