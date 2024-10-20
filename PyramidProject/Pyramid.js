@@ -112,8 +112,8 @@ class CreateUpdateTable {
                 } 
                
             }
-            let newArray1 = [currentArray[0],currentArray[1],(currentArray[2]+currentArray[0])/2,currentArray[3],"h"];  // Example: multiply by 10
-            let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3],"h"]; // Example: multiply by 100
+            let newArray1 = [currentArray[0],currentArray[1],(currentArray[2]+currentArray[0])/2,currentArray[3]];  // Example: multiply by 10
+            let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3]]; // Example: multiply by 100
             
             ctx.beginPath();
             ctx.arc((currentArray[2]+currentArray[0])/2, currentArray[1], 2, 0, 2 * Math.PI);
@@ -126,6 +126,9 @@ class CreateUpdateTable {
         this.drawPaths(allHorisontalPaths);
         allVerticalPaths.splice(-pyramidRows-1)
         this.drawPathsVertical(allVerticalPaths);
+
+        //document.getElementById("horisontalPaths").innerText = JSON.stringify(allHorisontalPaths);
+        //document.getElementById("verticalPaths").innerText = JSON.stringify(allVerticalPaths);
     }
 
     drawPaths(allHorisontalPaths) {
