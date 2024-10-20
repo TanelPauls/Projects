@@ -15,6 +15,18 @@ class CreateUpdateTable {
 
         let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
         const allHorisontalPaths=[];
+        const allVerticalPaths=[];
+        const uniqueHorisontalPaths = new Set(); // To track unique paths
+
+        // Function to add a path only if it's unique
+        function addPathIfUnique(x1, y1, x2, y2) {
+            const pathKey = `${x1},${y1},${x2},${y2}`;
+            if (!uniqueHorisontalPaths.has(pathKey)) {
+                uniqueHorisontalPaths.add(pathKey);
+                allHorisontalPaths.push([x1, y1, x2, y2]);
+            }
+        }
+
         // Check min/max pyramid rows size
         if (pyramidRows < 3) { pyramidRows = 3; }
         else if (pyramidRows > 25) { pyramidRows = 25; }
@@ -50,7 +62,7 @@ class CreateUpdateTable {
                     yOld=y;
                 }
                 else{
-                    allHorisontalPaths.push([xOld,yOld,x,y]);
+                    addPathIfUnique(xOld, yOld, x, y);
                     xOld=x;
                     yOld=y;
                 }
@@ -58,7 +70,7 @@ class CreateUpdateTable {
             ctx.beginPath();
             ctx.arc(startX + stonesInRow * stoneWidth, y, 2, 0, 2 * Math.PI);
             ctx.stroke();
-            allHorisontalPaths.push([xOld,yOld,startX + stonesInRow * stoneWidth,y]);
+            addPathIfUnique(xOld, yOld, startX + stonesInRow * stoneWidth, y);
             xOld=0;
             yOld=0;
             
@@ -76,15 +88,32 @@ class CreateUpdateTable {
 
             if (stone > 0) {
                 // Connect the previous stone to the current stone
-                allHorisontalPaths.push([xOld, lastRowY, x, lastRowY]);
+                addPathIfUnique(xOld, lastRowY, x, lastRowY);
             }
             xOld = x; // Update old coordinates
         }
         let i=0;
+        let newRow=1;
+        let oldY=0;
         while (i < allHorisontalPaths.length) {
             let currentArray = allHorisontalPaths.splice(i, 1)[0];
-            let newArray1 = [currentArray[0],currentArray[1],(currentArray[2]+currentArray[0])/2,currentArray[3]];  // Example: multiply by 10
-            let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3]]; // Example: multiply by 100
+
+            if(newRow==1 && allVerticalPaths.length==0){
+                allVerticalPaths.push([currentArray[0],currentArray[1], currentArray[0],currentArray[1]+stoneHeight]);            
+                allVerticalPaths.push([currentArray[2],currentArray[1], currentArray[2],currentArray[1]+stoneHeight]);
+                oldY=currentArray[1];
+                
+            }
+            else {
+                allVerticalPaths.push([currentArray[0]+stoneWidth,currentArray[1], currentArray[0]+stoneWidth,currentArray[1]+stoneHeight]);
+                if(currentArray[1]!=oldY){
+                    allVerticalPaths.push([currentArray[0],currentArray[1], currentArray[0],currentArray[1]+stoneHeight]);
+                    oldY=currentArray[1];
+                } 
+               
+            }
+            let newArray1 = [currentArray[0],currentArray[1],(currentArray[2]+currentArray[0])/2,currentArray[3],"h"];  // Example: multiply by 10
+            let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3],"h"]; // Example: multiply by 100
             
             ctx.beginPath();
             ctx.arc((currentArray[2]+currentArray[0])/2, currentArray[1], 2, 0, 2 * Math.PI);
@@ -95,6 +124,8 @@ class CreateUpdateTable {
             i += 2;
         }
         this.drawPaths(allHorisontalPaths);
+        allVerticalPaths.splice(-pyramidRows-1)
+        this.drawPathsVertical(allVerticalPaths);
     }
 
     drawPaths(allHorisontalPaths) {
@@ -104,6 +135,16 @@ class CreateUpdateTable {
             ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][3]);
             ctx.closePath(); // Close the path (back to the top-left corner)
             ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+    }
+    drawPathsVertical(allVerticalPaths) {
+        for(let yi=0;yi<allVerticalPaths.length;yi++){
+            ctx.beginPath();
+            ctx.moveTo(allVerticalPaths[yi][0], allVerticalPaths[yi][1]); // Move to top-left corner
+            ctx.lineTo(allVerticalPaths[yi][2], allVerticalPaths[yi][3]);
+            ctx.closePath(); // Close the path (back to the top-left corner)
+            ctx.strokeStyle = 'red';
             ctx.stroke();
         }
     }
