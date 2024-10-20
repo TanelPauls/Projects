@@ -36,7 +36,6 @@ class CreateUpdateTable {
         const allVerticalPaths=[];
         const uniqueHorisontalPaths = new Set(); // To track unique paths
 
-        const testing=[];
 
         // Function to add a path only if it's unique
         function addPathIfUnique(x1, y1, x2, y2) {
@@ -147,7 +146,7 @@ class CreateUpdateTable {
         }
         this.drawPaths(allHorisontalPaths);
         allVerticalPaths.splice(-pyramidRows-1)
-        this.drawPathsVertical(allVerticalPaths,testing);
+        this.drawPathsVertical(allVerticalPaths);
 
         //document.getElementById("horisontalPaths").innerText = JSON.stringify(allHorisontalPaths);
         //document.getElementById("verticalPaths").innerText = JSON.stringify(allVerticalPaths);
@@ -155,12 +154,14 @@ class CreateUpdateTable {
 
     drawPaths(allHorisontalPaths) {
         for(let yi=0;yi<allHorisontalPaths.length;yi++){
-            
+            const randomN=7;
             const randomInt = Math.floor(Math.random() * (6 - 3 + 1)) + 3;
             const newSegment=randomSegmentsBetween(allHorisontalPaths[yi][0],allHorisontalPaths[yi][2],randomInt);
+            
+            
             for(let m=1;m<newSegment.length -1;m++){
                 ctx.beginPath();
-                ctx.arc(newSegment[m],allHorisontalPaths[yi][1] , 2, 0, 2 * Math.PI);
+                ctx.arc(newSegment[m],allHorisontalPaths[yi][1]+(Math.random() * 2 * randomN) - randomN, 2, 0, 2 * Math.PI);
                 ctx.strokeStyle = 'blue';
                 ctx.stroke();
             } 
@@ -174,20 +175,39 @@ class CreateUpdateTable {
             ctx.stroke();
         }
     }
-    drawPathsVertical(allVerticalPaths,testing) {
+    drawPathsVertical(allVerticalPaths) {
         for(let yi=0;yi<allVerticalPaths.length;yi++){
-            const randomN=5;
+            const randomN=15;
             const randomInt = Math.floor(Math.random() * (10 - 6 + 1)) + 6;
             const newSegment=randomSegmentsBetween(allVerticalPaths[yi][1],allVerticalPaths[yi][3],randomInt);
-             for(let m=1;m<newSegment.length -1;m++){
+            const prevPoint=[allVerticalPaths[yi][0], newSegment[0]];
+            
+            
+            for(let m=1;m<newSegment.length -1;m++){
                 ctx.beginPath();
-                ctx.arc(allVerticalPaths[yi][0]+(Math.random() * 2 * randomN) - randomN,newSegment[m] , 2, 0, 2 * Math.PI);
+                let randomPoint=allVerticalPaths[yi][0]+(Math.random() * 2 * randomN) - randomN;
+                ctx.arc(randomPoint,newSegment[m] , 2, 0, 2 * Math.PI);
                 ctx.strokeStyle = 'red';
                 ctx.stroke();
+                
+
+                ctx.beginPath();
+                ctx.moveTo(prevPoint[0],prevPoint[1]);
+                ctx.lineTo(randomPoint, newSegment[m]);    
+                ctx.strokeStyle = 'red';
+                ctx.stroke();
+                prevPoint[0] = randomPoint;
+                prevPoint[1] = newSegment[m];
             } 
+            ctx.beginPath();
+            ctx.moveTo(prevPoint[0],prevPoint[1]);
+            ctx.lineTo(allVerticalPaths[yi][0], allVerticalPaths[yi][3]); 
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
             
             ctx.beginPath();
-            ctx.moveTo(allVerticalPaths[yi][0], allVerticalPaths[yi][1]); // Move to top-left corner
+            ctx.moveTo(allVerticalPaths[yi][0], allVerticalPaths[yi][1]);
             ctx.lineTo(allVerticalPaths[yi][2], allVerticalPaths[yi][3]);
             ctx.closePath(); // Close the path (back to the top-left corner)
             ctx.strokeStyle = 'black';
