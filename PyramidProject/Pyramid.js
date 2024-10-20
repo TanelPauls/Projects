@@ -1,6 +1,29 @@
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 
+let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
+// Check min/max pyramid rows size
+if (pyramidRows < 3) { pyramidRows = 3; }
+else if (pyramidRows > 25) { pyramidRows = 25; }
+
+let pOnRockMin = parseInt(document.getElementById("pointsOnRockMin").innerText);
+if (pOnRockMin < 5) { pOnRockMin = 5; }
+else if (pOnRockMin > 24) { pOnRockMin = 24; }
+
+let pOnRockMax = parseInt(document.getElementById("pointsOnRockMax").innerText);
+if (pOnRockMax < 5) { pOnRockMax = 6; }
+else if (pOnRockMax > 25) { pOnRockMax = 25; }
+
+if(pOnRockMax<=pOnRockMin){pOnRockMax=pOnRockMin+1;}
+
+let sDepth = document.getElementById("sDepth").innerText;
+if (sDepth < 1) { sDepth = 1; }
+else if (sDepth > 2.5) { sDepth = 2.5; }
+
+let CircRadius = document.getElementById("CircRadius").innerText;
+if (CircRadius < 0) { CircRadius = 0; }
+else if (CircRadius > 2) { CircRadius = 2; }
+
 function randomSegmentsBetween(a, b, n) {
     // Generate n-1 random points between a and b
     let points = [];
@@ -31,7 +54,9 @@ class CreateUpdateTable {
         this.canvasWidth = canvas.width;
         this.canvasHeight = canvas.height;
 
-        let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
+        
+
+        
         const allHorisontalPaths=[];
         const allVerticalPaths=[];
         const uniqueHorisontalPaths = new Set(); // To track unique paths
@@ -48,9 +73,7 @@ class CreateUpdateTable {
 
         
 
-        // Check min/max pyramid rows size
-        if (pyramidRows < 3) { pyramidRows = 3; }
-        else if (pyramidRows > 25) { pyramidRows = 25; }
+        
 
         // Clear the canvas and reset global points array
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -76,7 +99,7 @@ class CreateUpdateTable {
             for (let stone = 0; stone < stonesInRow; stone++) {
                 let x = startX + stone * stoneWidth;
                 ctx.beginPath();
-                ctx.arc(x, y, 2, 0, 2 * Math.PI);
+                ctx.arc(x, y, CircRadius, 0, 2 * Math.PI);
                 ctx.stroke();
                 if(xOld==0 && yOld==0){
                     xOld=x;
@@ -89,7 +112,7 @@ class CreateUpdateTable {
                 }
             }
             ctx.beginPath();
-            ctx.arc(startX + stonesInRow * stoneWidth, y, 2, 0, 2 * Math.PI);
+            ctx.arc(startX + stonesInRow * stoneWidth, y, CircRadius, 0, 2 * Math.PI);
             ctx.stroke();
             addPathIfUnique(xOld, yOld, startX + stonesInRow * stoneWidth, y);
             xOld=0;
@@ -104,7 +127,7 @@ class CreateUpdateTable {
         for (let stone = 0; stone < lastRowStones + 1; stone++) {
             let x = lastRowStartX + stone * stoneWidth;
             ctx.beginPath();
-            ctx.arc(x, lastRowY, 2, 0, 2 * Math.PI);
+            ctx.arc(x, lastRowY, CircRadius, 0, 2 * Math.PI);
             ctx.stroke();
 
             if (stone > 0) {
@@ -137,7 +160,7 @@ class CreateUpdateTable {
             let newArray2 = [(currentArray[2]+currentArray[0])/2,currentArray[1],currentArray[2],currentArray[3]]; // Example: multiply by 100
             
             ctx.beginPath();
-            ctx.arc((currentArray[2]+currentArray[0])/2, currentArray[1], 2, 0, 2 * Math.PI);
+            ctx.arc((currentArray[2]+currentArray[0])/2, currentArray[1], CircRadius, 0, 2 * Math.PI);
             ctx.strokeStyle = 'black';
             ctx.stroke();
             
@@ -154,22 +177,25 @@ class CreateUpdateTable {
 
     drawPaths(allHorisontalPaths) {
         for(let yi=0;yi<allHorisontalPaths.length;yi++){
-            const randomN=7;
-            const randomInt = Math.floor(Math.random() * (6 - 3 + 1)) + 3;
+            const randomN=sDepth;
+
+            let randomInt=Math.floor(Math.random() * (pOnRockMax - pOnRockMin + 1)) + pOnRockMin;
+            if(randomInt%2==0){randomInt=randomInt/2;}
+            else{randomInt=(randomInt-1)/2;}
             const newSegment=randomSegmentsBetween(allHorisontalPaths[yi][0],allHorisontalPaths[yi][2],randomInt);
             const prevPoint=[allHorisontalPaths[yi][0], allHorisontalPaths[yi][1]];
             
             for(let m=1;m<newSegment.length -1;m++){
                 ctx.beginPath();
                 let randomPoint=allHorisontalPaths[yi][1]+(Math.random() * 2 * randomN) - randomN;
-                ctx.arc(newSegment[m],randomPoint, 2, 0, 2 * Math.PI);
-                ctx.strokeStyle = 'blue';
+                ctx.arc(newSegment[m],randomPoint, CircRadius, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'black';
                 ctx.stroke();
 
                 ctx.beginPath();
                 ctx.moveTo(prevPoint[0],prevPoint[1]);
                 ctx.lineTo(newSegment[m], randomPoint);      
-                ctx.strokeStyle = 'blue';
+                ctx.strokeStyle = 'black';
                 ctx.stroke();
                 prevPoint[0] = newSegment[m];
                 prevPoint[1] = randomPoint;
@@ -177,22 +203,22 @@ class CreateUpdateTable {
             ctx.beginPath();
             ctx.moveTo(prevPoint[0],prevPoint[1]);
             ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][1]); 
-            ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'black';
             ctx.stroke();
         
             
-            ctx.beginPath();
+            /* ctx.beginPath();
             ctx.moveTo(allHorisontalPaths[yi][0], allHorisontalPaths[yi][1]); // Move to top-left corner
             ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][3]);
             ctx.closePath(); // Close the path (back to the top-left corner)
             ctx.strokeStyle = 'black';
-            ctx.stroke();
+            ctx.stroke(); */
         }
     }
     drawPathsVertical(allVerticalPaths) {
         for(let yi=0;yi<allVerticalPaths.length;yi++){
-            const randomN=15;
-            const randomInt = Math.floor(Math.random() * (10 - 6 + 1)) + 6;
+            const randomN=sDepth;
+            const randomInt=Math.floor(Math.random() * (pOnRockMax - pOnRockMin + 1)) + pOnRockMin;
             const newSegment=randomSegmentsBetween(allVerticalPaths[yi][1],allVerticalPaths[yi][3],randomInt);
             const prevPoint=[allVerticalPaths[yi][0], newSegment[0]];
             
@@ -200,15 +226,15 @@ class CreateUpdateTable {
             for(let m=1;m<newSegment.length -1;m++){
                 ctx.beginPath();
                 let randomPoint=allVerticalPaths[yi][0]+(Math.random() * 2 * randomN) - randomN;
-                ctx.arc(randomPoint,newSegment[m] , 2, 0, 2 * Math.PI);
-                ctx.strokeStyle = 'red';
+                ctx.arc(randomPoint,newSegment[m], CircRadius, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'black';
                 ctx.stroke();
                 
 
                 ctx.beginPath();
                 ctx.moveTo(prevPoint[0],prevPoint[1]);
                 ctx.lineTo(randomPoint, newSegment[m]);    
-                ctx.strokeStyle = 'red';
+                ctx.strokeStyle = 'black';
                 ctx.stroke();
                 prevPoint[0] = randomPoint;
                 prevPoint[1] = newSegment[m];
@@ -216,16 +242,16 @@ class CreateUpdateTable {
             ctx.beginPath();
             ctx.moveTo(prevPoint[0],prevPoint[1]);
             ctx.lineTo(allVerticalPaths[yi][0], allVerticalPaths[yi][3]); 
-            ctx.strokeStyle = 'red';
+            ctx.strokeStyle = 'black';
             ctx.stroke();
 
             
-            ctx.beginPath();
+            /* ctx.beginPath();
             ctx.moveTo(allVerticalPaths[yi][0], allVerticalPaths[yi][1]);
             ctx.lineTo(allVerticalPaths[yi][2], allVerticalPaths[yi][3]);
             ctx.closePath(); // Close the path (back to the top-left corner)
             ctx.strokeStyle = 'black';
-            ctx.stroke();
+            ctx.stroke(); */
         }
     }
 }
