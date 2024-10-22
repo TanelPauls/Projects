@@ -1,4 +1,8 @@
 const track = document.getElementById("image-track");
+const images = document.querySelectorAll('#image-track > .image');
+const background = document.getElementById('background');
+
+
 
 window.onmouseup = () => {
     track.dataset.mouseDownAt = "0";
