@@ -42,7 +42,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P1.jpg');
     pointer-events: none;
@@ -56,7 +56,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P2.jpg');
     pointer-events: none;
@@ -70,7 +70,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P3.jpg');
     pointer-events: none;
@@ -84,7 +84,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P4.jpg');
     pointer-events: none;
@@ -98,7 +98,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P5.jpg');
     pointer-events: none;
@@ -112,7 +112,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P6.jpg');
     pointer-events: none;
@@ -126,7 +126,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P7.jpg');
     pointer-events: none;
@@ -140,7 +140,7 @@ body{
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 0; /* Ensure background is behind everything */
+    z-index: -1; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
     background-image: url('./Pildid/P8.jpg');
     pointer-events: none;
@@ -174,4 +174,111 @@ body{
 }
 .clicked {
     border: 2px solid gold;
+}
+
+#logocontainer{
+    width: 200px;
+    height: 200px;
+    left:0px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+} 
+#logoframe{
+    position:relative;
+    width:80%;
+    height:80%;
+    background-color: white;
+    clip-path: circle(50%);
+}
+#sky{
+    position:absolute;
+    background-color: #7DDFFC;
+    width:100%;
+    height: 65%;
+}
+#sand{
+    position:absolute;
+    background-color: #F0DE75;
+    width:100%;
+    height: 35%;
+    top:65%;
+}
+#side1{
+    position:absolute;
+    width:100%;
+    height: 65%;
+    background-color: white;
+    clip-path: polygon(15% 100%, 50% 55%, 60% 100%);
+    animation:side1-fade 5s infinite ease-in-out;
+}
+#side2{
+    position:absolute;
+    width:100%;
+    height: 65%;
+    background-color: white;
+    clip-path: polygon(60% 100%, 50% 55%, 80% 100%);
+    animation:side2-fade 5s infinite ease-in-out;
+}
+#shadow{
+    position: absolute;
+    width:100%;
+    height: 35%;
+    top:65%;
+    background-color: black;
+    opacity: 20%;
+    clip-path: polygon(20% 0%,60% 50%,80% 0%);
+    animation: shadow-move 5s infinite ease-in-out;
+}
+#sun-container{
+    position: absolute;
+    width:calc(100% + 80px);
+    left:-40px;
+    height: 65%;
+    transform-origin: bottom;
+    animation: rotate-sun 5s infinite linear;
+}
+#sun{
+    position: absolute;
+    width:35px;
+    height: 35px;
+    background-color: #FEEF01;
+    border-radius: 50%;
+    top:100%;
+}
+@keyframes side1-fade{
+    0%{filter:brightness(100%);}
+    50%{filter:brightness(90%);}
+    100%{filter:brightness(85%);}
+}
+@keyframes side2-fade{
+    0%{filter:brightness(85%);}
+    50%{filter:brightness(90%);}
+    100%{filter:brightness(100%);}
+}
+@keyframes shadow-move {
+    0% {
+        clip-path: polygon(15% 0%, 80% 0%, 120% 45%);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        clip-path: polygon(15% 0%, 80% 0%, 20% 10%);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        clip-path: polygon(15% 0%, 80% 0%, -20% 45%);
+        animation-timing-function: linear;
+    }
+}
+
+@keyframes rotate-sun {
+    0% {
+        transform:rotate(0deg);
+    }
+    50% {
+        transform:rotate(90deg);
+    }
+    100% {
+        transform:rotate(180deg);
+    }
 }
