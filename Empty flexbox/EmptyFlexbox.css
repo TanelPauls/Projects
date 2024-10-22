@@ -1,0 +1,131 @@
+* {
+    margin: 0; /* Reset margin globally to avoid body issues */
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(44, 43, 43);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align div to top */
+    overflow: hidden;
+    padding: 10px; /* Add padding to ensure space inside body */
+}
+
+#name {
+    background-color: white;
+    height: 222px;
+    width: 100%; /* Take the full width of the parent */
+    margin: 5px; /* 5px margin on left and right */
+}
+#columnsMain{
+    display:flex;
+    justify-content: space-between;
+    margin:0;
+    padding-top: 5px;
+    width: 100%;
+}
+#col1{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    width: 27%;
+    height: 90vh;
+    margin-right: 10px;
+}
+#pic{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#demo{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#skills{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+
+#col2{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    width: 83%;
+    height: 90vh;
+    width: calc(73% - 10px);
+}
+#vert{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    height:50%;
+}
+#goals{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#quote{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#background{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+#moreCols{
+    display:flex;
+    flex-direction: row;
+    background-color: rgb(44, 43, 43);
+    height:50%;
+    
+}
+#col3{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    width:50%;
+    margin-right: 10px;
+}
+#motivation{
+    height:50%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#channels{
+    height:50%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+#col4{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    width:50%;    
+}
+#frustrations{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#technology{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#browsers{
+    height:33%;
+    background-color: white;
+    margin-bottom: 10px;
+}
