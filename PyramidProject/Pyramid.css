@@ -16,23 +16,25 @@ body{
     gap: 3vmin;
     position:absolute;
     left:50%;
-    top:80%;
+    top:84%;
     transform: translate(0%, -50%);
     z-index: 1;
 }
 #image-track > .image{
-    width:14vmin;
-    height:21vmin;
+    width:20vmin;
+    height:30vmin;
     object-fit:cover;
     object-position: 100% 50%;
     transition: transform 0.3s ease; /* Smooth transition for scaling */
     cursor: pointer; /* Change cursor on hover */
 }
-
 #image-track > .image:hover {
     transform: scale(1.1); /* Slightly enlarge image on hover */
 }
-#background {
+
+
+
+#back1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,6 +44,107 @@ body{
     background-position: center;
     z-index: 0; /* Ensure background is behind everything */
     transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P1.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P2.jpg');
+    pointer-events: none;
+    display:none;
+}
+#back3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P3.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P4.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back5 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P5.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back6 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P6.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back7 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P7.jpg');
+    pointer-events: none;
+    display: none;
+}
+#back8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure background is behind everything */
+    transition: background-image 0.3s ease; /* Smooth transition for background */
+    background-image: url('./Pildid/P8.jpg');
+    pointer-events: none;
+    display: none;
 }
 
 
@@ -64,4 +167,11 @@ body{
     border-radius:5%;
     bottom:15px;
     right:15px;
+}
+
+.hovered {
+    border: 2px solid red;
+}
+.clicked {
+    border: 2px solid gold;
 }
