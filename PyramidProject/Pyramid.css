@@ -21,8 +21,8 @@ body{
     z-index: 1;
 }
 #image-track > .image{
-    width:20vmin;
-    height:30vmin;
+    width:18vmin;
+    height:27vmin;
     object-fit:cover;
     object-position: 100% 50%;
     transition: transform 0.3s ease; /* Smooth transition for scaling */
