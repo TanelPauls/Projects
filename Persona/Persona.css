@@ -11,15 +11,44 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /* Align div to top */
-    overflow: hidden;
+    overflow-x: hidden;
     padding: 10px; /* Add padding to ensure space inside body */
 }
-
+.clearfix {
+    overflow: hidden;
+    background-color: white;
+}
+p{
+    background-color: white;
+    color:rgb(44, 43, 43);
+    padding:5px;
+}
+h2{
+    padding:5px;
+    padding-left: 40px;
+    background-color: white;
+    color:rgb(44,43,43);
+    font-size: 30px;
+}
+h3{
+    padding:3px;
+    padding-left: 15px;
+    background-color: white;
+    color:rgb(44,43,43);
+    font-size: 19px;
+}
+#flexbox{
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(44, 43, 43);
+    width: calc(100% - 25px);
+    padding-right: 5px;
+}
 #name {
     background-color: white;
-    height: 222px;
     width: 100%; /* Take the full width of the parent */
-    margin: 5px; /* 5px margin on left and right */
+    padding:10px;
+    margin-bottom: 5px;
 }
 #columnsMain{
     display:flex;
@@ -27,6 +56,7 @@ body {
     margin:0;
     padding-top: 5px;
     width: 100%;
+    flex-grow: 1;
 }
 #col1{
     display:flex;
@@ -35,11 +65,19 @@ body {
     width: 27%;
     height: 90vh;
     margin-right: 10px;
+    flex-grow: 1;
 }
 #pic{
     height:33%;
     background-color: white;
     margin-bottom: 10px;
+    
+}
+#pic img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+    
 }
 #demo{
     height:33%;
@@ -60,6 +98,7 @@ body {
     width: 83%;
     height: 90vh;
     width: calc(73% - 10px);
+    flex-grow: 1;
 }
 #vert{
     display:flex;
@@ -106,6 +145,8 @@ body {
     height:50%;
     background-color: white;
     margin-bottom: 10px;
+    display:flex;
+    flex-direction: column;
 }
 
 #col4{
@@ -115,17 +156,46 @@ body {
     width:50%;    
 }
 #frustrations{
-    height:33%;
+    height:100%;
     background-color: white;
     margin-bottom: 10px;
 }
-#technology{
-    height:33%;
+#technology {
+    height: 100%;
     background-color: white;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column; /* Stack header and images vertically */
 }
-#browsers{
-    height:33%;
+#technology h3 {
+    margin-bottom: 10px; /* Space between the header and the images */
+}
+
+#technology .images-container {
+    display: flex;
+    justify-content: center;
     background-color: white;
-    margin-bottom: 10px;
+}
+
+#technology img {
+    display: inline-block;
+    width: 10%;
+    margin: 0 10px; /* Adds space between the images */
+    background-color: white;
+}
+#channels h3 {
+    margin-bottom: 10px; /* Space between the header and the images */
+}
+
+#channels .images-container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+#channels img {
+    display: inline-block;
+    width: 10%;
+    margin: 0 10px; /* Adds space between the images */
+    background-color: white;
 }
