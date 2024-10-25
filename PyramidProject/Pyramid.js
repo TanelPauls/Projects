@@ -263,6 +263,7 @@ ctx.strokeStyle = 'black';
 ctx.stroke(); */
 
 
+let playPause=0;
 function toggleIcon() {
     const playIcon = document.getElementById('playIcon');
     const pauseIcon = document.getElementById('pauseIcon');
@@ -271,15 +272,35 @@ function toggleIcon() {
     if (playIcon.style.display === 'none') {
         playIcon.style.display = 'block';
         pauseIcon.style.display = 'none';
+        playPause=0;
     } else {
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
+        playPause=1;
     }
 }
 
+let intervalId; // to store the interval ID
 document.getElementById("playButton").addEventListener("click", function() {
     toggleIcon();
-    effect.updateCanvas();
+    if(playPause==1){
+
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+
+        effect.updateCanvas();
+        intervalId = setInterval(() => {
+            if (playPause === 1) { // Check if playPause is still 1
+                effect.updateCanvas();
+            } else {
+                clearInterval(intervalId); // Stop the interval if playPause is 0
+            }
+        }, 1000);
+    } else {
+        // Stop the interval if playPause is 0
+        clearInterval(intervalId);
+    }
 });
 
 
