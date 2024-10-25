@@ -11,6 +11,39 @@ body{
     overflow: hidden;
     position: relative;
 }
+
+/* Javascript pyramid builder page */
+#canvas1 {
+    position:absolute;
+    background:rgb(94, 212, 159);
+    top:15px;
+    left:15px;
+    margin-top:0;
+    margin-left:0;
+
+}
+#tableSettings{
+    position:absolute;
+    background: white;
+    padding:7px;
+    margin:10px;
+    border-radius:5%;
+    bottom:15px;
+    right:15px;
+}
+
+#playButton{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    height:50px;
+    width: 100px;
+}
+
+
+
+
+
 #image-track{
     display:flex;
     gap: 3vmin;
@@ -31,6 +64,7 @@ body{
 #image-track > .image:hover {
     transform: scale(1.1); /* Slightly enlarge image on hover */
 }
+
 
 
 
@@ -150,24 +184,7 @@ body{
 
 
 
-#canvas1 {
-    position:absolute;
-    background:rgb(94, 212, 159);
-    top:15px;
-    left:15px;
-    margin-top:0;
-    margin-left:0;
 
-}
-#tableSettings{
-    position:absolute;
-    background: white;
-    padding:7px;
-    margin:10px;
-    border-radius:5%;
-    bottom:15px;
-    right:15px;
-}
 
 .hovered {
     border: 2px solid red;

@@ -244,20 +244,36 @@ class CreateUpdateTable {
             ctx.lineTo(allVerticalPaths[yi][0], allVerticalPaths[yi][3]); 
             ctx.strokeStyle = 'black';
             ctx.stroke();
-
-            
-            /* ctx.beginPath();
-            ctx.moveTo(allVerticalPaths[yi][0], allVerticalPaths[yi][1]);
-            ctx.lineTo(allVerticalPaths[yi][2], allVerticalPaths[yi][3]);
-            ctx.closePath(); // Close the path (back to the top-left corner)
-            ctx.strokeStyle = 'black';
-            ctx.stroke(); */
         }
     }
 }
+
+
+
+/* function clearCanvas() {
+    // Clear the entire canvas area
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+} */
+/* canvas.width = 300;
+canvas.height = 300;
+ctx.beginPath();
+ctx.moveTo(0,0);
+ctx.lineTo(200, 200); 
+ctx.strokeStyle = 'black';
+ctx.stroke(); */
+
+
+
+document.getElementById("playButton").addEventListener("click", function() {
+    effect.updateCanvas();
+});
+
+
+
 
 const effect = new CreateUpdateTable();
 
 window.addEventListener("resize", function () {
     effect.updateCanvas();
 });
+
