@@ -16,24 +16,87 @@ header.addEventListener('mouseleave', () => {
 
 
 
-let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
-// Check min/max pyramid rows size
-if (pyramidRows < 3) { pyramidRows = 3; }
-else if (pyramidRows > 25) { pyramidRows = 25; }
+let pyramidRows = parseInt(document.getElementById("s2").innerText);
 
-let pOnRockMin = parseInt(document.getElementById("pointsOnRockMin").innerText);
-if (pOnRockMin < 5) { pOnRockMin = 5; }
-else if (pOnRockMin > 24) { pOnRockMin = 24; }
+function updatePyramidRowsDisplay() {
+    document.getElementById("s2").innerText = pyramidRows;
+}
+document.getElementById("addRowToPyramid").addEventListener("click", () => {
+    if (pyramidRows < 25) { // Max value check
+      pyramidRows++;
+      updatePyramidRowsDisplay();
+      effect.updateCanvas();
+    }
+});
+document.getElementById("removeRowFromPyramid").addEventListener("click", () => {
+    if (pyramidRows > 3) { // Min value check
+      pyramidRows--;
+      updatePyramidRowsDisplay();
+      effect.updateCanvas();
+    }
+});
 
-let pOnRockMax = parseInt(document.getElementById("pointsOnRockMax").innerText);
-if (pOnRockMax < 5) { pOnRockMax = 6; }
-else if (pOnRockMax > 25) { pOnRockMax = 25; }
 
-if(pOnRockMax<=pOnRockMin){pOnRockMax=pOnRockMin+1;}
+let pOnRockMin = 0
+let pOnRockMax = pOnRockMin+3;
+
+function updatePyramidPointsDisplay() {
+    document.getElementById("s4").innerText = `Random (${pOnRockMin}-${pOnRockMax})`;
+}
+
+document.getElementById("addPointToPyramid").addEventListener("click", () => {
+    if(pOnRockMin==0 && pOnRockMax==0){
+        pOnRockMax=1;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if(pOnRockMin==0 && pOnRockMax==1){
+        pOnRockMax=2;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if(pOnRockMin==0 && pOnRockMax==2){
+        pOnRockMax=3;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if (pOnRockMin < 12) {
+        pOnRockMin++;
+        if(pOnRockMax<12){
+            pOnRockMax++;
+        }
+      updatePyramidPointsDisplay()
+      effect.updateCanvas();
+    }
+});
+document.getElementById("removePointFromPyramid").addEventListener("click", () => {
+    if(pOnRockMin==12 && pOnRockMax==12){
+        pOnRockMin=11;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if(pOnRockMin==11 && pOnRockMax==12){
+        pOnRockMin=10;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if(pOnRockMin==10 && pOnRockMax==12){
+        pOnRockMin=9;
+        updatePyramidPointsDisplay()
+        effect.updateCanvas();
+    }
+    else if (pOnRockMax > 0) {
+        pOnRockMax--;
+        if(pOnRockMin>0){pOnRockMin--;}
+        
+      updatePyramidPointsDisplay()
+      effect.updateCanvas();
+    }
+});
 
 let sDepth = document.getElementById("sDepth").innerText;
-if (sDepth < 1) { sDepth = 1; }
-else if (sDepth > 2.5) { sDepth = 2.5; }
+if (sDepth < 0) { sDepth = 0; }
+else if (sDepth > 10) { sDepth = 10; }
 
 let CircRadius = document.getElementById("CircRadius").innerText;
 if (CircRadius < 0) { CircRadius = 0; }
@@ -186,9 +249,6 @@ class CreateUpdateTable {
         this.drawPaths(allHorisontalPaths);
         allVerticalPaths.splice(-pyramidRows-1)
         this.drawPathsVertical(allVerticalPaths);
-
-        //document.getElementById("horisontalPaths").innerText = JSON.stringify(allHorisontalPaths);
-        //document.getElementById("verticalPaths").innerText = JSON.stringify(allVerticalPaths);
     }
 
     drawPaths(allHorisontalPaths) {
@@ -221,14 +281,6 @@ class CreateUpdateTable {
             ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][1]); 
             ctx.strokeStyle = 'black';
             ctx.stroke();
-        
-            
-            /* ctx.beginPath();
-            ctx.moveTo(allHorisontalPaths[yi][0], allHorisontalPaths[yi][1]); // Move to top-left corner
-            ctx.lineTo(allHorisontalPaths[yi][2], allHorisontalPaths[yi][3]);
-            ctx.closePath(); // Close the path (back to the top-left corner)
-            ctx.strokeStyle = 'black';
-            ctx.stroke(); */
         }
     }
     drawPathsVertical(allVerticalPaths) {
@@ -263,20 +315,6 @@ class CreateUpdateTable {
         }
     }
 }
-
-
-
-/* function clearCanvas() {
-    // Clear the entire canvas area
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-} */
-/* canvas.width = 300;
-canvas.height = 300;
-ctx.beginPath();
-ctx.moveTo(0,0);
-ctx.lineTo(200, 200); 
-ctx.strokeStyle = 'black';
-ctx.stroke(); */
 
 
 let playPause=0;

@@ -139,7 +139,8 @@ body{
 }
 
 
-#addRowToPyramid {
+#addRowToPyramid,
+#addPointToPyramid {
     display: flex;
     border-radius: 50%;
     border: none;
@@ -150,16 +151,19 @@ body{
     justify-content: center; /* Horizontal centering */
 }
 
-#addRowToPyramid svg {
+#addRowToPyramid svg,
+#addPointToPyramid svg {
     width: 43px;
     height: 43px;
 }
 
-#addRowToPyramid:hover svg rect {
+#addRowToPyramid:hover svg rect,
+#addPointToPyramid:hover svg rect {
     fill: rgb(69, 69, 69);
 }
 
-#removeRowFromPyramid {
+#removeRowFromPyramid,
+#removePointFromPyramid {
     display: flex;
     border-radius: 50%;
     border: none;
@@ -170,12 +174,14 @@ body{
     justify-content: center; /* Horizontal centering */
 }
 
-#removeRowFromPyramid svg {
+#removeRowFromPyramid svg,
+#removePointFromPyramid svg {
     width: 43px;
     height: 43px;
 }
 
-#removeRowFromPyramid:hover svg rect {
+#removeRowFromPyramid:hover svg rect,
+#removePointFromPyramid:hover svg rect {
     fill: rgb(69, 69, 69);
 }
 
