@@ -296,7 +296,7 @@ document.getElementById("playButton").addEventListener("click", function() {
             } else {
                 clearInterval(intervalId); // Stop the interval if playPause is 0
             }
-        }, 1000);
+        }, 333);
     } else {
         // Stop the interval if playPause is 0
         clearInterval(intervalId);

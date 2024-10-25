@@ -61,6 +61,54 @@ body{
     fill: rgb(69, 69, 69);   /* Darken the whole triangle or pause bars on hover */
 }
 
+#addRowToPyramid {
+    position:absolute;
+    bottom:15px;
+    left:215px;
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+  }
+
+  #addRowToPyramid svg {
+    width: 43px;
+    height: 43px;
+}
+
+  #addRowToPyramid:hover svg rect {
+    fill: rgb(69, 69, 69);
+  }
+
+  #removeRowFromPyramid {
+    position:absolute;
+    bottom:15px;
+    left:285px;
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+  }
+
+  #removeRowFromPyramid svg {
+    width: 43px;
+    height: 43px;
+}
+
+  #removeRowFromPyramid:hover svg rect {
+    fill: rgb(69, 69, 69);
+  }
+
 
 
 
