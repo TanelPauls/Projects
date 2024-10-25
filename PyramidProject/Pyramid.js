@@ -263,10 +263,26 @@ ctx.strokeStyle = 'black';
 ctx.stroke(); */
 
 
+function toggleIcon() {
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+
+    // Toggle visibility
+    if (playIcon.style.display === 'none') {
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+    } else {
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+    }
+}
 
 document.getElementById("playButton").addEventListener("click", function() {
+    toggleIcon();
     effect.updateCanvas();
 });
+
+
 
 
 
