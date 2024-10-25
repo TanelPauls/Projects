@@ -74,18 +74,18 @@ body{
     display: flex;
     align-items: center; /* Vertical centering */
     justify-content: center; /* Horizontal centering */
-  }
+}
 
-  #addRowToPyramid svg {
+#addRowToPyramid svg {
     width: 43px;
     height: 43px;
 }
 
-  #addRowToPyramid:hover svg rect {
+#addRowToPyramid:hover svg rect {
     fill: rgb(69, 69, 69);
-  }
+}
 
-  #removeRowFromPyramid {
+#removeRowFromPyramid {
     position:absolute;
     bottom:15px;
     left:285px;
@@ -98,17 +98,47 @@ body{
     display: flex;
     align-items: center; /* Vertical centering */
     justify-content: center; /* Horizontal centering */
-  }
+}
 
-  #removeRowFromPyramid svg {
+#removeRowFromPyramid svg {
     width: 43px;
     height: 43px;
 }
 
-  #removeRowFromPyramid:hover svg rect {
+#removeRowFromPyramid:hover svg rect {
     fill: rgb(69, 69, 69);
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* Center vertically with logocontainer */
+    justify-content: space-between; /* Push logocontainer to the left */
+    position: relative;
+    width: 100%;
+    height: 150px; /* Match height with logocontainer */
+}
+
+.nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Center nav-links horizontally */
+    display: flex;
+    gap: 20px; /* Space between links */
   }
 
+.nav-links a {
+    color: rgb(11, 67, 85);
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+.nav-links a:hover {
+    color: lightblue;
+    /* font-size: 1.2rem; */
+}
+.nav-links a.current {
+    color: lightblue;
+} 
 
 
 
@@ -123,7 +153,7 @@ body{
 }
 #image-track > .image{
     width:18vmin;
-    height:27vmin;
+    height:24vmin;
     object-fit:cover;
     object-position: 100% 50%;
     transition: transform 0.3s ease; /* Smooth transition for scaling */
@@ -262,8 +292,8 @@ body{
 }
 
 #logocontainer{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     left:0px;
     display:flex;
     justify-content: center;
