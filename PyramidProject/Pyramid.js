@@ -1,6 +1,21 @@
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 
+const header = document.querySelector('.header-container');
+
+header.addEventListener('mouseenter', () => {
+    header.classList.remove('hidden');
+});
+  
+  // Start the fade-out after mouse leaves the header
+header.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      header.classList.add('hidden');
+    }, 2500); // Delay to allow for brief transition before fading
+});
+
+
+
 let pyramidRows = parseInt(document.getElementById("pyrRows").innerText);
 // Check min/max pyramid rows size
 if (pyramidRows < 3) { pyramidRows = 3; }
@@ -49,8 +64,9 @@ class CreateUpdateTable {
 
     updateCanvas() {
         // Update the canvas size
-        canvas.width = 500;
-        canvas.height = 500;
+        const { width, height } = canvas.getBoundingClientRect();
+        canvas.width = width;
+        canvas.height = height;
         this.canvasWidth = canvas.width;
         this.canvasHeight = canvas.height;
 

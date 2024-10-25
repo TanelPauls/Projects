@@ -7,58 +7,68 @@
   <link rel="stylesheet" href="Pyramid.css">
 </head>
 <body>
-<canvas id="canvas1"></canvas>
-
-<header class="header-container">
-  <div id="logocontainer">
-      <div id="logoframe">
-        <div id="sky"></div>
-        <div id="sand"></div>
-        <div id="side1"></div>
-        <div id="side2"></div>
-        <div id="shadow"></div>
-        <div id="sun-container">
-            <div id="sun"></div>
+  <header class="header-container">
+    <div id="logocontainer">
+        <div id="logoframe">
+          <div id="sky"></div>
+          <div id="sand"></div>
+          <div id="side1"></div>
+          <div id="side2"></div>
+          <div id="shadow"></div>
+          <div id="sun-container">
+          <div id="sun"></div>
         </div>
+    </div>
+    <nav class="nav-links">
+      <a href="pictures.html">Avaleht</a>
+      <a href="pictures.html">Pildid</a>
+      <a class="current" href="pyramid.html">Püramiid</a>
+    </nav>
+  </header>
+  <div id="canvasWrapper">
+    <canvas id="canvas1"></canvas>
+    <div id="canvasSettings">
+      <div id="canvasSets">
+        <div>asd</div>
+        <div>asd</div>
       </div>
+      <div id="playButton">
+        <button id="playButton">
+          <svg id="playIcon" width="50" height="50" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
+              <polygon points="8,5 19,12 8,19" fill="gray" />
+          </svg>
+          <svg id="pauseIcon" width="50" height="50" viewBox="0 0 24 24" style="display: none;">
+            <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
+            <rect x="8" y="5" width="3" height="14" fill="gray" />
+            <rect x="13" y="5" width="3" height="14" fill="gray" />
+          </svg>
+        </button>
+      </div>
+      <div id="canvasSets">
+        <div>asd</div>
+        <div>asd</div>
+      </div>
+    </div>
   </div>
-  <nav class="nav-links">
-    <a class="current" href="index.html">Avaleht</a>
-    <a href="about.html">Pildid</a>
-    <a href="contact.html">Püramiid</a>
-  </nav>
-</header>
 
 
-<button id="playButton">
-  <svg id="playIcon" width="50" height="50" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
-      <polygon points="8,5 19,12 8,19" fill="gray" />
-  </svg>
-  <svg id="pauseIcon" width="50" height="50" viewBox="0 0 24 24" style="display: none;">
-    <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
-    <rect x="8" y="5" width="3" height="14" fill="gray" />
-    <rect x="13" y="5" width="3" height="14" fill="gray" />
-  </svg>
-</button>
-<button id="addRowToPyramid">
-  <svg width="50" height="50" viewBox="0 0 24 24">
+
+<!--   <button id="removeRowFromPyramid">
+    <svg width="50" height="50" viewBox="0 0 24 24">
+      
+      <rect x="6" y="11" width="12" height="2" fill="gray" rx="1" ry="1" class="horizontal" />
+    </svg>
+  </button>
+  <span id="numberDisplay">0</span>
+  <button id="addRowToPyramid">
+    <svg width="50" height="50" viewBox="0 0 24 24">
+      
+      <rect x="6" y="11" width="12" height="2" fill="gray" rx="1" ry="1" class="horizontal" />
     
-    <!-- Horizontal line of the plus sign -->
-    <rect x="6" y="11" width="12" height="2" fill="gray" rx="1" ry="1" class="horizontal" />
-  
-  <!-- Vertical line of the plus sign with rounded corners -->
-  <rect x="11" y="6" width="2" height="12" fill="gray" rx="1" ry="1" class="vertical" />
-  </svg>
-</button>
-<button id="removeRowFromPyramid">
-  <svg width="50" height="50" viewBox="0 0 24 24">
-    
-    <!-- Horizontal line of the plus sign -->
-    <rect x="6" y="11" width="12" height="2" fill="gray" rx="1" ry="1" class="horizontal" />
-  </svg>
-</button>
-
+    <rect x="11" y="6" width="2" height="12" fill="gray" rx="1" ry="1" class="vertical" />
+    </svg>
+  </button> -->
 
 
 

@@ -19,6 +19,19 @@ const back8Element = document.getElementById('back8');
 const images = document.querySelectorAll('.image');
 let clicked=0;
 
+const header = document.querySelector('.header-container');
+
+header.addEventListener('mouseenter', () => {
+    header.classList.remove('hidden');
+});
+  
+  // Start the fade-out after mouse leaves the header
+header.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      header.classList.add('hidden');
+    }, 2500); // Delay to allow for brief transition before fading
+});
+
 images.forEach(image => {
     image.addEventListener('mousedown', (e) => {
         e.preventDefault(); // Prevent the image from interfering with drag logic
