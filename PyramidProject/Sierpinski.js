@@ -7,6 +7,8 @@ class CreateUpdateTable{
     constructor(){
         this.updateCanvas();        
     }
+
+
     updateCanvas(){
         const { width, height } = canvas.getBoundingClientRect();
         canvas.width = width;
@@ -30,6 +32,12 @@ class CreateUpdateTable{
         ctx.lineWidth = 1;
         ctx.stroke();
     }
+    midPoint(x1,y1,x2,y2){
+        return {
+            x: (x1 + x2) / 2,
+            y: (y1 + y2) / 2
+        };
+    }
     drawTriangle(centerX,centerY){
         const topX = centerX;
         const topY = centerY - this.radiusInner;
@@ -43,6 +51,9 @@ class CreateUpdateTable{
         const bottomY2 = topY + sideLength * Math.sin(angle2);
         this.drawCirc(bottomX1,bottomY1,5)
         this.drawCirc(bottomX2,bottomY2,5)
+        this.drawCirc(this.midPoint(topX,topY,bottomX1,bottomY1).x,this.midPoint(topX,topY,bottomX1,bottomY1).y,5)
+        this.drawCirc(this.midPoint(topX,topY,bottomX2,bottomY2).x,this.midPoint(topX,topY,bottomX2,bottomY2).y,5)
+        this.drawCirc(this.midPoint(bottomX1,bottomY1,bottomX2,bottomY2).x,this.midPoint(bottomX1,bottomY1,bottomX2,bottomY2).y,5)
         
 
 
