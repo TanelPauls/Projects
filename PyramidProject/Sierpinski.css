@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin:0px;
+    background: rgb(239, 225, 132);
+}
+#canvas1 {
+    position:absolute;
+    background:rgb(109, 173, 210);
+    width:535px;
+    height:535px;
+    margin-top:25px;
+    margin-left:25px;
+
+}
