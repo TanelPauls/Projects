@@ -140,7 +140,9 @@ body{
 
 
 #addRowToPyramid,
-#addPointToPyramid {
+#addPointToPyramid,
+#raiseIndent,
+#raiseCirc{
     display: flex;
     border-radius: 50%;
     border: none;
@@ -152,18 +154,24 @@ body{
 }
 
 #addRowToPyramid svg,
-#addPointToPyramid svg {
+#addPointToPyramid svg,
+#raiseIndent svg,
+#raiseCirc svg {
     width: 43px;
     height: 43px;
 }
 
 #addRowToPyramid:hover svg rect,
-#addPointToPyramid:hover svg rect {
+#addPointToPyramid:hover svg rect,
+#raiseIndent:hover svg rect,
+#raiseCirc:hover svg rect {
     fill: rgb(69, 69, 69);
 }
 
 #removeRowFromPyramid,
-#removePointFromPyramid {
+#removePointFromPyramid,
+#reduceIndent,
+#reduceCirc {
     display: flex;
     border-radius: 50%;
     border: none;
@@ -175,13 +183,17 @@ body{
 }
 
 #removeRowFromPyramid svg,
-#removePointFromPyramid svg {
+#removePointFromPyramid svg,
+#reduceIndent svg,
+#reduceCirc svg {
     width: 43px;
     height: 43px;
 }
 
 #removeRowFromPyramid:hover svg rect,
-#removePointFromPyramid:hover svg rect {
+#removePointFromPyramid:hover svg rect,
+#reduceIndent:hover svg rect,
+#reduceCirc:hover svg rect {
     fill: rgb(69, 69, 69);
 }
 

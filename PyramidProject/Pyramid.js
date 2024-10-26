@@ -94,13 +94,46 @@ document.getElementById("removePointFromPyramid").addEventListener("click", () =
     }
 });
 
-let sDepth = document.getElementById("sDepth").innerText;
-if (sDepth < 0) { sDepth = 0; }
-else if (sDepth > 10) { sDepth = 10; }
+let sDepth = 1.2
 
-let CircRadius = document.getElementById("CircRadius").innerText;
-if (CircRadius < 0) { CircRadius = 0; }
-else if (CircRadius > 2) { CircRadius = 2; }
+function updatePyramidIndentDisplay() {
+    document.getElementById("s6").innerText = sDepth.toFixed(1);
+}
+document.getElementById("raiseIndent").addEventListener("click", () => {
+    if (sDepth < 10) {
+        sDepth = Math.min(10, parseFloat((sDepth + 0.2).toFixed(1))); // Ensure it doesn't exceed 10 and rounds to 1 decimal
+        updatePyramidIndentDisplay();
+        effect.updateCanvas();
+    }
+});
+document.getElementById("reduceIndent").addEventListener("click", () => {
+    if (sDepth > 0) {
+        sDepth = Math.max(0, parseFloat((sDepth - 0.2).toFixed(1))); // Ensure non-negative and fixed to 1 decimal
+        updatePyramidIndentDisplay();
+        effect.updateCanvas();
+    }
+});
+
+let CircRadius = 0;
+
+function updatePyramidCircDisplay() {
+    document.getElementById("s8").innerText = CircRadius.toFixed(1);
+}
+document.getElementById("raiseCirc").addEventListener("click", () => {
+    if (CircRadius < 2) {
+        CircRadius=CircRadius+0.1;
+        updatePyramidCircDisplay();
+      effect.updateCanvas();
+    }
+});
+document.getElementById("reduceCirc").addEventListener("click", () => {
+    if (CircRadius > 0) {
+        CircRadius = Math.max(0, parseFloat((CircRadius - 0.1).toFixed(1)));
+        updatePyramidCircDisplay();
+        effect.updateCanvas();
+    }
+});
+
 
 function randomSegmentsBetween(a, b, n) {
     // Generate n-1 random points between a and b
@@ -350,7 +383,7 @@ document.getElementById("playButton").addEventListener("click", function() {
             } else {
                 clearInterval(intervalId); // Stop the interval if playPause is 0
             }
-        }, 333);
+        }, 600);
     } else {
         // Stop the interval if playPause is 0
         clearInterval(intervalId);
