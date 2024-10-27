@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Zoom Effect with Canvas</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const circleRadius = 500;
+        const points = [];
+        let origin = { x: centerX, y: centerY };
+        let targetOrigin = { x: centerX, y: centerY };
+        let mouseInside = false;
+
+        // Generate points
+        setInterval(() => {
+            if (mouseInside) {
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * circleRadius;
+                const x = origin.x + Math.cos(angle) * distance;
+                const y = origin.y + Math.sin(angle) * distance;
+                const speed = 2;
+
+                // Set initial direction based on current origin
+                points.push({
+                    x, y,
+                    dx: (x - origin.x) * speed / distance,
+                    dy: (y - origin.y) * speed / distance,
+                });
+            }
+        }, 30);
+
+        // Track mouse position
+        canvas.addEventListener('mousemove', (event) => {
+            const distToCenter = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+            if (distToCenter < circleRadius) {
+                // Set the target origin to the mouse position, but don't change immediately
+                targetOrigin = { x: event.clientX, y: event.clientY };
+                mouseInside = true;
+            } else {
+                mouseInside = false;
+            }
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the outer area
+            ctx.fillStyle = '#e0e0e0'; // Light gray for the outside
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the main circle boundary
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, circleRadius, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff'; // White for the inside of the circle
+            ctx.fill();
+            ctx.strokeStyle = '#0000ff'; // Blue outline for the circle
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Gradually move origin toward targetOrigin for smooth transition
+            origin.x += (targetOrigin.x - origin.x) * 0.1;
+            origin.y += (targetOrigin.y - origin.y) * 0.1;
+
+            // Update and draw points
+            points.forEach((point, index) => {
+                // Recalculate direction based on the current origin position
+                const angle = Math.atan2(point.y - origin.y, point.x - origin.x);
+                const speed = 2;
+                point.dx = Math.cos(angle) * speed;
+                point.dy = Math.sin(angle) * speed;
+
+                // Move point outward from the origin
+                point.x += point.dx;
+                point.y += point.dy;
+
+                // Remove points outside the circle
+                const distFromOrigin = Math.hypot(point.x - origin.x, point.y - origin.y);
+                if (distFromOrigin > circleRadius) {
+                    points.splice(index, 1);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ff5722'; // Orange points
+                    ctx.fill();
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
