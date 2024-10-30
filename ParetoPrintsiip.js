@@ -16,16 +16,27 @@ function poissonRandom(lambda) {
     return k - 1;
 }
 
-function randomSotsiaalmeedia() {
-    let ranSots=Math.random();
-    if(ranSots<0.25){return 1}
-    else if(ranSots<0.5){return 2}
-    else if(ranSots<0.7){return 3}
-    else if(ranSots<0.9){return 4}
-    else {return 5}
+function randomSotsiaalmeedia(maleOrFemale) {
+    if(maleOrFemale==1){
+        let ranSots=Math.random();
+        if(ranSots<0.26){return 1}
+        else if(ranSots<54){return 2}
+        else if(ranSots<0.7){return 3}
+        else if(ranSots<0.82){return 4}
+        else {return 5}
+    }
+    else{
+        let ranSots=Math.random();
+        if(ranSots<0.24){return 1}
+        else if(ranSots<0.46){return 2}
+        else if(ranSots<0.66){return 3}
+        else if(ranSots<0.84){return 4}
+        else {return 5}
+    }
 }
 
-
+let myBarChart;
+let myBarChart2;
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -37,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let dataMaleFemale=0;
     let dataKokku=0;
     let dataWorkSatisfaction=0;
+    let dataWorkSatisfactionOption1=0;
+    let dataWorkSatisfactionOption2=0;
+    let dataWorkSatisfactionOption3=0;
+    let dataWorkSatisfactionOption4=0;
+    let dataWorkSatisfactionOption5=0;
     let dataSocialMedia=0;
     let dataRooms=[];
     let dataRoomsInt=0;
@@ -53,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (currentRowCount < targetCount) {
             let rowsToAdd = targetCount - currentRowCount;
             for (let i = 0; i < rowsToAdd; i++) {
+                let maleOrFemale=0;
                 dataKokku+=1;
                 let newRow = document.createElement('tr');
                 // Add 5 cells to each new row (adjust the number of cells if needed)
@@ -65,7 +82,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     else if(j%5==1){
                         let newCell = document.createElement('td');
                         newCell.textContent = randomInteger(0,1);
+
                         if(newCell.textContent==1){
+                            maleOrFemale=1;
                             dataMaleFemale+=1;
                         }
                         newRow.appendChild(newCell);
@@ -73,7 +92,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     else if(j%5==2){
                         let newCell = document.createElement('td');
                         newCell.textContent = randomInteger(1,5);
-                        if(newCell.textContent==4 || newCell.textContent==5){
+                        if(newCell.textContent==1){dataWorkSatisfactionOption1+=1;}
+                        else if(newCell.textContent==2){dataWorkSatisfactionOption2+=1;}
+                        else if(newCell.textContent==3){dataWorkSatisfactionOption3+=1;}
+                        else if(newCell.textContent==4){
+                            dataWorkSatisfactionOption4+=1;
+                            dataWorkSatisfaction+=1;
+                        }
+                        else if(newCell.textContent==5){
+                            dataWorkSatisfactionOption5+=1;
                             dataWorkSatisfaction+=1;
                         }
                         newRow.appendChild(newCell);
@@ -88,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     else{
                         let newCell = document.createElement('td');
-                        newCell.textContent = randomSotsiaalmeedia();
+                        
+                        newCell.textContent = randomSotsiaalmeedia(maleOrFemale);
                         if(newCell.textContent==1 || newCell.textContent==2){
                             dataSocialMedia+=1;
                         }
@@ -120,6 +148,11 @@ document.addEventListener("DOMContentLoaded", function() {
             dataMaleFemale=0;
             dataKokku=0;
             dataWorkSatisfaction=0;
+            dataWorkSatisfactionOption1=0;
+            dataWorkSatisfactionOption2=0;
+            dataWorkSatisfactionOption3=0;
+            dataWorkSatisfactionOption4=0;
+            dataWorkSatisfactionOption5=0;
             dataSocialMedia=0;
             dataRooms=[];
             dataRoomsInt=0;
@@ -131,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
             rValue=0;
             dataRoomsInt=0;
             totaldata=0;
+            
             adjustTableRowCount(0);
             adjustTableRowCount(inputValue);
             totaldata=inputValue;
@@ -165,43 +199,100 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const canvas = document.getElementById('myPieChart');
             const ctx = canvas.getContext('2d');
-            const percentage1 = dataKokku-dataMaleFemale;
+            const percentage1 = dataKokku - dataMaleFemale;
             const percentage2 = dataMaleFemale;
             const data = [percentage1, percentage2];
+
+            // Define labels and separate colors for pie chart and legend
+            const labels = ['Naine', 'Mees'];
+            const pieColors = ['#3498db', '#e74c3c']; // Blue for Category 1, Red for Category 2 in the pie chart
+            const legendColors = ['#e74c3c', '#3498db']; // Red for Category 1, Blue for Category 2 in the legend
+
             const total = data.reduce((a, b) => a + b, 0);
             let currentAngle = 0;
-            const colors = ['#3498db', '#e74c3c'];
-            data.forEach((percentage, index) => {
-            const sliceAngle = (percentage / total) * 2 * Math.PI;
-            ctx.beginPath();
-            ctx.moveTo(75, 75); // Move to the center of the canvas
-            ctx.arc(75, 75, 50, currentAngle, currentAngle + sliceAngle);
-            ctx.closePath();
-            ctx.fillStyle = colors[index];
-            ctx.fill();
 
-            currentAngle += sliceAngle;
+            // Draw the pie chart with swapped colors
+            data.forEach((percentage, index) => {
+                const sliceAngle = (percentage / total) * 2 * Math.PI;
+                ctx.beginPath();
+                ctx.moveTo(75, 75); // Move to the center of the canvas
+                ctx.arc(75, 75, 50, currentAngle, currentAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = pieColors[index];
+                ctx.fill();
+
+                currentAngle += sliceAngle;
+            });
+
+            // Add legend with consistent colors
+            const legendX = 160; // Position of the legend
+            let legendY = 20;
+
+            labels.forEach((label, index) => {
+                ctx.fillStyle = legendColors[index];
+                ctx.fillRect(legendX, legendY, 10, 10); // Color box
+                ctx.fillStyle = '#000'; // Text color
+                ctx.font = '12px Arial';
+                ctx.fillText(label, legendX + 20, legendY + 10); // Label text
+
+                legendY += 20; // Move to the next legend item
             });
 
             const canvas2 = document.getElementById('myPieChart2');
             const ctx2 = canvas2.getContext('2d');
-            const percentage3 = dataKokku-dataWorkSatisfaction;
-            const percentage4 = dataWorkSatisfaction;
-            const data2 = [percentage3, percentage4];
-            const total2 = data2.reduce((a, b) => a + b, 0);
-            let currentAngle2 = 0;
-            const colors2 = ['#3498db', '#e74c3c'];
-            data2.forEach((percentage, index) => {
-            const sliceAngle2 = (percentage / total2) * 2 * Math.PI;
-            ctx2.beginPath();
-            ctx2.moveTo(75, 75); // Move to the center of the canvas
-            ctx2.arc(75, 75, 50, currentAngle2, currentAngle2 + sliceAngle2);
-            ctx2.closePath();
-            ctx2.fillStyle = colors2[index];
-            ctx2.fill();
+            if (myBarChart) {
+                myBarChart.destroy();
+            }
+            // Define your data options and colors
+            const dataOptions = [1, 2, 3, 4, 5];
+            const colors = dataOptions.map(option => (option <= 3 ? '#3498db' : '#e74c3c'));
+            
+            // Create the bar chart with Chart.js
+            myBarChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5'],
+                    datasets: [{
+                        label: 'Responses',
+                        data: [dataWorkSatisfactionOption1, dataWorkSatisfactionOption2, dataWorkSatisfactionOption3, dataWorkSatisfactionOption4, dataWorkSatisfactionOption5], // Example data
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                            labels: {
+                                color: 'black',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Kokku'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Valikud'
+                            }
+                        }
+                    }
+                }
+            });           
 
-            currentAngle2 += sliceAngle2;
-            });
+
+            
 
             const canvas3 = document.getElementById('myPieChart3');
             const ctx3 = canvas3.getContext('2d');
