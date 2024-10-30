@@ -20,7 +20,7 @@ function randomSotsiaalmeedia(maleOrFemale) {
     if(maleOrFemale==1){
         let ranSots=Math.random();
         if(ranSots<0.26){return 1}
-        else if(ranSots<54){return 2}
+        else if(ranSots<0.54){return 2}
         else if(ranSots<0.7){return 3}
         else if(ranSots<0.82){return 4}
         else {return 5}
@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Valikud'
+                                text: 'Tubade arv'
                             }
                         }
                     }
