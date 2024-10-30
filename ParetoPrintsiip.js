@@ -36,7 +36,7 @@ function randomSotsiaalmeedia(maleOrFemale) {
 }
 
 let myBarChart;
-let myBarChart2;
+let myBarChart3;
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let dataWorkSatisfactionOption5=0;
     let dataSocialMedia=0;
     let dataRooms=[];
+    let dataRooms1=0;
+    let dataRooms2=0;
+    let dataRooms3=0;
+    let dataRooms4=0;
+    let dataRooms5=0;
+    let dataRooms6=0;
+    let dataRooms7=0;
+    let dataRooms8Plus=0;
+
     let dataRoomsInt=0;
     let valueFloor=0;
     let valueCeil=0;
@@ -111,6 +120,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         let poissonValue = poissonRandom(lambda); 
                         newCell.textContent = poissonValue;
                         dataRooms.push(poissonValue);  // Push numeric value directly
+                        if(newCell.textContent==1){dataRooms1+=1;}
+                        else if(newCell.textContent==2){dataRooms2+=1;}
+                        else if(newCell.textContent==3){dataRooms3+=1;}
+                        else if(newCell.textContent==4){dataRooms4+=1;}
+                        else if(newCell.textContent==5){dataRooms5+=1;}
+                        else if(newCell.textContent==6){dataRooms6+=1;}
+                        else if(newCell.textContent==7){dataRooms7+=1;}
+                        else if(newCell.textContent>=8){dataRooms8Plus+=1;}
+
                         newRow.appendChild(newCell);
                     }
                     else{
@@ -155,6 +173,14 @@ document.addEventListener("DOMContentLoaded", function() {
             dataWorkSatisfactionOption5=0;
             dataSocialMedia=0;
             dataRooms=[];
+            dataRooms1=0;
+            dataRooms2=0;
+            dataRooms3=0;
+            dataRooms4=0;
+            dataRooms5=0;
+            dataRooms6=0;
+            dataRooms7=0;
+            dataRooms8Plus=0;
             dataRoomsInt=0;
             valueFloor=0;
             valueCeil=0;
@@ -292,27 +318,65 @@ document.addEventListener("DOMContentLoaded", function() {
             });           
 
 
-            
 
             const canvas3 = document.getElementById('myPieChart3');
             const ctx3 = canvas3.getContext('2d');
-            const percentage5 = dataKokku-dataRoomsInt;
-            const percentage6 = dataRoomsInt;
-            const data3 = [percentage5, percentage6];
-            const total3 = data3.reduce((a, b) => a + b, 0);
-            let currentAngle3 = 0;
-            const colors3 = ['#3498db', '#e74c3c'];
-            data3.forEach((percentage, index) => {
-            const sliceAngle3 = (percentage / total3) * 2 * Math.PI;
-            ctx3.beginPath();
-            ctx3.moveTo(75, 75); // Move to the center of the canvas
-            ctx3.arc(75, 75, 50, currentAngle3, currentAngle3 + sliceAngle3);
-            ctx3.closePath();
-            ctx3.fillStyle = colors3[index];
-            ctx3.fill();
+            if (myBarChart3) {
+                myBarChart3.destroy();
+            }
 
-            currentAngle3 += sliceAngle3;
-            });
+            // Calculate the 80th percentile value for room counts
+            const percentileThreshold = percentileValue;
+
+            // Define your data options and colors
+            const dataOptions2 = [1, 2, 3, 4, 5, 6, 7, "8+"];
+            const colors2 = dataOptions2.map(option => (option <= percentileThreshold ? '#3498db' : '#e74c3c'));
+
+
+            // Create the bar chart with Chart.js
+            myBarChart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5','6','7','8+'],
+                    datasets: [{
+                        label: 'Responses',
+                        data: [dataRooms1, dataRooms2, dataRooms3, dataRooms4, dataRooms5, dataRooms6, dataRooms7, dataRooms8Plus],
+                        backgroundColor: colors2,
+                        borderColor: colors2,
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false,
+                            labels: {
+                                color: 'black',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Kokku'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Valikud'
+                            }
+                        }
+                    }
+                }
+            });           
+            
 
             const canvas4 = document.getElementById('myPieChart4');
             const ctx4 = canvas4.getContext('2d');
