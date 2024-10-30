@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             const canvas = document.getElementById('myPieChart');
             const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             const percentage1 = dataKokku - dataMaleFemale;
             const percentage2 = dataMaleFemale;
             const data = [percentage1, percentage2];
@@ -380,6 +381,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const canvas4 = document.getElementById('myPieChart4');
             const ctx4 = canvas4.getContext('2d');
+            ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
             const percentage7 = dataKokku-dataSocialMedia;
             const percentage8 = dataSocialMedia;
             const data4 = [percentage7, percentage8];
@@ -425,6 +427,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const canvas5 = document.getElementById('myPieChart5');
             const ctx5 = canvas5.getContext('2d');
+            ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
             const percentage9 = dataKokku*4-(dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia);
             const percentage10 =dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia ;
             const data5 = [percentage9, percentage10];
