@@ -383,20 +383,42 @@ document.addEventListener("DOMContentLoaded", function() {
             const percentage7 = dataKokku-dataSocialMedia;
             const percentage8 = dataSocialMedia;
             const data4 = [percentage7, percentage8];
+
+            // Define labels and separate colors for pie chart and legend
+            const labels4 = ['Instagram/Tik-Tok', 'Muu'];
+            const pieColors4 = ['#3498db', '#e74c3c']; // Blue for Category 1, Red for Category 2 in the pie chart
+            const legendColors4 = ['#e74c3c', '#3498db']; // Red for Category 1, Blue for Category 2 in the legend
+
             const total4 = data4.reduce((a, b) => a + b, 0);
             let currentAngle4 = 0;
-            const colors4 = ['#3498db', '#e74c3c'];
-            data4.forEach((percentage, index) => {
-            const sliceAngle4 = (percentage / total4) * 2 * Math.PI;
-            ctx4.beginPath();
-            ctx4.moveTo(75, 75); // Move to the center of the canvas
-            ctx4.arc(75, 75, 50, currentAngle4, currentAngle4 + sliceAngle4);
-            ctx4.closePath();
-            ctx4.fillStyle = colors4[index];
-            ctx4.fill();
 
-            currentAngle4 += sliceAngle4;
+            // Draw the pie chart with swapped colors
+            data4.forEach((percentage, index) => {
+                const sliceAngle4 = (percentage / total4) * 2 * Math.PI;
+                ctx4.beginPath();
+                ctx4.moveTo(75, 75); // Move to the center of the canvas
+                ctx4.arc(75, 75, 50, currentAngle4, currentAngle4 + sliceAngle4);
+                ctx4.closePath();
+                ctx4.fillStyle = pieColors4[index];
+                ctx4.fill();
+
+                currentAngle4 += sliceAngle4;
             });
+
+            // Add legend with consistent colors
+            const legendX4 = 160; // Position of the legend
+            let legendY4 = 20;
+
+            labels4.forEach((label, index) => {
+                ctx4.fillStyle = legendColors4[index];
+                ctx4.fillRect(legendX4, legendY4, 10, 10); // Color box
+                ctx4.fillStyle = '#000'; // Text color
+                ctx4.font = '12px Arial';
+                ctx4.fillText(label, legendX4 + 20, legendY4 + 10); // Label text
+
+                legendY4 += 20; // Move to the next legend item
+            });
+
             
             var cell = document.getElementById("cell5");
             cell.innerHTML = 'Kokku küsimusi: '+ dataKokku*4 + '<br>Olulisi tulemusi: ' + (dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia);
@@ -407,24 +429,45 @@ document.addEventListener("DOMContentLoaded", function() {
             const percentage10 =dataMaleFemale+dataWorkSatisfaction+dataRoomsInt+dataSocialMedia ;
             const data5 = [percentage9, percentage10];
             const total5 = data5.reduce((a, b) => a + b, 0);
-            let currentAngle5 = 0;
-            const colors5 = ['#3498db', '#e74c3c'];
-            data5.forEach((percentage, index) => {
-            const sliceAngle5 = (percentage / total5) * 2 * Math.PI;
-            ctx5.beginPath();
-            ctx5.moveTo(75, 75); // Move to the center of the canvas
-            ctx5.arc(75, 75, 50, currentAngle5, currentAngle5 + sliceAngle5);
-            ctx5.closePath();
-            ctx5.fillStyle = colors5[index];
-            ctx5.fill();
 
-            currentAngle5 += sliceAngle5;
+            // Define labels and separate colors for pie chart and legend
+            const labels5 = ['Olulised andmed', 'Mitteolulised andmed'];
+            const pieColors5 = ['#3498db', '#e74c3c']; // Blue for Category 1, Red for Category 2 in the pie chart
+            const legendColors5 = ['#e74c3c', '#3498db']; // Red for Category 1, Blue for Category 2 in the legend
+
+            let currentAngle5 = 0;
+
+            // Draw the pie chart with swapped colors
+            data5.forEach((percentage, index) => {
+                const sliceAngle5 = (percentage / total5) * 2 * Math.PI;
+                ctx5.beginPath();
+                ctx5.moveTo(75, 75); // Move to the center of the canvas
+                ctx5.arc(75, 75, 50, currentAngle5, currentAngle5 + sliceAngle5);
+                ctx5.closePath();
+                ctx5.fillStyle = pieColors5[index];
+                ctx5.fill();
+
+                currentAngle5 += sliceAngle5;
+            });
+
+            // Add legend with consistent colors
+            const legendX5 = 160; // Position of the legend
+            let legendY5 = 20;
+
+            labels5.forEach((label, index) => {
+                ctx5.fillStyle = legendColors5[index];
+                ctx5.fillRect(legendX5, legendY5, 10, 10); // Color box
+                ctx5.fillStyle = '#000'; // Text color
+                ctx5.font = '12px Arial';
+                ctx5.fillText(label, legendX5 + 20, legendY5 + 10); // Label text
+
+                legendY5 += 20; // Move to the next legend item
             });
 
             var cell = document.getElementById("cell6");
             var totalToPercent=Math.round((percentage10*100)/(percentage9+percentage10));
             var totalToPercentNegative=100-totalToPercent;
-            cell.innerHTML = "Pareedo Printsiip kehtib nende andmete põhjal seosega: <b>"+totalToPercentNegative+"%-"+totalToPercent+"%</b>";
+            cell.innerHTML = "Pareto Printsiip kehtib nende andmete põhjal seosega: <b>"+totalToPercentNegative+"%-"+totalToPercent+"%</b>";
         
         } else {
             alert('Please enter a valid positive number.');
