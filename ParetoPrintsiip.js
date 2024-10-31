@@ -117,6 +117,17 @@ document.addEventListener("DOMContentLoaded", function() {
     let rValue=0;
     let totaldata=0;
 
+    let femaleInst=0;
+    let femaleTik=0;
+    let femaleTwi=0;
+    let femaleFace=0;
+    let femaleEls=0;
+    let maleInst=0;
+    let maleTik=0;
+    let maleTwi=0;
+    let maleFace=0;
+    let maleEls=0;
+
     function adjustTableRowCount(targetCount) {
         let currentRowCount = tbody ? tbody.querySelectorAll('tr').length : 0;
         if (currentRowCount < targetCount) {
@@ -184,6 +195,38 @@ document.addEventListener("DOMContentLoaded", function() {
                             dataSocialMedia+=1;
                         }
                         newRow.appendChild(newCell);
+                        if(maleOrFemale==1 && newCell.textContent==1){
+                            femaleInst+=1;
+                        }
+                        else if(maleOrFemale==1 && newCell.textContent==2){
+                            femaleTik+=1;
+                        }
+                        else if(maleOrFemale==1 && newCell.textContent==3){
+                            femaleTwi+=1;
+                        }
+                        else if(maleOrFemale==1 && newCell.textContent==4){
+                            femaleFace+=1;
+                        }
+                        else if(maleOrFemale==1 && newCell.textContent==5){
+                            femaleEls+=1;
+                        }
+
+                        if(maleOrFemale==0 && newCell.textContent==1){
+                            maleInst+=1;
+                        }
+                        else if(maleOrFemale==0 && newCell.textContent==2){
+                            maleTik+=1;
+                        }
+                        else if(maleOrFemale==0 && newCell.textContent==3){
+                            maleTwi+=1;
+                        }
+                        else if(maleOrFemale==0 && newCell.textContent==4){
+                            maleFace+=1;
+                        }
+                        else if(maleOrFemale==0 && newCell.textContent==5){
+                            maleEls+=1;
+                        }
+
                     }
                 }
                 tbody.appendChild(newRow);
@@ -239,6 +282,16 @@ document.addEventListener("DOMContentLoaded", function() {
             rValue=0;
             dataRoomsInt=0;
             totaldata=0;
+            femaleInst=0;
+            femaleTik=0;
+            femaleTwi=0;
+            femaleFace=0;
+            femaleEls=0;
+            maleInst=0;
+            maleTik=0;
+            maleTwi=0;
+            maleFace=0;
+            maleEls=0;
             
             adjustTableRowCount(0);
             adjustTableRowCount(inputValue);
@@ -440,7 +493,32 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             });           
-            
+
+            var cell = document.getElementById("femaleTotalNr");
+            cell.innerHTML = ("Naisi: "+dataMaleFemale);
+            var cell = document.getElementById("femaleInstagram");
+            cell.innerHTML = (femaleInst+" - "+((femaleInst/dataMaleFemale)*100).toFixed(0)+"%");
+            var cell = document.getElementById("femaleTikTok");
+            cell.innerHTML = (femaleTik+" - "+((femaleTik/dataMaleFemale)*100).toFixed(0)+"%");
+            var cell = document.getElementById("femaleX");
+            cell.innerHTML = (femaleTwi+" - "+((femaleTwi/dataMaleFemale)*100).toFixed(0)+"%");
+            var cell = document.getElementById("femaleMeta");
+            cell.innerHTML = (femaleFace+" - "+((femaleFace/dataMaleFemale)*100).toFixed(0)+"%");
+            var cell = document.getElementById("femaleElse");
+            cell.innerHTML = (femaleEls+" - "+((femaleEls/dataMaleFemale)*100).toFixed(0)+"%");
+
+            var cell = document.getElementById("maleTotalNr");
+            cell.innerHTML = ("Mehi: "+(dataKokku - dataMaleFemale));
+            var cell = document.getElementById("maleInstagram");
+            cell.innerHTML = (maleInst+" - "+((maleInst/(dataKokku - dataMaleFemale))*100).toFixed(0)+"%");
+            var cell = document.getElementById("maleTikTok");
+            cell.innerHTML = (maleTik+" - "+((maleTik/(dataKokku - dataMaleFemale))*100).toFixed(0)+"%");
+            var cell = document.getElementById("maleX");
+            cell.innerHTML = (maleTwi+" - "+((maleTwi/(dataKokku - dataMaleFemale))*100).toFixed(0)+"%");
+            var cell = document.getElementById("maleMeta");
+            cell.innerHTML = (maleFace+" - "+((maleFace/(dataKokku - dataMaleFemale))*100).toFixed(0)+"%");
+            var cell = document.getElementById("maleElse");
+            cell.innerHTML = (maleEls+" - "+((maleEls/(dataKokku - dataMaleFemale))*100).toFixed(0)+"%");
 
             const canvas4 = document.getElementById('myPieChart4');
             const ctx4 = canvas4.getContext('2d');
@@ -450,7 +528,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const data4 = [percentage7, percentage8];
 
             // Define labels and separate colors for pie chart and legend
-            const labels4 = ['Instagram/Tik-Tok', 'Muu'];
+            const labels4 = ['Instagram / Tik-Tok', 'Muu'];
             const pieColors4 = ['#3498db', '#e74c3c']; // Blue for Category 1, Red for Category 2 in the pie chart
             const legendColors4 = ['#e74c3c', '#3498db']; // Red for Category 1, Blue for Category 2 in the legend
 

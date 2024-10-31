@@ -44,3 +44,15 @@ table.inner-table th, table.inner-table td {
     padding: 8px;
     border: 1px solid #000;
 }
+#pivotTable {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pivotTable th, #pivotTable td {
+    padding: 8px;
+    border: 1px solid #000;
+}
