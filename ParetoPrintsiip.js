@@ -35,6 +35,47 @@ function randomSotsiaalmeedia(maleOrFemale) {
     }
 }
 
+function findMode(data) {
+    const frequencyMap = {};
+    let maxFrequency = 0;
+    let modes = [];
+
+    // Count the frequency of each number
+    data.forEach(num => {
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+        if (frequencyMap[num] > maxFrequency) {
+            maxFrequency = frequencyMap[num];
+        }
+    });
+
+    // Find all numbers with the maximum frequency
+    for (const num in frequencyMap) {
+        if (frequencyMap[num] === maxFrequency) {
+            modes.push(Number(num));
+        }
+    }
+
+    return modes;
+}
+
+function findMedian(data) {
+    // Sort the data array in ascending order
+    data.sort((a, b) => a - b);
+
+    const length = data.length;
+
+    // If the length is odd, return the middle element
+    if (length % 2 === 1) {
+        return data[Math.floor(length / 2)];
+    } 
+    // If the length is even, return the average of the two middle elements
+    else {
+        const mid1 = data[length / 2 - 1];
+        const mid2 = data[length / 2];
+        return (mid1 + mid2) / 2;
+    }
+}
+
 let myBarChart;
 let myBarChart3;
 
@@ -55,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let dataWorkSatisfactionOption5=0;
     let dataSocialMedia=0;
     let dataRooms=[];
+    let dataRooms0=0;
     let dataRooms1=0;
     let dataRooms2=0;
     let dataRooms3=0;
@@ -63,8 +105,10 @@ document.addEventListener("DOMContentLoaded", function() {
     let dataRooms6=0;
     let dataRooms7=0;
     let dataRooms8Plus=0;
-
+    let dataTotalRooms=0;
     let dataRoomsInt=0;
+    let dataRoomsArray=[];
+    let dataMean=0;
     let valueFloor=0;
     let valueCeil=0;
     let value1=0;
@@ -120,14 +164,15 @@ document.addEventListener("DOMContentLoaded", function() {
                         let poissonValue = poissonRandom(lambda); 
                         newCell.textContent = poissonValue;
                         dataRooms.push(poissonValue);  // Push numeric value directly
-                        if(newCell.textContent==1){dataRooms1+=1;}
-                        else if(newCell.textContent==2){dataRooms2+=1;}
-                        else if(newCell.textContent==3){dataRooms3+=1;}
-                        else if(newCell.textContent==4){dataRooms4+=1;}
-                        else if(newCell.textContent==5){dataRooms5+=1;}
-                        else if(newCell.textContent==6){dataRooms6+=1;}
-                        else if(newCell.textContent==7){dataRooms7+=1;}
-                        else if(newCell.textContent>=8){dataRooms8Plus+=1;}
+                        if(newCell.textContent==1){dataRooms1+=1;dataTotalRooms+=1;dataRoomsArray.push(1)}
+                        else if(newCell.textContent==0){dataRooms0+=1;dataRoomsArray.push(0)}
+                        else if(newCell.textContent==2){dataRooms2+=1;dataTotalRooms+=2;dataRoomsArray.push(2)}
+                        else if(newCell.textContent==3){dataRooms3+=1;dataTotalRooms+=3;dataRoomsArray.push(3)}
+                        else if(newCell.textContent==4){dataRooms4+=1;dataTotalRooms+=4;dataRoomsArray.push(4)}
+                        else if(newCell.textContent==5){dataRooms5+=1;dataTotalRooms+=5;dataRoomsArray.push(5)}
+                        else if(newCell.textContent==6){dataRooms6+=1;dataTotalRooms+=6;dataRoomsArray.push(6)}
+                        else if(newCell.textContent==7){dataRooms7+=1;dataTotalRooms+=7;dataRoomsArray.push(7)}
+                        else if(newCell.textContent>=8){dataRooms8Plus+=1;dataTotalRooms += parseInt(newCell.textContent, 10);dataRoomsArray.push(parseInt(newCell.textContent, 10))}
 
                         newRow.appendChild(newCell);
                     }
@@ -173,6 +218,8 @@ document.addEventListener("DOMContentLoaded", function() {
             dataWorkSatisfactionOption5=0;
             dataSocialMedia=0;
             dataRooms=[];
+            dataRoomsArray=[];
+            dataRooms0=0;
             dataRooms1=0;
             dataRooms2=0;
             dataRooms3=0;
@@ -181,7 +228,9 @@ document.addEventListener("DOMContentLoaded", function() {
             dataRooms6=0;
             dataRooms7=0;
             dataRooms8Plus=0;
+            dataTotalRooms=0;
             dataRoomsInt=0;
+            dataMean=0;
             valueFloor=0;
             valueCeil=0;
             value1=0;
@@ -317,8 +366,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             });           
+            var cell = document.getElementById("text2");
+            let dataMeanResult=dataTotalRooms/totaldata;
+            cell.innerHTML = dataMeanResult.toFixed(5);
+            
+            let dataMeanSums=0;
+            for(let c=0;c<dataRoomsArray.length;c++){
+                dataMeanSums += Math.pow((dataRoomsArray[c] - dataMeanResult), 2);
+            }
+            var cell = document.getElementById("text3");
+            cell.innerHTML = Math.sqrt((dataMeanSums/(totaldata-1))).toFixed(5);
 
+            var cell = document.getElementById("text4");
+            cell.innerHTML = (findMode(dataRoomsArray));
 
+            var cell = document.getElementById("text5");
+            cell.innerHTML = (findMedian(dataRoomsArray));
 
             const canvas3 = document.getElementById('myPieChart3');
             const ctx3 = canvas3.getContext('2d');
@@ -330,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const percentileThreshold = percentileValue;
 
             // Define your data options and colors
-            const dataOptions2 = [1, 2, 3, 4, 5, 6, 7, "8+"];
+            const dataOptions2 = [0, 1, 2, 3, 4, 5, 6, 7, "8+"];
             const colors2 = dataOptions2.map(option => (option <= percentileThreshold ? '#3498db' : '#e74c3c'));
 
 
@@ -338,10 +401,10 @@ document.addEventListener("DOMContentLoaded", function() {
             myBarChart3 = new Chart(ctx3, {
                 type: 'bar',
                 data: {
-                    labels: ['1', '2', '3', '4', '5','6','7','8+'],
+                    labels: ['0', '1', '2', '3', '4', '5','6','7','8+'],
                     datasets: [{
                         label: 'Responses',
-                        data: [dataRooms1, dataRooms2, dataRooms3, dataRooms4, dataRooms5, dataRooms6, dataRooms7, dataRooms8Plus],
+                        data: [dataRooms0, dataRooms1, dataRooms2, dataRooms3, dataRooms4, dataRooms5, dataRooms6, dataRooms7, dataRooms8Plus],
                         backgroundColor: colors2,
                         borderColor: colors2,
                         borderWidth: 1,

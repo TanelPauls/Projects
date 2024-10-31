@@ -28,6 +28,7 @@ table.outer-table td {
     padding-right: 20px;
     padding: 10px;
     border: 1px solid #000;
+    height: 100%;
 }
 div.table-container {
     height: 800px;
