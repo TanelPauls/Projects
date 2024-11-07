@@ -1,14 +1,23 @@
-const nums=[];
-let target=0;
-
 var twoSum = function(nums, target) {
-    for (let i = 0; i < nums.length-1; i++) {
-        for (let j = i+1; j < nums.length; j++) {
-            if(nums[i]+nums[j]==target){
-                
-                return [i,j]
-            }
+    const hashMap = {}; // Create an empty hash map (object in JavaScript)
+    
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        
+        // Check if the complement exists in the hash map
+        if (hashMap.hasOwnProperty(complement)) {
+            // If it exists, return the indices of the complement and current element
+            return [hashMap[complement], i];
         }
+        
+        // Otherwise, add the current number to the hash map with its index
+        hashMap[nums[i]] = i;
     }
+    
+    // Return an empty array if no solution found
+    return [];
 };
-twoSum([3,2,4], 6);
+
+// Example usage:
+//twoSum([3, 2, 4], 6);
+console.log(twoSum([3, 2, 4], 6))
