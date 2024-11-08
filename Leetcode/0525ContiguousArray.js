@@ -56,3 +56,21 @@ var findMaxLength = function(nums) {
 
 let nums=[0,1,1,1,0,0];
 console.log(findMaxLength(nums))
+
+/* var findMaxLength = function(nums) {
+    let maxLen = 0;
+    let count = 0;
+    let map = {[0]: -1}; 
+
+    for (let i = 0; i < nums.length; i++) {
+        count += nums[i] === 1 ? 1 : -1;
+        
+        if (map[count] !== undefined) {
+            maxLen = Math.max(maxLen, i - map[count]);
+        } else {
+            map[count] = i;
+        }
+    }
+    console.log(map)
+    return maxLen;
+}; */
