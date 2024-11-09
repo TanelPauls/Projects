@@ -18,15 +18,9 @@ var isValidSudoku = function(board) {
     }
 
     
-    const sudokubox1=[];
-    const sudokubox2=[];
-    const sudokubox3=[];
-    const sudokubox4=[];
-    const sudokubox5=[];
-    const sudokubox6=[];
-    const sudokubox7=[];
-    const sudokubox8=[];
-    const sudokubox9=[];
+    let sudokubox1=[];
+    let sudokubox2=[];
+    let sudokubox3=[];
 
     const sudokuColumn1=[];
     const sudokuColumn2=[];
@@ -84,17 +78,20 @@ var isValidSudoku = function(board) {
             if(!sudokuCheck(sudokubox1)){return false}
             if(!sudokuCheck(sudokubox2)){return false}
             if(!sudokuCheck(sudokubox3)){return false}
+            sudokubox1=[];
+            sudokubox2=[];
+            sudokubox3=[];
         }
         else if(x==3 || x==4){
-            sudokubox4.push(board[x][0]);
-            sudokubox4.push(board[x][1]);
-            sudokubox4.push(board[x][2]);
-            sudokubox5.push(board[x][3]);
-            sudokubox5.push(board[x][4]);
-            sudokubox5.push(board[x][5]);
-            sudokubox6.push(board[x][6]);
-            sudokubox6.push(board[x][7]);
-            sudokubox6.push(board[x][8]);
+            sudokubox1.push(board[x][0]);
+            sudokubox1.push(board[x][1]);
+            sudokubox1.push(board[x][2]);
+            sudokubox2.push(board[x][3]);
+            sudokubox2.push(board[x][4]);
+            sudokubox2.push(board[x][5]);
+            sudokubox3.push(board[x][6]);
+            sudokubox3.push(board[x][7]);
+            sudokubox3.push(board[x][8]);
 
             sudokuColumn1.push(board[x][0]);
             sudokuColumn2.push(board[x][1]);
@@ -107,15 +104,15 @@ var isValidSudoku = function(board) {
             sudokuColumn9.push(board[x][8]);
         }
         else if(x==5){
-            sudokubox4.push(board[x][0]);
-            sudokubox4.push(board[x][1]);
-            sudokubox4.push(board[x][2]);
-            sudokubox5.push(board[x][3]);
-            sudokubox5.push(board[x][4]);
-            sudokubox5.push(board[x][5]);
-            sudokubox6.push(board[x][6]);
-            sudokubox6.push(board[x][7]);
-            sudokubox6.push(board[x][8]);
+            sudokubox1.push(board[x][0]);
+            sudokubox1.push(board[x][1]);
+            sudokubox1.push(board[x][2]);
+            sudokubox2.push(board[x][3]);
+            sudokubox2.push(board[x][4]);
+            sudokubox2.push(board[x][5]);
+            sudokubox3.push(board[x][6]);
+            sudokubox3.push(board[x][7]);
+            sudokubox3.push(board[x][8]);
 
             sudokuColumn1.push(board[x][0]);
             sudokuColumn2.push(board[x][1]);
@@ -127,20 +124,23 @@ var isValidSudoku = function(board) {
             sudokuColumn8.push(board[x][7]);
             sudokuColumn9.push(board[x][8]);
 
-            if(!sudokuCheck(sudokubox4)){return false}
-            if(!sudokuCheck(sudokubox5)){return false}
-            if(!sudokuCheck(sudokubox6)){return false}
+            if(!sudokuCheck(sudokubox1)){return false}
+            if(!sudokuCheck(sudokubox2)){return false}
+            if(!sudokuCheck(sudokubox3)){return false}
+            sudokubox1=[];
+            sudokubox2=[];
+            sudokubox3=[];
         }
         else if(x==6 || x==7){
-            sudokubox7.push(board[x][0]);
-            sudokubox7.push(board[x][1]);
-            sudokubox7.push(board[x][2]);
-            sudokubox8.push(board[x][3]);
-            sudokubox8.push(board[x][4]);
-            sudokubox8.push(board[x][5]);
-            sudokubox9.push(board[x][6]);
-            sudokubox9.push(board[x][7]);
-            sudokubox9.push(board[x][8]);
+            sudokubox1.push(board[x][0]);
+            sudokubox1.push(board[x][1]);
+            sudokubox1.push(board[x][2]);
+            sudokubox2.push(board[x][3]);
+            sudokubox2.push(board[x][4]);
+            sudokubox2.push(board[x][5]);
+            sudokubox3.push(board[x][6]);
+            sudokubox3.push(board[x][7]);
+            sudokubox3.push(board[x][8]);
 
             sudokuColumn1.push(board[x][0]);
             sudokuColumn2.push(board[x][1]);
@@ -153,15 +153,15 @@ var isValidSudoku = function(board) {
             sudokuColumn9.push(board[x][8]);
         }
         else if(x==8){
-            sudokubox7.push(board[x][0]);
-            sudokubox7.push(board[x][1]);
-            sudokubox7.push(board[x][2]);
-            sudokubox8.push(board[x][3]);
-            sudokubox8.push(board[x][4]);
-            sudokubox8.push(board[x][5]);
-            sudokubox9.push(board[x][6]);
-            sudokubox9.push(board[x][7]);
-            sudokubox9.push(board[x][8]);
+            sudokubox1.push(board[x][0]);
+            sudokubox1.push(board[x][1]);
+            sudokubox1.push(board[x][2]);
+            sudokubox2.push(board[x][3]);
+            sudokubox2.push(board[x][4]);
+            sudokubox2.push(board[x][5]);
+            sudokubox3.push(board[x][6]);
+            sudokubox3.push(board[x][7]);
+            sudokubox3.push(board[x][8]);
 
             sudokuColumn1.push(board[x][0]);
             sudokuColumn2.push(board[x][1]);
@@ -173,9 +173,9 @@ var isValidSudoku = function(board) {
             sudokuColumn8.push(board[x][7]);
             sudokuColumn9.push(board[x][8]);
 
-            if(!sudokuCheck(sudokubox7)){return false}
-            if(!sudokuCheck(sudokubox8)){return false}
-            if(!sudokuCheck(sudokubox9)){return false}
+            if(!sudokuCheck(sudokubox1)){return false}
+            if(!sudokuCheck(sudokubox2)){return false}
+            if(!sudokuCheck(sudokubox3)){return false}
 
             if(!sudokuCheck(sudokuColumn1)){return false}
             if(!sudokuCheck(sudokuColumn2)){return false}
