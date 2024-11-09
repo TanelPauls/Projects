@@ -44,15 +44,9 @@ var isValidSudoku = function(board) {
             sudokubox3.push(board[x][7]);
             sudokubox3.push(board[x][8]);
 
-            sudokuColumn1.push(board[x][0]);
-            sudokuColumn2.push(board[x][1]);
-            sudokuColumn3.push(board[x][2]);
-            sudokuColumn4.push(board[x][3]);
-            sudokuColumn5.push(board[x][4]);
-            sudokuColumn6.push(board[x][5]);
-            sudokuColumn7.push(board[x][6]);
-            sudokuColumn8.push(board[x][7]);
-            sudokuColumn9.push(board[x][8]);
+            if(!sudokuCheck([board[0][x],board[1][x],board[2][x],board[3][x],board[4][x],board[5][x],board[6][x],board[7][x],board[8][x]])){return false}
+            console.log([board[0][x],board[1][x],board[2][x],board[3][x],board[4][x],board[5][x],board[6][x],board[7][x],board[8][x]])
+            
         }
         else if(x==2){
             sudokubox1.push(board[x][0]);
