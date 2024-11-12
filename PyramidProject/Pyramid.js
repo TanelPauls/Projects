@@ -420,3 +420,11 @@ function searchCoordinates() {
     // Open Google Maps with the coordinates, satellite view, and zoom level
     window.open(`https://www.google.com/maps/place/${lat},${long}/@${lat},${long},${zoomLevel}z/data=!3m1!1e3`, '_blank');
 }
+
+function doMaths() {
+    let eCoord=(29.9792458+(Math.PI/Math.E)).toFixed(7);
+    document.getElementById("myDiv").innerHTML += "Koordinaadid:<br>29.9792458° N<br><input type='text' id='longitude' value='29.9792458'>";
+    document.getElementById("myDiv2").innerHTML += eCoord;
+    document.getElementById("myDiv2").innerHTML += "<br>Koordinaadid:<br>"+eCoord+" ° E<br>";
+    document.getElementById("myDiv2").innerHTML += "<input type='text' id=latitude' value="+eCoord+">";
+}

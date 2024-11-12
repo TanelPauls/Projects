@@ -396,13 +396,27 @@ body{
     background-repeat: no-repeat;
 }
 
-.whiteText{
+.mapSearch{
     color:white;
-    margin:5px;
     
+    margin:15px;
+    padding:5px;
+    font-size: larger;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-
+  
+.column {
+    padding: 10px;
+    margin: 0;
+    background-color: rgb(46, 46, 35,0.8);
+    border-radius: 5%;
+}
+.column2{
+    background-color: transparent;
+}
 
 
 .hovered {
@@ -411,6 +425,8 @@ body{
 .clicked {
     border: 2px solid gold;
 }
+
+
 
 #logocontainer{
     width: 150px;

@@ -28,18 +28,27 @@
         </nav>
     </header>
   
-  <div class="controls">
+  <div class="mapSearch">
+    <div class="column">
+        <a>Valguskiirus c:
+            <br>c=299 792 458 m/s
+        </a><br>
+        <a id="myDiv"></a>
+    </div>
+    <div class="column column2"> 
+        <button onclick="doMaths()">Arvutused</button><br>
+        <button onclick="searchCoordinates()">Arvutused</button>
+    </div>
+    <div class="column"><a>Konstant π:<br>π=3.14159265 </a><br>
+        <a>Konstant e:<br>e=2.71828182<br>c + Pi/e =</a><!--  31.1349731° E</a><br>
+        <input type="text" id="latitude"> -->
+        <a id="myDiv2"></a><br>
+    <!-- <input type="text" id="longitude" placeholder=""> -->
+   
+    </div>
 
-    <a class="whiteText">Valguskiirus: 299 792 458 m/s -> Koordinaadid: 29.9792458° N</a><br>
-    <a class="whiteText">Konstant Pii: 3.14159265 </a><br>
-    <a class="whiteText">Konstant e: 2.71828182 -> Valguskiirus + Pi/e: 31.1349731° E</a><br>
-    <!-- <label for="latitude" class="whiteText">Latitude:</label> -->
-    <input type="text" id="latitude">
-    <br>
-    <a class="whiteText">Valguskiirus + Pi/e:</a><br>
-    <!-- <label for="longitude" class="whiteText">Longitude:</label> -->
-    <input type="text" id="longitude" placeholder="">
-    <button onclick="searchCoordinates()">Search</button>
+    
+    
   </div>
 
   
