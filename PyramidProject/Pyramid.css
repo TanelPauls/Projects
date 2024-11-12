@@ -85,6 +85,43 @@ body{
     text-align: center; /* Ensures text alignment in the center */
 }
 
+#longitude {
+    padding: 5px;
+    border-radius: 8%;
+    width: 100%;
+    font-weight: bold;
+    font-size: large;
+}
+#latitude {
+    padding: 5px;
+    border-radius: 8%;
+    width: 100%;
+    font-weight: bold;
+    font-size: large;
+}
+
+#calcButton {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 5%;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+#calcButton:not(:disabled):hover{
+    background-color:rgb(236, 229, 155);
+    opacity:1;
+}
+#searchButton {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 5%;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+#searchButton:not(:disabled):hover{
+    background-color:rgb(236, 229, 155);
+    opacity:1;
+}
 
 #playButton{
     width: 34%;
@@ -397,11 +434,10 @@ body{
 }
 
 .mapSearch{
-    color:white;
-    
+    color:rgb(236, 229, 155);
     margin:15px;
     padding:5px;
-    font-size: larger;
+    font-size: x-large;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
@@ -413,9 +449,18 @@ body{
     margin: 0;
     background-color: rgb(46, 46, 35,0.8);
     border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: fit-content;
 }
 .column2{
     background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center buttons horizontally */
+    justify-content: center; /* Center buttons vertically */
+    height: fit-content;
 }
 
 

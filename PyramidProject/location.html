@@ -30,30 +30,33 @@
   
   <div class="mapSearch">
     <div class="column">
-        <a>Valguskiirus c:
+        <a>N: <br><input type='text' id='latitude' value=''><br>
+            Valguskiirus c:
             <br>c=299 792 458 m/s
         </a><br>
         <a id="myDiv"></a>
     </div>
     <div class="column column2"> 
-        <button onclick="doMaths()">Arvutused</button><br>
-        <button onclick="searchCoordinates()">Arvutused</button>
+        <button id="calcButton" onclick="doMaths()">Arvutused</button><br>
+        <button id="searchButton" onclick="searchCoordinates()">Google Maps Search</button>
     </div>
-    <div class="column"><a>Konstant π:<br>π=3.14159265 </a><br>
-        <a>Konstant e:<br>e=2.71828182<br>c + Pi/e =</a><!--  31.1349731° E</a><br>
-        <input type="text" id="latitude"> -->
+    <div class="column">
+        <a>E: <br><input type='text' id='longitude' value=''><br>
+            Konstant π:<br>π=3.14159265<br>
+            Konstant e:<br>e=2.71828182<br>c + Pi/e =</a>
         <a id="myDiv2"></a><br>
-    <!-- <input type="text" id="longitude" placeholder=""> -->
    
     </div>
-
-    
-    
   </div>
 
   
   
 
 <script src="Pyramid.js"></script>
+<script>
+        window.onload = function() {
+            document.getElementById("searchButton").disabled = true;
+        };
+</script>
 </body>
 </html>

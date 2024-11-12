@@ -420,11 +420,34 @@ function searchCoordinates() {
     // Open Google Maps with the coordinates, satellite view, and zoom level
     window.open(`https://www.google.com/maps/place/${lat},${long}/@${lat},${long},${zoomLevel}z/data=!3m1!1e3`, '_blank');
 }
+function decimalToDMS(decimalDegrees, direction) {
+    // Get degrees
+    let degrees = Math.floor(Math.abs(decimalDegrees));
+    
+    // Convert remaining decimal part to minutes
+    let minutesDecimal = (Math.abs(decimalDegrees) - degrees) * 60;
+    let minutes = Math.floor(minutesDecimal);
+    
+    // Convert remaining decimal part to seconds
+    let seconds = ((minutesDecimal - minutes) * 60).toFixed(2); // Rounded to 2 decimal places
+    
+    // Add direction if provided (e.g., N/S/E/W) and handle negative degrees
+    let dir = direction || (decimalDegrees >= 0 ? "N" : "S");
+    
+    return `${degrees}° ${minutes}' ${seconds}" ${dir}`;
+}
+
 
 function doMaths() {
-    let eCoord=(29.9792458+(Math.PI/Math.E)).toFixed(7);
-    document.getElementById("myDiv").innerHTML += "Koordinaadid:<br>29.9792458° N<br><input type='text' id='longitude' value='29.9792458'>";
+    let eCoord=0;
+    document.getElementById("calcButton").disabled = true;
+    document.getElementById("searchButton").disabled = false;
+    eCoord=(29.9792458+(Math.PI/Math.E)).toFixed(7);
+    document.getElementById('latitude').value = 29.9792458;
+    document.getElementById("myDiv").innerHTML += "<br>Koordinaadid:<br>29.9792458° N<br> ("+decimalToDMS(29.9792458)+")";
+
     document.getElementById("myDiv2").innerHTML += eCoord;
-    document.getElementById("myDiv2").innerHTML += "<br>Koordinaadid:<br>"+eCoord+" ° E<br>";
-    document.getElementById("myDiv2").innerHTML += "<input type='text' id=latitude' value="+eCoord+">";
+    document.getElementById('longitude').value = eCoord;
+    document.getElementById("myDiv2").innerHTML += "<br><br>Koordinaadid:<br>"+eCoord+" ° E<br> ("+decimalToDMS(eCoord,"E")+")";
+    
 }
