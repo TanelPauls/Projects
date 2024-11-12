@@ -3,32 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avaleht</title>
+  <title>Asukoht</title>
   <link rel="stylesheet" href="Pyramid.css">
 </head>
-<body>
-  <header class="header-container-index">
-    <nav class="nav-links">
-      <a href="index.html" style="text-decoration: none;">
-        <div id="logocontainer">
-            <div id="logoframe">
-              <div id="sky"></div>
-              <div id="sand"></div>
-              <div id="side1"></div>
-              <div id="side2"></div>
-              <div id="shadow"></div>
-              <div id="sun-container"></div>
-              <div id="sun"></div>
-            </div>
-        </div></a>
-      <a href="index.html">Avaleht</a>
-      <a href="pictures.html">Pildid</a>
-      <a href="pyramid.html">Püramiid</a>
-      <a class="current" href="location.html">Asukoht</a>
-    </nav>
-  </header>
+<body class="back9">
+    <header class="header-container">
+        <nav class="nav-links">
+          <a href="index.html" style="text-decoration: none;">
+            <div id="logocontainer">
+                <div id="logoframe">
+                  <div id="sky"></div>
+                  <div id="sand"></div>
+                  <div id="side1"></div>
+                  <div id="side2"></div>
+                  <div id="shadow"></div>
+                  <div id="sun-container">
+                  <div id="sun"></div></div>
+                </div>
+            </div></a>
+          <a href="index.html">Avaleht</a>
+          <a href="pictures.html">Pildid</a>
+          <a href="pyramid.html">Püramiid</a>
+          <a class="current" href="location.html">Asukoht</a>
+        </nav>
+    </header>
+  
+  <div class="controls">
+
+    <a class="whiteText">Valguskiirus: 299 792 458 m/s -> Koordinaadid: 29.9792458° N</a><br>
+    <a class="whiteText">Konstant Pii: 3.14159265 </a><br>
+    <a class="whiteText">Konstant e: 2.71828182 -> Valguskiirus + Pi/e: 31.1349731° E</a><br>
+    <!-- <label for="latitude" class="whiteText">Latitude:</label> -->
+    <input type="text" id="latitude">
+    <br>
+    <a class="whiteText">Valguskiirus + Pi/e:</a><br>
+    <!-- <label for="longitude" class="whiteText">Longitude:</label> -->
+    <input type="text" id="longitude" placeholder="">
+    <button onclick="searchCoordinates()">Search</button>
+  </div>
+
+  
   
 
-<script src="PyramidPics.js"></script>
+<script src="Pyramid.js"></script>
 </body>
 </html>

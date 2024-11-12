@@ -8,7 +8,8 @@ header.addEventListener('mouseenter', () => {
 });
   
   // Start the fade-out after mouse leaves the header
-header.addEventListener('mouseleave', () => {
+header.addEventListener('mouseout', () => {
+    
     setTimeout(() => {
       header.classList.add('hidden');
     }, 2500); // Delay to allow for brief transition before fading
@@ -401,3 +402,21 @@ window.addEventListener("resize", function () {
     effect.updateCanvas();
 });
 
+// Google maps search
+
+function searchCoordinates() {
+    let lat = document.getElementById('latitude').value;
+    let long = document.getElementById('longitude').value;
+    
+    // Set default coordinates if inputs are empty
+    if (!lat || !long) {
+      lat = 29.9792458;  // Default latitude
+      long = 31.1349731; // Default longitude
+    }
+
+    // Set zoom level and satellite view
+    const zoomLevel = 18;
+    
+    // Open Google Maps with the coordinates, satellite view, and zoom level
+    window.open(`https://www.google.com/maps/place/${lat},${long}/@${lat},${long},${zoomLevel}z/data=!3m1!1e3`, '_blank');
+}

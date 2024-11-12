@@ -196,7 +196,7 @@ body{
 #reduceCirc:hover svg rect {
     fill: rgb(69, 69, 69);
 }
-.header-container-index {
+.headerIndex {
     background-color: rgb(46, 46, 35,0.8);
     position:sticky;
     display: flex;
@@ -224,6 +224,7 @@ body{
 .header-container.hidden {
     opacity: 0; /* Faded out */
   }
+
 
 .nav-links {
     position: absolute;
@@ -387,8 +388,19 @@ body{
     pointer-events: none;
     display: none;
 }
+.back9 {
+    z-index: -1; 
+    background-image: url('./Pildid/pyramid_medium.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
 
-
+.whiteText{
+    color:white;
+    margin:5px;
+    
+}
 
 
 
