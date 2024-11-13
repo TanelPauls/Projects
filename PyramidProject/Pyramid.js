@@ -449,6 +449,6 @@ function doMaths() {
     document.getElementById("myDiv2").innerHTML += eCoord;
     document.getElementById('longitude').value = eCoord;
     document.getElementById("myDiv2").innerHTML += "<br><br>Koordinaadid:<br>"+eCoord+" ° E<br> ("+decimalToDMS(eCoord,"E")+")";
-    document.getElementById("searchButton").innerHTML = "Google Maps Search<br>N: "+29.9792458+"°<br>E: "+eCoord+"°";
+    document.getElementById("searchButton").innerHTML = "Google Maps Otsing<br>N: "+29.9792458+"°<br>E: "+eCoord+"°";
     
 }
