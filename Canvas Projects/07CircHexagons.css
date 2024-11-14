@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width:100vw;
+    background-color: black;
+    margin:0rem;
+    overflow: hidden;
+    position: relative;
+}
+
+#canvasWrapper {
+    position: relative;
+    margin: 60px;
+    width: calc(100% - 120px);
+    height: 60%;
+    position: absolute;
+    bottom: 150px;
+    left: 0;
+}
+#canvas1 {
+    background:rgb(94, 212, 159);
+    width: 100%;
+    height: 100%;
+}
