@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asukoht</title>
+  <!-- Link to stylesheets -->
   <link rel="stylesheet" href="Pyramid.css">
   <link rel="stylesheet" media="screen and (max-width: 500px)" href="PyramidlMobile.css">
 </head>
 <body class="back9">
     <header class="header-container">
         <nav class="nav-links">
+          <!-- Logo with link to home -->
           <a href="index.html" style="text-decoration: none;">
             <div id="logocontainer">
                 <div id="logoframe">
@@ -22,6 +24,7 @@
                   <div id="sun"></div></div>
                 </div>
             </div></a>
+          <!-- Navigation links -->
           <a href="index.html">Avaleht</a>
           <a href="pictures.html">Pildid</a>
           <a href="pyramid.html">Püramiid</a>
@@ -30,6 +33,7 @@
     </header>
   
   <div class="mapSearch">
+     <!-- Latitude input -->
     <div class="column">
         <a>Põhjalaius: <br><input type='text' id='latitude' value=''><br>
             Valguse kiirus c:
@@ -37,10 +41,12 @@
         </a><br>
         <a id="myDiv"></a>
     </div>
+    <!-- Buttons for calculations and map search -->
     <div class="column column2"> 
         <button id="calcButton" onclick="doMaths()">Arvutused</button><br>
         <button id="searchButton" onclick="searchCoordinates()">"Google Maps Otsing<br>N:<br>E:<br></button>
     </div>
+    <!-- Longitude input -->
     <div class="column">
         <a>Idapikkus: <br><input type='text' id='longitude' value=''><br>
             Konstant π:<br>π=3.14159265<br>
@@ -49,10 +55,7 @@
    
     </div>
   </div>
-
-  
-  
-
+<!-- JavaScript for functionality -->
 <script src="Pyramid.js"></script>
 <script>
         window.onload = function() {

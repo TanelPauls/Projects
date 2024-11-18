@@ -9,7 +9,7 @@ body{
     background-color: black;
     margin:0rem;
     overflow: hidden;
-    position: relative;
+    position: relative; /* For positioning child elements */
 }
 
 
@@ -31,7 +31,7 @@ body{
     line-height: 1.6;
     font-weight: bold;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.3); /* Light background for text */
     border-radius: 8px;
 }
 
@@ -56,13 +56,13 @@ body{
     position: relative;
     margin: 60px;
     width: calc(100% - 120px);
-    height: 60%;
+    height: 60%; /* Set canvas area dimensions */
     position: absolute;
     bottom: 150px;
     left: 0;
 }
 #canvas1 {
-    background:rgb(94, 212, 159);
+    background:rgb(94, 212, 159); /* Green background */
     width: 100%;
     height: 100%;
 }
@@ -72,7 +72,7 @@ body{
     background:white;
     width: 100%;
     margin-top: 10px;
-    height: 180px;
+    height: 180px; /* Settings panel height */
     
 }
 #canvasSets{
@@ -187,13 +187,13 @@ body{
 }
 
 #playButton:hover svg circle{
-    stroke: rgb(69, 69, 69);
+    stroke: rgb(69, 69, 69); /* Darken icons on hover */
 }
 #playButton:hover svg polygon{
-    fill: rgb(69, 69, 69);
+    fill: rgb(69, 69, 69); /* Darken icons on hover */
 }
 #playButton:hover svg rect {
-    fill: rgb(69, 69, 69);
+    fill: rgb(69, 69, 69); /* Darken icons on hover */
 }
 
 

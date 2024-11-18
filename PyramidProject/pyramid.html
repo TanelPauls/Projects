@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Püramiid</title>
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="Pyramid.css">
 </head>
 <body>
+  <!-- Header with navigation menu -->
   <header class="header-container">
     <nav class="nav-links">
       <a href="index.html" style="text-decoration: none;">
@@ -21,16 +23,19 @@
               <div id="sun"></div></div>
             </div>
         </div></a>
+      <!-- Navigation links -->
       <a href="index.html">Avaleht</a>
       <a href="pictures.html">Pildid</a>
       <a class="current" href="pyramid.html">Püramiid</a>
       <a href="location.html">Asukoht</a>
     </nav>
   </header>
+  <!-- Canvas and controls for pyramid generation -->
   <div id="canvasWrapper">
     <canvas id="canvas1"></canvas>
     <div id="canvasSettings">
       <div id="canvasSets">
+        <!-- Control for adjusting pyramid rows -->
         <div class="sets">
           <div class="minusSign">
             <button id="removeRowFromPyramid">
@@ -55,6 +60,7 @@
             </button>
           </div>
         </div>
+        <!-- Control for adjusting pyramid points -->
         <div class="sets">
           <div class="minusSign">
             <button id="removePointFromPyramid">
@@ -80,6 +86,7 @@
           </div>
         </div>
       </div>
+      <!-- Play and pause button -->
       <div id="playButton">
         <button id="playButton">
           <svg id="playIcon" width="50" height="50" viewBox="0 0 24 24">
@@ -93,6 +100,7 @@
           </svg>
         </button>
       </div>
+      <!-- Additional controls -->
       <div id="canvasSets">
         <div class="sets">
           <div class="minusSign">
@@ -150,7 +158,7 @@
     </div>
   </div>
 
-
+<!-- JavaScript functionality -->
 <script src="Pyramid.js"></script>
 </body>
 </html>

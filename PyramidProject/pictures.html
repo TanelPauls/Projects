@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pildid</title>
+  <!-- Link to main stylesheet -->
   <link rel="stylesheet" href="Pyramid.css">
 </head>
 <body>
+  <!-- Header with navigation links -->
   <header class="header-container">
     <nav class="nav-links">
       <a href="index.html" style="text-decoration: none;">
@@ -21,12 +23,14 @@
               <div id="sun"></div></div>
             </div>
         </div></a>
+      <!-- Navigation menu -->
       <a href="index.html">Avaleht</a>
       <a class="current" href="pictures.html">Pildid</a>
       <a href="pyramid.html">Püramiid</a>
       <a href="location.html">Asukoht</a>
     </nav>
   </header>
+    <!-- Image carousel -->
     <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
     <img class="image" id="bg1" src="./Pildid/img1small.jpg" draggable="false">
     <img class="image" id="bg2" src="./Pildid/img2small.jpg" draggable="false">
@@ -37,6 +41,7 @@
     <img class="image" id="bg7" src="./Pildid/img7small.jpg" draggable="false">
     <img class="image" id="bg8" src="./Pildid/img8small.jpg" draggable="false">
   </div>
+  <!-- Background layers for visual effects -->
   <div id="back1"></div>
   <div id="back2"></div>
   <div id="back3"></div>
@@ -46,7 +51,7 @@
   <div id="back7"></div>
   <div id="back8"></div>
   
-
+<!-- JavaScript for dynamic behavior -->
 <script src="PyramidPics.js"></script>
 </body>
 </html>

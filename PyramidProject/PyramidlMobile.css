@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+/* Ensure full viewport coverage and prevent unintended scrolling */
 html, body {
     margin: 0;
     padding: 0;
@@ -10,22 +11,22 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     overflow-y: auto; /* Allow vertical scrolling */
 }
-
 #contIndex {
     padding: 10px;
 }
+/* Content container styling */
 #contIndex {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
+/* Text content styling */
 #textIndex {
     width: 100%;
     padding: 15px;
     text-align: center;
 }
-
+/* Paragraph text styling with enhanced readability */
 #textIndex p {
     color: rgb(19, 10, 72);
     text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
@@ -36,7 +37,7 @@ html, body {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 8px;
 }
-
+/* Header text styling */
 #textIndex h1 {
     color: rgb(19, 10, 72);
     text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.8);
@@ -48,11 +49,11 @@ html, body {
     background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
 }
-
+/* Hide empty column on mobile */
 #emptyColumn {
     display:none;
 }
-
+/* Background images for different sections */
 .back0 {
     background-image: url('./Pildid/img0phone.jpg');
 }
@@ -80,6 +81,7 @@ html, body {
 #back8 {
     background-image: url('./Pildid/img8phone.jpg');
 }
+/* Logo container styling */
 #logocontainer {
     width: 50px;
     height: 50px;
@@ -93,7 +95,7 @@ html, body {
     
 }
 
-
+/* Header container with navigation */
 .headerIndex {
     padding: 0px 0; /* Reduce padding to minimize space around the logo */
     margin: 0; /* Ensure no unnecessary margin */
@@ -102,7 +104,7 @@ html, body {
     align-items: center;
     min-height: 240px;
 }
-
+/* Navigation links styling */
 .nav-links {
     display: flex;
     flex-direction: column;
@@ -114,7 +116,7 @@ html, body {
     width: 100%; /* Ensure it takes the full width of the container */
     box-sizing: border-box; /* Include padding in width calculations */
 }
-
+/* Styling for individual navigation links */
 .nav-links a {
     display: block; /* Ensures each link is treated as a block-level element */
     text-align: center; /* Centers text inside each link */
@@ -123,13 +125,13 @@ html, body {
     text-overflow: ellipsis; /* Handles long text gracefully */
     white-space: nowrap; /* Prevents wrapping (optional) */
 }
-
+/* Map search container styling */
 .mapSearch {
     display: flex;
     flex-direction: column; /* Stack columns vertically */
     align-items: center; /* Center columns horizontally */
 }
-
+/* Styling for map search columns */
 .column, .column2 {
     width: 100%; /* Make columns take full width */
     align-items: center; /* Center content horizontally */
