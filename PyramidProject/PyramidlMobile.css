@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+#contIndex {
+    padding: 10px;
+}
+#contIndex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#textIndex {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+}
+
+#textIndex p {
+    color: rgb(19, 10, 72);
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: bold;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+}
+
+#textIndex h1 {
+    color: rgb(19, 10, 72);
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.8);
+    font-size: 2rem;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+#emptyColumn {
+    display:none;
+}
+
+.back0 {
+    background-image: url('./Pildid/img0phone.jpg');
+}
+#back1 {
+    background-image: url('./Pildid/img1phone.jpg');
+}
+#back2 {
+    background-image: url('./Pildid/img2phone.jpg');
+}
+#back3 {
+    background-image: url('./Pildid/img3phone.jpg');
+}
+#back4 {
+    background-image: url('./Pildid/img4phone.jpg');
+}
+#back5 {
+    background-image: url('./Pildid/img5phone.jpg');
+}
+#back6 {
+    background-image: url('./Pildid/img6phone.jpg');
+}
+#back7 {
+    background-image: url('./Pildid/img7phone.jpg');
+}
+#back8 {
+    background-image: url('./Pildid/img8phone.jpg');
+}
+#logocontainer {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top:0;
+    
+}
+
+
+.headerIndex {
+    padding: 0px 0; /* Reduce padding to minimize space around the logo */
+    margin: 0; /* Ensure no unnecessary margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 240px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    margin: 0px; /* Centers the nav-links inside the header */
+    padding: 0px 0px; /* Adds space around the links */
+    width: 100%; /* Ensure it takes the full width of the container */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+.nav-links a {
+    display: block; /* Ensures each link is treated as a block-level element */
+    text-align: center; /* Centers text inside each link */
+    margin: 0; /* Removes any default margins */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Handles long text gracefully */
+    white-space: nowrap; /* Prevents wrapping (optional) */
+}
+
+.mapSearch {
+    display: flex;
+    flex-direction: column; /* Stack columns vertically */
+    align-items: center; /* Center columns horizontally */
+}
+
+.column, .column2 {
+    width: 100%; /* Make columns take full width */
+    align-items: center; /* Center content horizontally */
+}
+
+.column2 {
+    justify-content: center; /* Center buttons vertically */
+}
