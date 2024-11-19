@@ -4,47 +4,40 @@
     box-sizing: border-box;
 }
 body{
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    width:100vw;
-    background-color: black;
-    margin:0rem;
-    overflow: hidden;
-    position: relative;
+    margin: 0;
+    background-color: rgb(161, 176, 213);
 }
 
 #canvasWrapper {
-    position: relative;
-    margin: 60px;
-    width: calc(100% - 120px);
-    height: 60%;
-    position: absolute;
-    bottom: 150px;
-    left: 0;
+    margin: 30px;
+    height: 73%;
 }
 #canvas1 {
-    background:rgb(94, 212, 159);
+    display:flex;
+    background:rgb(255, 255, 255);
     width: 100%;
     height: 100%;
 }
-
-#playButton{
-    width: 34%;
+#playButtonWrapper{
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
-    text-align: center; /* Ensures text alignment in the center */
+    text-align: center;
+
 }
-#playButton button {
-    width: 100%;
-    height: 100%;
-    background: none;
-    border: none;
-    display: absolute;
-    align-items: center;
+
+#playButton {
+    width: 50px;
+    height: 50px;
+    padding: 0; /* Remove default padding */
+    border: none; /* Optional: Remove default button border */
+    background: none; /* Optional: Remove default button background */
+    display: flex; /* Ensures `svg` is properly centered inside the button */
     justify-content: center;
-    padding: 0;
-    margin-top: 325px;
-    margin-left:40px;
+    align-items: center;
 }
 
 #playButton svg {

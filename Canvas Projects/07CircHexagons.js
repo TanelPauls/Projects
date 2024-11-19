@@ -60,7 +60,7 @@ class CreateUpdateTable {
         }
     }
 }
-
+let playPause=1;
 const effect = new CreateUpdateTable();
 
 window.addEventListener("resize", function () {
@@ -68,14 +68,6 @@ window.addEventListener("resize", function () {
     effect.initCircles(); // Reinitialize circles to reset on resize
 });
 
-let playPause = 0; // Default to paused state
-document.getElementById("playButton").addEventListener("click", function () {
-    toggleIcon();
-    if (playPause === 1) {
-        effect.initCircles(); // Reinitialize circles (if needed)
-        effect.animateCircles(); // Start animation
-    }
-});
 
 function toggleIcon() {
     const playIcon = document.getElementById('playIcon');
@@ -90,28 +82,12 @@ function toggleIcon() {
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
         playPause = 1;
+        effect.updateCanvas();
+        effect.initCircles();
+        effect.animateCircles();
     }
 }
 
-let intervalId; // to store the interval ID
 document.getElementById("playButton").addEventListener("click", function() {
     toggleIcon();
-    if(playPause==1){
-
-        if (intervalId) {
-            clearInterval(intervalId);
-        }
-
-        effect.updateCanvas();
-        intervalId = setInterval(() => {
-            if (playPause === 1) { // Check if playPause is still 1
-                effect.updateCanvas();
-            } else {
-                clearInterval(intervalId); // Stop the interval if playPause is 0
-            }
-        }, 600);
-    } else {
-        // Stop the interval if playPause is 0
-        clearInterval(intervalId);
-    }
 });
