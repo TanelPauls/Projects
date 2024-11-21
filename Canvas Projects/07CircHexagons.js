@@ -3,12 +3,18 @@ const ctx = canvas.getContext("2d");
 
 class CreateUpdateTable {
     constructor() {
-        this.circles = []; // Array to store multiple circle objects
+        this.circles = [];
         this.updateCanvas();
-        this.initCircles(); // Initialize circles
-        this.animateCircles(); // Start the animation
+        this.circles = [];
     }
-
+    stopCanvas(){
+        ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.circles = [];
+        playPause = 0;
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+        
+    }
     updateCanvas() {
         const { width, height } = canvas.getBoundingClientRect();
         canvas.width = width;
@@ -18,18 +24,16 @@ class CreateUpdateTable {
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     }
 
-    initCircles() {
-        // Define multiple circles with random positions and radii
-        this.circles = [
-            { x: this.canvasWidth / 4, y: this.canvasHeight / 4, radius: 0, maxRadius: 50 },
-            { x: this.canvasWidth / 2, y: this.canvasHeight / 2, radius: 0, maxRadius: 75 },
-            { x: (3 * this.canvasWidth) / 4, y: (3 * this.canvasHeight) / 4, radius: 0, maxRadius: 100 },
-            // Add more circles with different positions and max radii as needed
-        ];
+    createNewCircle(){
+        this.circles.push({
+            x: Math.floor(Math.random() * this.canvasWidth),
+            y: Math.floor(Math.random() * this.canvasHeight),
+            radius: 10,
+            maxRadius: Math.floor(Math.random() * 200)
+        });
     }
 
     drawCirc(circle) {
-        // Draw a single circle based on its properties
         ctx.beginPath();
         ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
         ctx.strokeStyle = 'black';
@@ -37,35 +41,49 @@ class CreateUpdateTable {
     }
 
     animateCircles() {
-        // Update the canvas dimensions (in case of resizing)
         if (playPause === 0) return;
-        this.updateCanvas();
-
-        // Clear canvas before redrawing all circles
         ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-
-        // Loop over each circle and update/draw
-        let allCirclesComplete = true;
-        for (const circle of this.circles) {
+        if(this.circles.length==0 || !Array.isArray(this.circles)){
+            this.circles = [];
+            this.createNewCircle()}
+        if(this.circles.length<5){
+            this.createNewCircle();
+        }
+        for (let i = this.circles.length - 1; i >= 0; i--) {
+            const circle = this.circles[i];
+            this.drawCirc(circle);
             if (circle.radius < circle.maxRadius) {
-                circle.radius += 2; // Adjust the speed of expansion
-                allCirclesComplete = false; // Set to false if any circle is still expanding
+                circle.radius += 2;
+            } else {
+                this.circles.splice(i, 1); // Remove the circle from the array              
             }
-            this.drawCirc(circle); // Draw the circle with the updated radius
+            
+        }
+        requestAnimationFrame(() => this.animateCircles());
+        /* this.updateCanvas(); */
+
+
+        /*let allCirclesComplete = true;
+         for (const circle of this.circles) {
+            if (circle.radius < circle.maxRadius) {
+                circle.radius += 2;
+                allCirclesComplete = false;
+            }
+            this.drawCirc(circle);
         }
 
-        // Continue the animation loop until all circles reach their max radius
         if (!allCirclesComplete) {
             requestAnimationFrame(() => this.animateCircles());
-        }
+        } */
     }
 }
-let playPause=1;
+let playPause=0;
 const effect = new CreateUpdateTable();
+effect.updateCanvas();
 
 window.addEventListener("resize", function () {
+    effect.stopCanvas();
     effect.updateCanvas();
-    effect.initCircles(); // Reinitialize circles to reset on resize
 });
 
 
@@ -82,12 +100,14 @@ function toggleIcon() {
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'block';
         playPause = 1;
-        effect.updateCanvas();
-        effect.initCircles();
         effect.animateCircles();
     }
 }
 
 document.getElementById("playButton").addEventListener("click", function() {
     toggleIcon();
+});
+
+document.getElementById("stopButton").addEventListener("click", function() {
+    effect.stopCanvas();
 });
