@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dünamic animation</title>
+  <link rel="stylesheet" href="08Rainfall.css">
+</head>
+<body>
+  <div id="canvasWrapper">
+    <canvas id="canvas1"></canvas>
+  </div>
+  <div id="playButtonWrapper">
+    <button id="playButton">
+      <svg id="playIcon" width="50" height="50" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
+          <polygon points="8,5 19,12 8,19" fill="gray" />
+      </svg>
+      <svg id="pauseIcon" width="50" height="50" viewBox="0 0 24 24" style="display: none;">
+        <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
+        <rect x="8" y="5" width="3" height="14" fill="gray" />
+        <rect x="13" y="5" width="3" height="14" fill="gray" />
+      </svg>
+    </button>
+    <button id="stopButton">
+      <svg id="stopIcon" width="50" height="50" viewBox="0 0 24 24" >
+        <circle cx="12" cy="12" r="11" stroke="gray" stroke-width="2" fill="none" />
+        <rect x="7" y="7" width="10" height="10" fill="gray" />
+      </svg>
+    </button>
+  </div>
+
+<script src="08Rainfall.js"></script>
+</body>
+</html>
