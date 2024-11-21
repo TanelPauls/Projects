@@ -36,8 +36,15 @@ class CreateUpdateTable {
     drawCirc(circle) {
         ctx.beginPath();
         ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-        ctx.strokeStyle = 'black';
-        ctx.stroke();
+        ctx.fillStyle = "red"; // Fill the outer circle with red
+        ctx.fill();
+
+        if(circle.radius>20){
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.radius-20, 0, 2 * Math.PI);
+            ctx.fillStyle = "white"; // Fill the outer circle with red
+            ctx.fill();
+        }
     }
 
     animateCircles() {
@@ -55,26 +62,10 @@ class CreateUpdateTable {
             if (circle.radius < circle.maxRadius) {
                 circle.radius += 2;
             } else {
-                this.circles.splice(i, 1); // Remove the circle from the array              
-            }
-            
+                this.circles.splice(i, 1);             
+            }         
         }
         requestAnimationFrame(() => this.animateCircles());
-        /* this.updateCanvas(); */
-
-
-        /*let allCirclesComplete = true;
-         for (const circle of this.circles) {
-            if (circle.radius < circle.maxRadius) {
-                circle.radius += 2;
-                allCirclesComplete = false;
-            }
-            this.drawCirc(circle);
-        }
-
-        if (!allCirclesComplete) {
-            requestAnimationFrame(() => this.animateCircles());
-        } */
     }
 }
 let playPause=0;
