@@ -3,8 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import HomeCards from './components/HomeCards'
 import JobListings from './components/JobListings'
-//https://www.youtube.com/watch?v=LDB4uaJ87e0
-//1:03:31
+import ViewAllJobs from './components/ViewAllJobs'
 
 
 
@@ -15,15 +14,9 @@ const App = () => {
       <Hero />
       <HomeCards />
       <JobListings />
+      <ViewAllJobs />
 
-
-    <section className="m-auto max-w-lg my-10 px-6">
-      <a
-        href="jobs.html"
-        className="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
-        >View All Jobs</a
-      >
-    </section>
+    
     </>
   )
 }
