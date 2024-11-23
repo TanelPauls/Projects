@@ -4,6 +4,8 @@ import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import JobsPage from './pages/JobsPage';
 import NotFoundPage from './pages/NotFoundPage';
+//https://www.youtube.com/watch?v=LDB4uaJ87e0
+//1:59:48
 
 const router=createBrowserRouter(
   createRoutesFromElements(
