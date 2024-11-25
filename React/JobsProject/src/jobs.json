@@ -83,20 +83,6 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "12ac",
-      "title": "Test Job 1",
-      "type": "Full-Time",
-      "location": "Testing",
-      "description": "This is a test",
-      "salary": "Under $50K",
-      "company": {
-        "name": "Tersters United",
-        "description": "Testing unity",
-        "contactEmail": "test@com",
-        "contactPhone": "TTTTTTTTT"
-      }
     }
   ]
 }
