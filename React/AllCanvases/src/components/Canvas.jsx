@@ -1,38 +1,77 @@
 import React, { useEffect, useRef } from 'react';
 
-const Canvas = ({ width, height, backgroundColor = 'white' }) => {
+const Canvas = ({ width, height }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-
-    // Set canvas size (explicitly required for rendering)
+    
     canvas.width = width;
     canvas.height = height;
 
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, width, height);
-
-    // Drawing logic (same as before)
+    class CreateUpdateTable {
+        constructor() {
+            this.circles = [];
+            this.updateCanvas();
+            this.circles = [];
+        }
+        stopCanvas(){
+            ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+            this.circles = [];
+            playPause = 0;
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            
+        }
+        updateCanvas() {
+            
+            this.canvasWidth = canvas.width;
+            this.canvasHeight = canvas.height;
+            ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        }
     
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 5;
-
-    // Draw "X"
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(width, height);
-    ctx.moveTo(0, height);
-    ctx.lineTo(width, 0);
-    ctx.stroke();
-
-    // Draw circle
-    const radius = Math.min(width, height) / 4;
-    ctx.beginPath();
-    ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
-    ctx.stroke();
+        createNewCircle(){
+            this.circles.push({
+                x: Math.floor(Math.random() * this.canvasWidth),
+                y: Math.floor(Math.random() * this.canvasHeight),
+                radius: 10,
+                maxRadius: Math.floor(Math.random() * 100)
+            });
+        }
+    
+        drawCirc(circle) {
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+    
+        animateCircles() {
+            ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+            if(this.circles.length==0 || !Array.isArray(this.circles)){
+                this.circles = [];
+                this.createNewCircle()}
+            if(this.circles.length<10){
+                this.createNewCircle();
+            }
+            for (let i = this.circles.length - 1; i >= 0; i--) {
+                const circle = this.circles[i];
+                this.drawCirc(circle);
+                if (circle.radius < circle.maxRadius) {
+                    circle.radius += 2;
+                } else {
+                    this.circles.splice(i, 1);             
+                }
+                
+            }
+            requestAnimationFrame(() => this.animateCircles());
+        }
+    }
+    const effect = new CreateUpdateTable();
+    effect.updateCanvas();
+    effect.animateCircles();
+    
   }, [width, height]);
 
   return <canvas ref={canvasRef} style={{ border: '1px solid black' }} />;
