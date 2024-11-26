@@ -1,0 +1,12 @@
+.custom-navbar {
+    background-color: #725AC1; /* Replace with your desired color */
+    padding: 10px;
+}
+  
+.custom-navbar .nav-link {
+    color: #f7efe7; /* Link color */
+ }
+  
+.custom-navbar .nav-link:hover {
+    color: #ffd500; /* Hover color */
+}
