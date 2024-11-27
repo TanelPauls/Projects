@@ -9,9 +9,20 @@ const Body = () => {
   return (
     <Container>
       <Row>
-        <Col><CanvasCard /><br /><Alert>asdaeasdasd</Alert></Col>
-        <Col><CanvasCard /><br /><Alert>asdaeasdasd</Alert></Col>
-        <Col><CanvasCard /><br /><Alert>asdaeasdasd</Alert></Col>
+        <Col xs={12} sm={6} md={4}>
+            <CanvasCard />
+        </Col>
+        <Col xs={12} sm={6} md={4}>
+            <CanvasCard />
+        </Col>
+        <Col xs={12} sm={6} md={4}>
+            <CanvasCard />
+        </Col>
+      </Row>
+      <Row>
+        <Col>1 of 3<br /><Alert>asdaeasdasd</Alert></Col>
+        <Col>2 of 3<br /><Alert>asdaeasdasd</Alert></Col>
+        <Col>3 of 3<br /><Alert>asdaeasdasd</Alert></Col>
       </Row>
       <Row>
         <Col>1 of 3<br /><Alert>asdaeasdasd</Alert></Col>

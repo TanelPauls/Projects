@@ -5,32 +5,27 @@ import Canvas from './Canvas'
 const CanvasCard = () => {
   const divRef = useRef(null);
   const [divSize, setDivSize] = useState({ width: 0, height: 0 });
+  const canvasHeight = 500;
 
   useEffect(() => {
     const updateDivSize = () => {
       if (divRef.current) {
-        const { width, height } = divRef.current.getBoundingClientRect();
-        setDivSize({ width, height });
+        const { width} = divRef.current.getBoundingClientRect();
+        setDivSize({ width});
       }
     };
-  
-    // Update size initially
+
     updateDivSize();
-  
-    // Add event listener for window resize
     window.addEventListener('resize', updateDivSize);
-  
-    // Cleanup listener on unmount
     return () => {
       window.removeEventListener('resize', updateDivSize);
     };
   }, []);
 
   const canvasWidth = Math.floor(divSize.width)-2; 
-  const canvasHeight = 500;
   return (
     <>
-    <div className="canvasWrapper" ref={divRef}>
+    <div className="canvasWrapper" ref={divRef} style={{ height: `${canvasHeight}px` }}>
         <Canvas width={canvasWidth} height={canvasHeight} />   
         <div id="playButtonWrapper">
             <button id="playButton">

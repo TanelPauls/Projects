@@ -1,7 +1,11 @@
 .canvasWrapper {
+    /* height: 500px; */
     margin-top: 20px;
     background-color: lightblue;
     position: relative;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
 }
 #playButtonWrapper{
     position: absolute;
