@@ -14,48 +14,48 @@
     display: flex;
     gap: 10px;
 }   
-#playButton,
-#stopButton {
+.playButton,
+.stopButton {
     background: none; /* No background */
     border: none; /* Remove border */
     cursor: pointer; /* Keep pointer for clickability */
     padding: 0; /* Remove default padding */
 }
 
-#playIcon,
-#pauseIcon,
-#stopIcon {
+.playIcon,
+.pauseIcon,
+.stopIcon {
     display: block;
 }
-#pauseIcon{
+.pauseIcon{
     display: none;
 }
 
-#playButton svg {
+.playButton svg {
     width: 100%;
     height: 100%;
 }
-#stopButton svg {
+.stopButton svg {
     width: 100%;
     height: 100%;
 }
 
-#playButton:hover svg circle{
+.playButton:hover svg circle{
     stroke: rgb(69, 69, 69);
 }
-#playButton:hover svg polygon{
+.playButton:hover svg polygon{
     fill: rgb(69, 69, 69);
 }
-#playButton:hover svg rect {
+.playButton:hover svg rect {
     fill: rgb(69, 69, 69);
 }
 
-#stopButton:hover svg circle{
+.stopButton:hover svg circle{
     stroke: rgb(69, 69, 69);
 }
-#stopButton:hover svg polygon{
+.stopButton:hover svg polygon{
     fill: rgb(69, 69, 69);
 }
-#stopButton:hover svg rect {
+.stopButton:hover svg rect {
     fill: rgb(69, 69, 69);
 }

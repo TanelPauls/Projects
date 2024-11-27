@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const Canvas = ({ width, height }) => {
+const Canvas = ({ width, height, isPlaying, stoppable }) => {
   const canvasRef = useRef(null);
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,16 +13,12 @@ const Canvas = ({ width, height }) => {
 
     class CreateUpdateTable {
         constructor() {
-            this.circles = [];
             this.updateCanvas();
             this.circles = [];
         }
         stopCanvas(){
             ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
             this.circles = [];
-            playPause = 0;
-            playIcon.style.display = 'block';
-            pauseIcon.style.display = 'none';
             
         }
         updateCanvas() {
@@ -48,6 +45,7 @@ const Canvas = ({ width, height }) => {
         }
     
         animateCircles() {
+            /* if(isPlaying===false){return} */
             ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
             if(this.circles.length==0 || !Array.isArray(this.circles)){
                 this.circles = [];
@@ -71,8 +69,12 @@ const Canvas = ({ width, height }) => {
     const effect = new CreateUpdateTable();
     effect.updateCanvas();
     effect.animateCircles();
+
+    
+    
     
   }, [width, height]);
+
 
   return <canvas ref={canvasRef} style={{ border: '1px solid black' }} />;
 };
