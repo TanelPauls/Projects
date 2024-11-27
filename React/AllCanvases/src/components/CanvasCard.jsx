@@ -7,6 +7,11 @@ const CanvasCard = () => {
   const [divSize, setDivSize] = useState({ width: 0});
   const [isPlaying, setIsPlaying] = useState(false);
   const [stoppable, setStoppable] = useState(false);
+  const [stop, setStop] = useState(false);
+  const [circles, setCircles] = useState([]);
+  const handleCirclesUpdate = (updatedCircles) => {
+    setCircles(updatedCircles);
+  };
 
   const canvasHeight = 500;
 
@@ -49,6 +54,14 @@ const CanvasCard = () => {
   const toggleIconStop = () => {
     playIconRef.current.style.display = 'block';
     pauseIconRef.current.style.display = 'none';
+    if(stoppable){
+        if(stop){
+            console.log(circles)
+            setStop(false)
+            console.log(circles)
+        }
+        else{setStop(true)}
+    }
     setIsPlaying(false);
     setStoppable(false);
   };
@@ -57,7 +70,7 @@ const CanvasCard = () => {
   return (
     <>
     <div className="canvasWrapper" ref={divRef} style={{ height: `${canvasHeight}px` }}>
-        <Canvas width={canvasWidth} height={canvasHeight} isPlaying={isPlaying} stoppable={stoppable}/>   
+        <Canvas width={canvasWidth} height={canvasHeight} isPlaying={isPlaying} stop={stop} onCirclesUpdate={handleCirclesUpdate} />   
         <div id="playButtonWrapper">
             <button ref={playButtonRef} className="playButton" onClick={toggleIcon}>
                 <svg ref={playIconRef} className="playIcon" width="50" height="50" viewBox="0 0 24 24">

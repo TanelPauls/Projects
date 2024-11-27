@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Canvas = ({ width, height, isPlaying, stoppable }) => {
+const Canvas = ({ width, height, isPlaying, stop, onCirclesUpdate }) => {
   const canvasRef = useRef(null);
-
+  const prevStop = useRef({ stop: false});
+  const prevPlay = useRef({ isPlaying: false});
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -11,18 +12,25 @@ const Canvas = ({ width, height, isPlaying, stoppable }) => {
     canvas.width = width;
     canvas.height = height;
 
+    
+
     class CreateUpdateTable {
         constructor() {
             this.updateCanvas();
             this.circles = [];
+            this.animationFrameId = null;
         }
         stopCanvas(){
             ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
             this.circles = [];
+            if (this.animationFrameId) {
+                cancelAnimationFrame(this.animationFrameId); // Stop the animation
+                this.animationFrameId = null;
+            }
+            onCirclesUpdate && onCirclesUpdate(this.circles);
             
         }
         updateCanvas() {
-            
             this.canvasWidth = canvas.width;
             this.canvasHeight = canvas.height;
             ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -35,6 +43,7 @@ const Canvas = ({ width, height, isPlaying, stoppable }) => {
                 radius: 10,
                 maxRadius: Math.floor(Math.random() * 100)
             });
+            onCirclesUpdate && onCirclesUpdate(this.circles); // Update parent
         }
     
         drawCirc(circle) {
@@ -45,9 +54,10 @@ const Canvas = ({ width, height, isPlaying, stoppable }) => {
         }
     
         animateCircles() {
-            /* if(isPlaying===false){return} */
+            if(isPlaying===false){return}
             ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-            if(this.circles.length==0 || !Array.isArray(this.circles)){
+
+            if(this.circles.length===0 || !Array.isArray(this.circles)){
                 this.circles = [];
                 this.createNewCircle()}
             if(this.circles.length<10){
@@ -58,22 +68,49 @@ const Canvas = ({ width, height, isPlaying, stoppable }) => {
                 this.drawCirc(circle);
                 if (circle.radius < circle.maxRadius) {
                     circle.radius += 2;
-                } else {
-                    this.circles.splice(i, 1);             
+                } else if (isPlaying) { // Only remove circles when animation is active
+                    this.circles.splice(i, 1);
                 }
                 
             }
-            requestAnimationFrame(() => this.animateCircles());
+            onCirclesUpdate && onCirclesUpdate(this.circles); // Update parent
+            this.animationFrameId = requestAnimationFrame(() => this.animateCircles());
         }
+        redrawCircles() {
+            if (this.circles && this.circles.length > 0) { // Safeguard against empty array
+                ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+                for (let i = 0; i < this.circles.length; i++) {
+                    this.drawCirc(this.circles[i]);
+                }
+            }
+          }
     }
+
     const effect = new CreateUpdateTable();
     effect.updateCanvas();
-    effect.animateCircles();
+    
 
+    if (prevPlay.current.isPlaying !== isPlaying) {
+        prevPlay.current.isPlaying = isPlaying;
+        if( isPlaying){
+            effect.animateCircles();
+        }
+        else{
+            effect.redrawCircles();
+        }
+    }
+    if (prevStop.current.stop !== stop) {
+        prevStop.current.stop = stop;
+        effect.stopCanvas();
+    }
     
+
+    return () => {
+
+        effect.stopCanvas(); // Cleanup animation when component unmounts or updates
+    };
     
-    
-  }, [width, height]);
+  }, [width, height, isPlaying, stop]);
 
 
   return <canvas ref={canvasRef} style={{ border: '1px solid black' }} />;
