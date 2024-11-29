@@ -1,27 +1,27 @@
 class Person {
-    constructor(name){
-        this.name = name
-    } 
+  constructor(name) {
+    this.name = name;
+  }
 
-    setDateOfBirth(year){
-        this.year = year
-    }
+  setDateOfBirth(year) {
+    this.year = year;
+  }
 
-    getDateOfBirth(){
-        return this.year
-    } 
-    
-    age(){
-        return new Date().getFullYear() - this.year
-    } 
+  getDateOfBirth() {
+    return this.year;
+  }
 
-    getName(){
-        return this.name
-    } 
+  age() {
+    return new Date().getFullYear() - this.year;
+  }
 
-    description(){
-        return `Person ${this.name}`
-    } 
+  getName() {
+    return this.name;
+  }
+
+  description() {
+    return `Person ${this.name}`;
+  }
 }
 
-module.exports = Person
+module.exports = Person;
