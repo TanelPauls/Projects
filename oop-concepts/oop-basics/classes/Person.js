@@ -25,9 +25,3 @@ class Person {
 }
 
 module.exports = Person
-
-console.log(student1)
-console.log(student1.name)
-console.log(student1.age())
-student1.setDateOfBirth(1900)
-console.log(student1.age())
